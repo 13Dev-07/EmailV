@@ -1,0 +1,416 @@
+/**
+ * dark-light-themes.css
+ * Dual-theme system based on sacred color theory and universal balance
+ * Version: 1.0.0
+ * 
+ * This system implements:
+ * - Sacred color relationships
+ * - Chakra-inspired color harmonies
+ * - Golden ratio color proportions
+ * - Universal light/dark balance
+ * - Natural color transitions
+ */
+
+/* ------------------------
+ * Theme Configuration
+ * Based on sacred color theory
+ * ------------------------ */
+ :root {
+    /* Core Mathematical Constants */
+    --phi: 1.618033988749895;
+    --phi-inverse: 0.618033988749895;
+    
+    /* Base Color Relationships */
+    --hue-rotation: 137.5deg;     /* Golden Angle */
+    --saturation-ratio: 61.8%;    /* φ-based saturation */
+    --lightness-ratio: 38.2%;     /* φ⁻¹-based lightness */
+    
+    /* Opacity Levels */
+    --alpha-full: 1;
+    --alpha-high: 0.87;
+    --alpha-medium: 0.618;        /* φ⁻¹ */
+    --alpha-low: 0.382;           /* 1 - φ⁻¹ */
+    --alpha-subtle: 0.236;        /* φ⁻² */
+    
+    /* Transition Settings */
+    --theme-transition: background-color 0.3s var(--ease-golden),
+                       color 0.3s var(--ease-golden),
+                       border-color 0.3s var(--ease-golden),
+                       box-shadow 0.3s var(--ease-golden);
+}
+
+/* Light Theme Colors */
+:root[data-theme="light"] {
+    /* Primary Sacred Colors */
+    --color-cosmic-void: #ffffff;
+    --color-cosmic-background: #f8f9ff;
+    --color-celestial-white: #1a1b2e;
+    --color-ethereal-blue: #4c7bf3;
+    --color-mystic-purple: #9d3cf7;
+    --color-sacred-gold: #f7b731;
+    --color-spiritual-green: #00c9a7;
+    --color-divine-red: #dc3545;
+
+    /* Secondary Sacred Colors */
+    --color-sacral-orange: #fd7e14;
+    --color-third-eye-indigo: #6610f2;
+    --color-earth-brown: #a0522d;
+    --color-aether-silver: #adb5bd;
+
+    /* Surface Colors */
+    --surface-primary: #ffffff;
+    --surface-secondary: #f8f9fa;
+    --surface-tertiary: #e9ecef;
+    --surface-quaternary: #dee2e6;
+    
+    /* Text Colors */
+    --text-primary: rgba(26, 27, 46, var(--alpha-high));
+    --text-secondary: rgba(26, 27, 46, var(--alpha-medium));
+    --text-tertiary: rgba(26, 27, 46, var(--alpha-low));
+    --text-inverse: rgba(255, 255, 255, var(--alpha-high));
+    
+    /* Border Colors */
+    --border-subtle: rgba(26, 27, 46, var(--alpha-subtle));
+    --border-light: rgba(26, 27, 46, 0.1);
+    --border-medium: rgba(26, 27, 46, 0.2);
+    --border-heavy: rgba(26, 27, 46, 0.3);
+    
+    /* Shadow Colors */
+    --shadow-color: 220 3% 15%;
+    --shadow-strength: 1%;
+    
+    /* Status Colors */
+    --status-success: #28a745;
+    --status-warning: #ffc107;
+    --status-error: #dc3545;
+    --status-info: #17a2b8;
+    
+    /* Gradient Colors */
+    --gradient-cosmic: linear-gradient(
+        var(--hue-rotation),
+        rgba(76, 123, 243, 0.1),
+        rgba(157, 60, 247, 0.1)
+    );
+    
+    --gradient-spiritual: linear-gradient(
+        calc(var(--hue-rotation) * 2),
+        rgba(0, 201, 167, 0.1),
+        rgba(247, 183, 49, 0.1)
+    );
+}
+
+/* Dark Theme Colors */
+:root[data-theme="dark"] {
+    /* Primary Sacred Colors */
+    --color-cosmic-void: #0a0b14;
+    --color-cosmic-background: #1a1b2e;
+    --color-celestial-white: #f8f9ff;
+    --color-ethereal-blue: #4c7bf3;
+    --color-mystic-purple: #b84af7;
+    --color-sacred-gold: #ffd700;
+    --color-spiritual-green: #00f5d4;
+    --color-divine-red: #ff3366;
+
+    /* Secondary Sacred Colors */
+    --color-sacral-orange: #ff7f50;
+    --color-third-eye-indigo: #4b0082;
+    --color-earth-brown: #8b4513;
+    --color-aether-silver: #c0c0c0;
+
+    /* Surface Colors */
+    --surface-primary: #1a1b2e;
+    --surface-secondary: #242538;
+    --surface-tertiary: #2d2f44;
+    --surface-quaternary: #373951;
+    
+    /* Text Colors */
+    --text-primary: rgba(248, 249, 255, var(--alpha-high));
+    --text-secondary: rgba(248, 249, 255, var(--alpha-medium));
+    --text-tertiary: rgba(248, 249, 255, var(--alpha-low));
+    --text-inverse: rgba(26, 27, 46, var(--alpha-high));
+    
+    /* Border Colors */
+    --border-subtle: rgba(248, 249, 255, var(--alpha-subtle));
+    --border-light: rgba(248, 249, 255, 0.1);
+    --border-medium: rgba(248, 249, 255, 0.2);
+    --border-heavy: rgba(248, 249, 255, 0.3);
+    
+    /* Shadow Colors */
+    --shadow-color: 220 40% 2%;
+    --shadow-strength: 25%;
+    
+    /* Status Colors */
+    --status-success: #00f5d4;
+    --status-warning: #ffd700;
+    --status-error: #ff3366;
+    --status-info: #4c7bf3;
+    
+    /* Gradient Colors */
+    --gradient-cosmic: linear-gradient(
+        var(--hue-rotation),
+        rgba(76, 123, 243, 0.2),
+        rgba(184, 74, 247, 0.2)
+    );
+    
+    --gradient-spiritual: linear-gradient(
+        calc(var(--hue-rotation) * 2),
+        rgba(0, 245, 212, 0.2),
+        rgba(255, 215, 0, 0.2)
+    );
+}
+/* ------------------------
+ * Theme Application
+ * Core theme utility classes
+ * ------------------------ */
+
+/* Base Theme Applications */
+.theme-root {
+    color: var(--text-primary);
+    background-color: var(--surface-primary);
+    transition: var(--theme-transition);
+}
+
+/* Text Colors */
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-tertiary { color: var(--text-tertiary); }
+.text-inverse { color: var(--text-inverse); }
+
+.text-ethereal { color: var(--color-ethereal-blue); }
+.text-mystic { color: var(--color-mystic-purple); }
+.text-sacred { color: var(--color-sacred-gold); }
+.text-spiritual { color: var(--color-spiritual-green); }
+.text-divine { color: var(--color-divine-red); }
+
+/* Background Colors */
+.bg-primary { background-color: var(--surface-primary); }
+.bg-secondary { background-color: var(--surface-secondary); }
+.bg-tertiary { background-color: var(--surface-tertiary); }
+.bg-quaternary { background-color: var(--surface-quaternary); }
+
+.bg-ethereal { background-color: var(--color-ethereal-blue); }
+.bg-mystic { background-color: var(--color-mystic-purple); }
+.bg-sacred { background-color: var(--color-sacred-gold); }
+.bg-spiritual { background-color: var(--color-spiritual-green); }
+.bg-divine { background-color: var(--color-divine-red); }
+
+/* Border Colors */
+.border-subtle { border-color: var(--border-subtle); }
+.border-light { border-color: var(--border-light); }
+.border-medium { border-color: var(--border-medium); }
+.border-heavy { border-color: var(--border-heavy); }
+
+/* Status Colors */
+.status-success { color: var(--status-success); }
+.status-warning { color: var(--status-warning); }
+.status-error { color: var(--status-error); }
+.status-info { color: var(--status-info); }
+
+/* Background Status Colors */
+.bg-success { background-color: var(--status-success); }
+.bg-warning { background-color: var(--status-warning); }
+.bg-error { background-color: var(--status-error); }
+.bg-info { background-color: var(--status-info); }
+
+/* Gradient Backgrounds */
+.bg-gradient-cosmic {
+    background-image: var(--gradient-cosmic);
+}
+
+.bg-gradient-spiritual {
+    background-image: var(--gradient-spiritual);
+}
+
+/* ------------------------
+ * Component-Specific Theming
+ * Sacred component variations
+ * ------------------------ */
+
+/* Sacred Cards */
+.sacred-card {
+    background-color: var(--surface-secondary);
+    border: 1px solid var(--border-light);
+    box-shadow: 
+        0 2px 4px rgba(var(--shadow-color) / calc(var(--shadow-strength) + 5%)),
+        0 4px 8px rgba(var(--shadow-color) / var(--shadow-strength));
+    transition: var(--theme-transition);
+}
+
+.sacred-card:hover {
+    background-color: var(--surface-tertiary);
+    border-color: var(--border-medium);
+    box-shadow: 
+        0 4px 8px rgba(var(--shadow-color) / calc(var(--shadow-strength) + 8%)),
+        0 8px 16px rgba(var(--shadow-color) / calc(var(--shadow-strength) + 2%));
+}
+
+/* Sacred Buttons */
+.sacred-button {
+    color: var(--text-inverse);
+    background-color: var(--color-ethereal-blue);
+    border: 1px solid transparent;
+    transition: var(--theme-transition);
+}
+
+.sacred-button:hover {
+    background-color: var(--color-mystic-purple);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(var(--shadow-color) / calc(var(--shadow-strength) + 5%));
+}
+
+/* Sacred Inputs */
+.sacred-input {
+    color: var(--text-primary);
+    background-color: var(--surface-secondary);
+    border: 1px solid var(--border-medium);
+    transition: var(--theme-transition);
+}
+
+.sacred-input:focus {
+    background-color: var(--surface-primary);
+    border-color: var(--color-ethereal-blue);
+    box-shadow: 0 0 0 2px rgba(var(--color-ethereal-blue) / 0.2);
+}
+
+/* Sacred Modals */
+.sacred-modal {
+    background-color: var(--surface-primary);
+    border: 1px solid var(--border-medium);
+    box-shadow: 
+        0 8px 16px rgba(var(--shadow-color) / calc(var(--shadow-strength) + 10%)),
+        0 16px 32px rgba(var(--shadow-color) / calc(var(--shadow-strength) + 5%));
+}
+
+/* Sacred Navigation */
+.sacred-nav {
+    background-color: var(--surface-secondary);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.sacred-nav-item {
+    color: var(--text-secondary);
+    transition: var(--theme-transition);
+}
+
+.sacred-nav-item:hover,
+.sacred-nav-item.active {
+    color: var(--text-primary);
+    background-color: var(--surface-tertiary);
+}
+
+/* ------------------------
+ * Theme Transitions
+ * Smooth theme switching effects
+ * ------------------------ */
+
+/* Base Transition */
+.theme-transition-base {
+    transition: var(--theme-transition);
+}
+
+/* Complex Transitions */
+.theme-transition-complex {
+    transition: 
+        background-color 0.3s var(--ease-golden),
+        color 0.3s var(--ease-golden),
+        border-color 0.3s var(--ease-golden),
+        box-shadow 0.3s var(--ease-golden),
+        transform 0.3s var(--ease-golden);
+}
+
+/* Theme Switch Animation */
+@keyframes themeSwitch {
+    0% {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.theme-switching {
+    animation: themeSwitch 0.3s var(--ease-golden);
+}
+
+/* ------------------------
+ * Color Utility Classes
+ * Quick color applications
+ * ------------------------ */
+
+/* Opacity Utilities */
+.opacity-full { opacity: var(--alpha-full); }
+.opacity-high { opacity: var(--alpha-high); }
+.opacity-medium { opacity: var(--alpha-medium); }
+.opacity-low { opacity: var(--alpha-low); }
+.opacity-subtle { opacity: var(--alpha-subtle); }
+
+/* Mix Blend Modes */
+.blend-overlay { mix-blend-mode: overlay; }
+.blend-multiply { mix-blend-mode: multiply; }
+.blend-screen { mix-blend-mode: screen; }
+.blend-difference { mix-blend-mode: difference; }
+
+/* ------------------------
+ * Theme Preference Detection
+ * System preference handling
+ * ------------------------ */
+
+@media (prefers-color-scheme: light) {
+    :root:not([data-theme]) {
+        color-scheme: light;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+        color-scheme: dark;
+    }
+}
+
+/* ------------------------
+ * High Contrast Support
+ * Accessibility considerations
+ * ------------------------ */
+
+@media (forced-colors: active) {
+    :root {
+        --color-ethereal-blue: CanvasText;
+        --color-mystic-purple: CanvasText;
+        --color-sacred-gold: CanvasText;
+        --color-spiritual-green: CanvasText;
+        --color-divine-red: CanvasText;
+        
+        --border-subtle: CanvasText;
+        --border-light: CanvasText;
+        --border-medium: CanvasText;
+        --border-heavy: CanvasText;
+    }
+    
+    .sacred-card,
+    .sacred-button,
+    .sacred-input {
+        border: 1px solid CanvasText;
+    }
+}
+
+/* ------------------------
+ * Print Optimizations
+ * Theme adjustments for printing
+ * ------------------------ */
+
+@media print {
+    :root {
+        --text-primary: #000000 !important;
+        --text-secondary: #333333 !important;
+        --text-tertiary: #666666 !important;
+        --surface-primary: #ffffff !important;
+        --border-subtle: #cccccc !important;
+    }
+    
+    * {
+        background-color: transparent !important;
+        box-shadow: none !important;
+    }
+}

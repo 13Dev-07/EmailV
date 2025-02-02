@@ -1,0 +1,988 @@
+/**
+ * sacred-charts.css
+ * Divine visualization system based on sacred geometry principles
+ * Version: 1.0.0
+ * 
+ * This system implements:
+ * - Golden ratio proportions for charts
+ * - Sacred geometry patterns in visualizations
+ * - Divine color harmonies
+ * - Universal flow patterns
+ * - Sacred number sequences
+ */
+
+/* ------------------------
+ * Chart Variables
+ * Based on sacred proportions
+ * ------------------------ */
+ :root {
+    /* Chart Dimensions */
+    --chart-min-height: calc(200px * var(--phi));
+    --chart-max-height: calc(600px * var(--phi));
+    --chart-aspect-ratio: var(--phi);
+    
+    /* Chart Spacing */
+    --chart-padding-sm: var(--phi-space-3);
+    --chart-padding-md: var(--phi-space-4);
+    --chart-padding-lg: var(--phi-space-5);
+    
+    /* Grid Lines */
+    --grid-line-width: 1px;
+    --grid-line-style: dashed;
+    --grid-line-color: rgba(var(--color-ethereal-blue), 0.1);
+    
+    /* Axis Properties */
+    --axis-line-width: 2px;
+    --axis-tick-size: var(--phi-space-2);
+    --axis-label-offset: var(--phi-space-3);
+    
+    /* Data Point Properties */
+    --point-size-sm: calc(var(--phi-space-2) * var(--phi));
+    --point-size-md: calc(var(--phi-space-3) * var(--phi));
+    --point-size-lg: calc(var(--phi-space-4) * var(--phi));
+    
+    /* Animation Timings */
+    --chart-animation-duration: 1s;
+    --chart-animation-easing: var(--ease-golden);
+    
+    /* Chart Colors */
+    --chart-color-1: var(--color-ethereal-blue);
+    --chart-color-2: var(--color-mystic-purple);
+    --chart-color-3: var(--color-sacred-gold);
+    --chart-color-4: var(--color-spiritual-green);
+    --chart-color-5: var(--color-divine-red);
+    
+    /* Tooltip Properties */
+    --tooltip-bg: rgba(var(--surface-primary), 0.95);
+    --tooltip-border: 1px solid var(--border-light);
+    --tooltip-shadow: var(--elevation-3);
+    --tooltip-radius: var(--border-radius-md);
+}
+
+/* ------------------------
+ * Base Chart Container
+ * Sacred visualization vessel
+ * ------------------------ */
+
+.sacred-chart {
+    position: relative;
+    width: 100%;
+    min-height: var(--chart-min-height);
+    max-height: var(--chart-max-height);
+    padding: var(--chart-padding-md);
+    background: var(--surface-primary);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+}
+/* ------------------------
+ * Chart Grid System
+ * Sacred geometric structure
+ * ------------------------ */
+
+/* Base Grid */
+.sacred-chart-grid {
+    position: absolute;
+    inset: var(--chart-padding-md);
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: calc(var(--phi-space-2) * var(--phi));
+    opacity: 0.2;
+    pointer-events: none;
+}
+
+/* Golden Ratio Grid Lines */
+.sacred-chart-grid::before,
+.sacred-chart-grid::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+        linear-gradient(
+            to right,
+            var(--grid-line-color) var(--grid-line-width),
+            transparent var(--grid-line-width)
+        ),
+        linear-gradient(
+            to bottom,
+            var(--grid-line-color) var(--grid-line-width),
+            transparent var(--grid-line-width)
+        );
+    background-size:
+        calc(100% * var(--phi-inverse)) 100%,
+        100% calc(100% * var(--phi-inverse));
+    background-repeat: repeat;
+    mask-image: linear-gradient(
+        to bottom,
+        transparent,
+        black 15%,
+        black 85%,
+        transparent
+    );
+}
+
+/* Fibonacci Grid Overlay */
+.sacred-chart-fibonacci {
+    position: absolute;
+    inset: 0;
+    background: 
+        repeating-linear-gradient(
+            to right,
+            transparent,
+            transparent calc(100% * 0.236),
+            rgba(var(--color-ethereal-blue), 0.02) calc(100% * 0.236),
+            rgba(var(--color-ethereal-blue), 0.02) calc(100% * 0.382),
+            transparent calc(100% * 0.382),
+            transparent calc(100% * 0.618),
+            rgba(var(--color-ethereal-blue), 0.02) calc(100% * 0.618),
+            rgba(var(--color-ethereal-blue), 0.02) calc(100% * 1)
+        );
+}
+
+/* ------------------------
+ * Chart Axes
+ * Sacred directional guides
+ * ------------------------ */
+
+/* X-Axis */
+.sacred-chart-axis-x {
+    position: absolute;
+    bottom: var(--chart-padding-md);
+    left: var(--chart-padding-md);
+    right: var(--chart-padding-md);
+    height: var(--axis-line-width);
+    background: var(--border-medium);
+}
+
+/* Y-Axis */
+.sacred-chart-axis-y {
+    position: absolute;
+    top: var(--chart-padding-md);
+    bottom: var(--chart-padding-md);
+    left: var(--chart-padding-md);
+    width: var(--axis-line-width);
+    background: var(--border-medium);
+}
+
+/* Axis Labels */
+.sacred-chart-label {
+    position: absolute;
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    transition: color 0.3s var(--ease-golden);
+}
+
+.sacred-chart-label-x {
+    bottom: calc(var(--axis-label-offset) * -1);
+    transform: translateX(-50%);
+}
+
+.sacred-chart-label-y {
+    left: calc(var(--axis-label-offset) * -1);
+    transform: translateY(-50%) rotate(-90deg);
+    transform-origin: center right;
+}
+
+/* Axis Ticks */
+.sacred-chart-tick {
+    position: absolute;
+    background: var(--border-medium);
+}
+
+.sacred-chart-tick-x {
+    width: var(--axis-line-width);
+    height: var(--axis-tick-size);
+    bottom: 0;
+    transform: translateX(-50%);
+}
+
+.sacred-chart-tick-y {
+    height: var(--axis-line-width);
+    width: var(--axis-tick-size);
+    left: 0;
+    transform: translateY(-50%);
+}
+
+/* ------------------------
+ * Chart Legend
+ * Sacred symbol guide
+ * ------------------------ */
+
+.sacred-chart-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--phi-space-3);
+    padding: var(--chart-padding-md);
+    border-top: 1px solid var(--border-light);
+    margin-top: var(--chart-padding-md);
+}
+
+.sacred-chart-legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--phi-space-2);
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.3s var(--ease-golden);
+}
+
+.sacred-chart-legend-item:hover {
+    color: var(--text-primary);
+}
+
+.sacred-chart-legend-color {
+    width: var(--phi-space-3);
+    height: var(--phi-space-3);
+    border-radius: var(--border-radius-sm);
+    transition: transform 0.3s var(--ease-golden);
+}
+
+.sacred-chart-legend-item:hover .sacred-chart-legend-color {
+    transform: scale(1.2);
+}
+
+/* Legend States */
+.sacred-chart-legend-item[data-active="false"] {
+    opacity: 0.5;
+}
+
+.sacred-chart-legend-item[data-active="false"] .sacred-chart-legend-color {
+    filter: grayscale(1);
+}
+
+/* ------------------------
+ * Chart Tooltip
+ * Sacred information vessel
+ * ------------------------ */
+
+.sacred-chart-tooltip {
+    position: absolute;
+    padding: var(--chart-padding-sm);
+    background: var(--tooltip-bg);
+    border: var(--tooltip-border);
+    border-radius: var(--tooltip-radius);
+    box-shadow: var(--tooltip-shadow);
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(-50%, -100%) scale(0.95);
+    transition: 
+        opacity 0.2s var(--ease-golden),
+        transform 0.2s var(--ease-golden);
+    z-index: 10;
+}
+
+.sacred-chart-tooltip.active {
+    opacity: 1;
+    transform: translate(-50%, -100%) scale(1);
+}
+
+.sacred-chart-tooltip::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid var(--tooltip-bg);
+}
+/* ------------------------
+ * Chart Types
+ * Sacred data manifestations
+ * ------------------------ */
+
+/* Line Chart */
+.sacred-chart-line {
+    --line-width: 2px;
+    --line-tension: 0.4;
+    --point-border-width: 2px;
+    --area-opacity: 0.1;
+    
+    position: relative;
+    height: 100%;
+}
+
+.sacred-chart-line-path {
+    fill: none;
+    stroke-width: var(--line-width);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: 
+        stroke-dasharray var(--chart-animation-duration) var(--chart-animation-easing),
+        stroke-dashoffset var(--chart-animation-duration) var(--chart-animation-easing);
+}
+
+.sacred-chart-line-area {
+    fill: currentColor;
+    opacity: var(--area-opacity);
+    transition: opacity var(--chart-animation-duration) var(--chart-animation-easing);
+}
+
+.sacred-chart-line-point {
+    fill: var(--surface-primary);
+    stroke-width: var(--point-border-width);
+    transition: 
+        transform 0.3s var(--ease-golden),
+        stroke-width 0.3s var(--ease-golden);
+}
+
+.sacred-chart-line-point:hover {
+    transform: scale(1.5);
+    stroke-width: calc(var(--point-border-width) * 1.5);
+}
+
+/* Bar Chart */
+.sacred-chart-bar {
+    --bar-min-width: calc(var(--phi-space-4) * var(--phi));
+    --bar-max-width: calc(var(--phi-space-6) * var(--phi));
+    --bar-radius: var(--border-radius-sm);
+    --bar-spacing: calc(var(--phi-space-2) * var(--phi));
+    --bar-opacity: 0.9;
+    
+    display: flex;
+    align-items: flex-end;
+    gap: var(--bar-spacing);
+    height: 100%;
+    padding-bottom: var(--chart-padding-md);
+}
+
+.sacred-chart-bar-column {
+    flex: 1;
+    min-width: var(--bar-min-width);
+    max-width: var(--bar-max-width);
+    height: var(--bar-height, 0%);
+    background: currentColor;
+    border-radius: var(--bar-radius) var(--bar-radius) 0 0;
+    opacity: var(--bar-opacity);
+    transition: 
+        height var(--chart-animation-duration) var(--chart-animation-easing),
+        opacity 0.3s var(--ease-golden);
+}
+
+.sacred-chart-bar-column:hover {
+    opacity: 1;
+    transform: scaleY(1.02);
+    transform-origin: bottom;
+}
+
+/* Circular Charts */
+.sacred-chart-circle {
+    --circle-size: min(100%, calc(100vh * 0.6));
+    --circle-thickness: calc(var(--phi-space-4) * var(--phi));
+    --circle-gap: calc(var(--phi-space-2) * var(--phi));
+    
+    position: relative;
+    width: var(--circle-size);
+    height: var(--circle-size);
+    margin: auto;
+}
+
+.sacred-chart-circle-svg {
+    transform: rotate(-90deg);
+    transform-origin: center;
+}
+
+.sacred-chart-circle-track {
+    fill: none;
+    stroke: var(--surface-secondary);
+    stroke-width: var(--circle-thickness);
+}
+
+.sacred-chart-circle-progress {
+    fill: none;
+    stroke-width: var(--circle-thickness);
+    stroke-linecap: round;
+    transition: 
+        stroke-dasharray var(--chart-animation-duration) var(--chart-animation-easing),
+        stroke-dashoffset var(--chart-animation-duration) var(--chart-animation-easing);
+}
+
+/* Radar Chart */
+.sacred-chart-radar {
+    --radar-opacity: 0.2;
+    --radar-point-size: var(--point-size-md);
+    --radar-line-width: 2px;
+    
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+
+.sacred-chart-radar-polygon {
+    fill: currentColor;
+    fill-opacity: var(--radar-opacity);
+    stroke: currentColor;
+    stroke-width: var(--radar-line-width);
+    transition: all var(--chart-animation-duration) var(--chart-animation-easing);
+}
+
+.sacred-chart-radar-point {
+    fill: var(--surface-primary);
+    stroke: currentColor;
+    stroke-width: var(--radar-line-width);
+    r: var(--radar-point-size);
+    transition: r 0.3s var(--ease-golden);
+}
+
+.sacred-chart-radar-point:hover {
+    r: calc(var(--radar-point-size) * 1.5);
+}
+
+/* Scatter Plot */
+.sacred-chart-scatter {
+    --scatter-point-size: var(--point-size-md);
+    --scatter-point-opacity: 0.7;
+    
+    position: relative;
+    height: 100%;
+}
+
+.sacred-chart-scatter-point {
+    position: absolute;
+    width: var(--scatter-point-size);
+    height: var(--scatter-point-size);
+    border-radius: 50%;
+    background: currentColor;
+    opacity: var(--scatter-point-opacity);
+    transform: translate(-50%, -50%);
+    transition: 
+        transform 0.3s var(--ease-golden),
+        opacity 0.3s var(--ease-golden);
+}
+
+.sacred-chart-scatter-point:hover {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 1;
+}
+
+/* Area Chart */
+.sacred-chart-area {
+    --area-opacity-top: 0.2;
+    --area-opacity-bottom: 0.05;
+    
+    position: relative;
+    height: 100%;
+}
+
+.sacred-chart-area-path {
+    fill: url(#areaGradient);
+    transition: opacity var(--chart-animation-duration) var(--chart-animation-easing);
+}
+
+.sacred-chart-area-gradient {
+    --gradient-stop-1: rgba(var(--chart-color-current), var(--area-opacity-top));
+    --gradient-stop-2: rgba(var(--chart-color-current), var(--area-opacity-bottom));
+}
+
+/* Candlestick Chart */
+.sacred-chart-candlestick {
+    --candle-width: calc(var(--phi-space-4) * var(--phi));
+    --candle-wick-width: 1px;
+    --candle-positive-color: var(--color-spiritual-green);
+    --candle-negative-color: var(--color-divine-red);
+    
+    display: flex;
+    align-items: flex-end;
+    gap: var(--phi-space-2);
+    height: 100%;
+}
+
+.sacred-chart-candle {
+    position: relative;
+    width: var(--candle-width);
+    background: currentColor;
+    transition: height var(--chart-animation-duration) var(--chart-animation-easing);
+}
+
+.sacred-chart-candle::before,
+.sacred-chart-candle::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    width: var(--candle-wick-width);
+    background: currentColor;
+    transform: translateX(-50%);
+}
+
+.sacred-chart-candle[data-trend="positive"] {
+    color: var(--candle-positive-color);
+}
+
+.sacred-chart-candle[data-trend="negative"] {
+    color: var(--candle-negative-color);
+}
+
+/* ------------------------
+ * Chart Animations
+ * Sacred motion patterns
+ * ------------------------ */
+
+/* Base Animation Properties */
+.sacred-chart-animated {
+    --animation-timing: var(--chart-animation-duration);
+    --animation-easing: var(--chart-animation-easing);
+    --animation-delay-base: 50ms;
+    --animation-stagger: 20ms;
+}
+
+/* Entry Animations */
+@keyframes chartFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes chartScaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes chartSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Sacred Flow Animations */
+@keyframes sacredFlow {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-10px) scale(1.02);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes divineRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(calc(360deg * var(--phi-inverse))); }
+}
+
+@keyframes sacredPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(var(--phi-inverse));
+        opacity: 0.8;
+    }
+}
+
+/* Line Chart Animations */
+.sacred-chart-line-animate {
+    animation: lineDrawIn var(--animation-timing) var(--animation-easing) forwards;
+}
+
+@keyframes lineDrawIn {
+    from {
+        stroke-dashoffset: var(--line-length);
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+/* Bar Chart Animations */
+.sacred-chart-bar-animate {
+    animation: barGrowth var(--animation-timing) var(--animation-easing) forwards;
+}
+
+@keyframes barGrowth {
+    from {
+        transform: scaleY(0);
+    }
+    to {
+        transform: scaleY(1);
+    }
+}
+
+/* Circle Chart Animations */
+.sacred-chart-circle-animate {
+    animation: circleProgress var(--animation-timing) var(--animation-easing) forwards;
+}
+
+@keyframes circleProgress {
+    from {
+        stroke-dashoffset: var(--circle-circumference);
+    }
+    to {
+        stroke-dashoffset: var(--circle-progress);
+    }
+}
+
+/* Radar Chart Animations */
+.sacred-chart-radar-animate {
+    animation: radarExpand var(--animation-timing) var(--animation-easing) forwards;
+}
+
+@keyframes radarExpand {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Data Point Animations */
+.sacred-chart-point {
+    animation: pointPop calc(var(--animation-timing) * 0.5) var(--animation-easing) forwards;
+    animation-delay: calc(var(--animation-delay-base) + (var(--point-index, 0) * var(--animation-stagger)));
+}
+
+@keyframes pointPop {
+    0% {
+        opacity: 0;
+        transform: scale(0) translateY(10px);
+    }
+    70% {
+        opacity: 1;
+        transform: scale(1.2) translateY(-5px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Value Update Animations */
+.sacred-chart-value-update {
+    animation: valueUpdate 0.3s var(--ease-golden);
+}
+
+@keyframes valueUpdate {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Hover Effect Animations */
+.sacred-chart-hover-effect {
+    transition: all 0.3s var(--ease-golden);
+}
+
+.sacred-chart-hover-effect:hover {
+    transform: translateY(-2px) scale(1.02);
+    filter: brightness(1.1);
+}
+
+/* Loading Animation */
+.sacred-chart-loading {
+    animation: chartLoading 2s var(--ease-golden) infinite;
+}
+
+@keyframes chartLoading {
+    0% {
+        opacity: 0.3;
+        transform: translateX(-100%);
+    }
+    50% {
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 0.3;
+        transform: translateX(100%);
+    }
+}
+
+/* Transition Animations */
+.sacred-chart-transition {
+    transition: 
+        transform var(--animation-timing) var(--animation-easing),
+        opacity var(--animation-timing) var(--animation-easing);
+}
+
+/* Stagger Children Animations */
+.sacred-chart-stagger-children > * {
+    opacity: 0;
+    animation: staggerFade var(--animation-timing) var(--animation-easing) forwards;
+}
+
+.sacred-chart-stagger-children > *:nth-child(1) { animation-delay: calc(var(--animation-delay-base) + (1 * var(--animation-stagger))); }
+.sacred-chart-stagger-children > *:nth-child(2) { animation-delay: calc(var(--animation-delay-base) + (2 * var(--animation-stagger))); }
+.sacred-chart-stagger-children > *:nth-child(3) { animation-delay: calc(var(--animation-delay-base) + (3 * var(--animation-stagger))); }
+.sacred-chart-stagger-children > *:nth-child(4) { animation-delay: calc(var(--animation-delay-base) + (4 * var(--animation-stagger))); }
+.sacred-chart-stagger-children > *:nth-child(5) { animation-delay: calc(var(--animation-delay-base) + (5 * var(--animation-stagger))); }
+
+@keyframes staggerFade {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* ------------------------
+ * Chart Interactive Features
+ * Sacred interaction patterns
+ * ------------------------ */
+
+/* Hover States and Interactions */
+.sacred-chart-interactive {
+    --hover-scale: 1.02;
+    --hover-brightness: 1.1;
+    --hover-shadow: 0 4px 20px rgba(var(--color-ethereal-blue), 0.15);
+    --hover-transition: all 0.3s var(--ease-golden);
+    
+    cursor: pointer;
+    transition: var(--hover-transition);
+}
+
+.sacred-chart-interactive:hover {
+    transform: scale(var(--hover-scale));
+    filter: brightness(var(--hover-brightness));
+    box-shadow: var(--hover-shadow);
+}
+
+/* Magnetic Effect */
+.sacred-chart-magnetic {
+    --magnetic-strength: 0.3;
+    --magnetic-radius: 100px;
+    --magnetic-transition: 0.2s;
+    
+    position: relative;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.sacred-chart-magnetic-area {
+    position: absolute;
+    inset: calc(var(--magnetic-radius) * -1);
+    pointer-events: none;
+}
+
+/* Energy Field Effect */
+.sacred-chart-energy-field {
+    --energy-color: var(--color-ethereal-blue);
+    --energy-opacity: 0.1;
+    --energy-radius: 100px;
+    
+    position: relative;
+    overflow: hidden;
+}
+
+.sacred-chart-energy-field::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle var(--energy-radius) at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(var(--energy-color), var(--energy-opacity)),
+        transparent
+    );
+    opacity: 0;
+    transition: opacity 0.3s var(--ease-golden);
+    pointer-events: none;
+}
+
+.sacred-chart-energy-field:hover::before {
+    opacity: 1;
+}
+
+/* Focus States */
+.sacred-chart-focus {
+    --focus-ring-color: var(--color-ethereal-blue);
+    --focus-ring-width: 2px;
+    --focus-ring-offset: 4px;
+    
+    outline: none;
+}
+
+.sacred-chart-focus:focus-visible {
+    box-shadow: 0 0 0 var(--focus-ring-width) rgba(var(--focus-ring-color), 0.2),
+                0 0 0 var(--focus-ring-offset) rgba(var(--focus-ring-color), 0.1);
+}
+
+/* Tooltip Interaction */
+.sacred-chart-tooltip-trigger {
+    --tooltip-offset: 10px;
+    --tooltip-arrow-size: 6px;
+    
+    position: relative;
+}
+
+.sacred-chart-tooltip-content {
+    position: absolute;
+    bottom: calc(100% + var(--tooltip-offset));
+    left: 50%;
+    transform: translateX(-50%) scale(0.95);
+    padding: var(--phi-space-3);
+    background: var(--surface-primary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--elevation-3);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s var(--ease-golden);
+    pointer-events: none;
+    z-index: 100;
+}
+
+.sacred-chart-tooltip-trigger:hover .sacred-chart-tooltip-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) scale(1);
+}
+
+/* Data Point Interaction */
+.sacred-chart-point-interactive {
+    --point-hover-scale: 1.5;
+    --point-hover-shadow: 0 0 10px rgba(var(--color-ethereal-blue), 0.3);
+    
+    cursor: pointer;
+    transition: all 0.2s var(--ease-golden);
+}
+
+.sacred-chart-point-interactive:hover {
+    transform: scale(var(--point-hover-scale));
+    box-shadow: var(--point-hover-shadow);
+    z-index: 10;
+}
+
+/* Selection States */
+.sacred-chart-selectable {
+    --selection-border: 2px solid var(--color-ethereal-blue);
+    --selection-shadow: 0 0 0 4px rgba(var(--color-ethereal-blue), 0.1);
+    
+    cursor: pointer;
+    transition: all 0.2s var(--ease-golden);
+}
+
+.sacred-chart-selectable[aria-selected="true"] {
+    border: var(--selection-border);
+    box-shadow: var(--selection-shadow);
+}
+
+/* Drag Interaction */
+.sacred-chart-draggable {
+    --drag-opacity: 0.8;
+    --drag-scale: 0.98;
+    
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+}
+
+.sacred-chart-draggable:active {
+    cursor: grabbing;
+    opacity: var(--drag-opacity);
+    transform: scale(var(--drag-scale));
+}
+
+/* Zoom Interaction */
+.sacred-chart-zoomable {
+    --zoom-scale: 1.5;
+    --zoom-transition: transform 0.3s var(--ease-golden);
+    
+    cursor: zoom-in;
+    transition: var(--zoom-transition);
+}
+
+.sacred-chart-zoomable[data-zoomed="true"] {
+    cursor: zoom-out;
+    transform: scale(var(--zoom-scale));
+}
+
+/* Pan Interaction */
+.sacred-chart-pannable {
+    --pan-transition: transform 0.1s linear;
+    
+    cursor: move;
+    touch-action: none;
+    user-select: none;
+    transition: var(--pan-transition);
+}
+
+/* Brush Selection */
+.sacred-chart-brush {
+    --brush-color: var(--color-ethereal-blue);
+    --brush-opacity: 0.1;
+    
+    position: absolute;
+    background: rgba(var(--brush-color), var(--brush-opacity));
+    border: 1px solid rgba(var(--brush-color), 0.3);
+    pointer-events: none;
+}
+
+/* Crosshair */
+.sacred-chart-crosshair {
+    --crosshair-color: var(--color-ethereal-blue);
+    --crosshair-width: 1px;
+    --crosshair-opacity: 0.3;
+    
+    position: absolute;
+    pointer-events: none;
+    z-index: 50;
+}
+
+.sacred-chart-crosshair-x,
+.sacred-chart-crosshair-y {
+    position: absolute;
+    background: rgba(var(--crosshair-color), var(--crosshair-opacity));
+}
+
+.sacred-chart-crosshair-x {
+    height: var(--crosshair-width);
+    width: 100%;
+    left: 0;
+}
+
+.sacred-chart-crosshair-y {
+    width: var(--crosshair-width);
+    height: 100%;
+    top: 0;
+}
+
+/* Value Labels */
+.sacred-chart-value-label {
+    --label-background: var(--surface-primary);
+    --label-border: var(--border-light);
+    --label-shadow: var(--elevation-2);
+    
+    position: absolute;
+    padding: var(--phi-space-2) var(--phi-space-3);
+    background: var(--label-background);
+    border: 1px solid var(--label-border);
+    border-radius: var(--border-radius-sm);
+    box-shadow: var(--label-shadow);
+    pointer-events: none;
+    transition: all 0.2s var(--ease-golden);
+}

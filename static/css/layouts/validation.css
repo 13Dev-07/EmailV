@@ -1,0 +1,644 @@
+/**
+ * validation.css
+ * Divine validation system based on sacred geometry principles
+ * Version: 1.0.0
+ * 
+ * This system implements:
+ * - Golden ratio proportions
+ * - Sacred geometry patterns
+ * - Divine validation feedback
+ * - Universal error handling
+ * - Sacred number sequences
+ */
+
+/* ------------------------
+ * Validation Variables
+ * Based on sacred proportions
+ * ------------------------ */
+ :root {
+    /* Validation Colors */
+    --validation-success: var(--color-spiritual-green);
+    --validation-error: var(--color-divine-red);
+    --validation-warning: var(--color-sacred-gold);
+    --validation-info: var(--color-ethereal-blue);
+    
+    /* Feedback Dimensions */
+    --validation-icon-size: calc(var(--phi-space-4) * var(--phi));
+    --validation-message-spacing: calc(var(--phi-space-2) * var(--phi));
+    
+    /* Animation Timings */
+    --validation-duration: 0.3s;
+    --validation-delay: 0.1s;
+    
+    /* Z-index Layers */
+    --validation-tooltip-z-index: 1000;
+    --validation-message-z-index: 10;
+}
+
+/* ------------------------
+ * Validation States
+ * Sacred feedback patterns
+ * ------------------------ */
+
+/* Input Validation States */
+.sacred-input[data-valid="true"] {
+    border-color: var(--validation-success);
+}
+
+.sacred-input[data-valid="false"] {
+    border-color: var(--validation-error);
+}
+
+.sacred-input[data-warning="true"] {
+    border-color: var(--validation-warning);
+}
+
+/* Focus States with Validation */
+.sacred-input[data-valid="true"]:focus {
+    border-color: var(--validation-success);
+    box-shadow: 0 0 0 2px rgba(var(--validation-success), 0.2);
+}
+
+.sacred-input[data-valid="false"]:focus {
+    border-color: var(--validation-error);
+    box-shadow: 0 0 0 2px rgba(var(--validation-error), 0.2);
+}
+
+.sacred-input[data-warning="true"]:focus {
+    border-color: var(--validation-warning);
+    box-shadow: 0 0 0 2px rgba(var(--validation-warning), 0.2);
+}
+/* ------------------------
+ * Validation Messages
+ * Sacred feedback manifestations
+ * ------------------------ */
+
+/* Base Message Container */
+.sacred-validation-message {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--validation-message-spacing);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-snug);
+    padding: var(--validation-message-spacing);
+    margin-top: calc(var(--validation-message-spacing) * var(--phi-inverse));
+    border-radius: var(--border-radius-sm);
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: 
+        opacity var(--validation-duration) var(--ease-golden),
+        transform var(--validation-duration) var(--ease-golden);
+}
+
+/* Message States */
+.sacred-validation-message[data-visible="true"] {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Message Types */
+.sacred-validation-error {
+    color: var(--validation-error);
+    background: rgba(var(--validation-error), 0.05);
+}
+
+.sacred-validation-success {
+    color: var(--validation-success);
+    background: rgba(var(--validation-success), 0.05);
+}
+
+.sacred-validation-warning {
+    color: var(--validation-warning);
+    background: rgba(var(--validation-warning), 0.05);
+}
+
+.sacred-validation-info {
+    color: var(--validation-info);
+    background: rgba(var(--validation-info), 0.05);
+}
+
+/* Message Icon */
+.sacred-validation-icon {
+    width: var(--validation-icon-size);
+    height: var(--validation-icon-size);
+    flex-shrink: 0;
+}
+
+/* Message Text */
+.sacred-validation-text {
+    flex: 1;
+    min-width: 0;
+}
+
+/* List of Validation Messages */
+.sacred-validation-list {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--validation-message-spacing) * var(--phi-inverse));
+}
+
+/* Validation Counter */
+.sacred-validation-counter {
+    font-size: var(--font-size-xs);
+    color: var(--text-secondary);
+    margin-left: auto;
+    padding-left: var(--validation-message-spacing);
+}
+
+/* Inline Validation */
+.sacred-validation-inline {
+    display: inline-flex;
+    align-items: center;
+    gap: calc(var(--validation-message-spacing) * var(--phi-inverse));
+    font-size: var(--font-size-xs);
+}
+
+/* Field Requirements */
+.sacred-field-requirements {
+    font-size: var(--font-size-xs);
+    color: var(--text-secondary);
+    margin-top: calc(var(--validation-message-spacing) * var(--phi-inverse));
+}
+
+.sacred-requirement {
+    display: flex;
+    align-items: center;
+    gap: var(--validation-message-spacing);
+}
+
+.sacred-requirement[data-met="true"] {
+    color: var(--validation-success);
+}
+
+.sacred-requirement[data-met="false"] {
+    color: var(--text-secondary);
+}
+
+/* Validation Progress */
+.sacred-validation-progress {
+    --progress: 0%;
+    
+    position: relative;
+    width: 100%;
+    height: calc(var(--phi-space-1) * var(--phi));
+    background: rgba(var(--validation-info), 0.1);
+    border-radius: var(--border-radius-pill);
+    margin-top: var(--validation-message-spacing);
+    overflow: hidden;
+}
+
+.sacred-validation-progress-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: var(--progress);
+    background: var(--validation-info);
+    border-radius: inherit;
+    transition: width var(--validation-duration) var(--ease-golden);
+}
+
+/* Validation Strength Indicator */
+.sacred-validation-strength {
+    display: flex;
+    gap: calc(var(--validation-message-spacing) * var(--phi-inverse));
+    margin-top: var(--validation-message-spacing);
+}
+
+.sacred-strength-segment {
+    flex: 1;
+    height: calc(var(--phi-space-1) * var(--phi));
+    background: rgba(var(--validation-info), 0.1);
+    border-radius: var(--border-radius-pill);
+    transition: background var(--validation-duration) var(--ease-golden);
+}
+
+.sacred-strength-segment[data-active="true"] {
+    background: var(--validation-info);
+}
+
+.sacred-strength-segment[data-level="weak"] {
+    background: var(--validation-error);
+}
+
+.sacred-strength-segment[data-level="medium"] {
+    background: var(--validation-warning);
+}
+
+.sacred-strength-segment[data-level="strong"] {
+    background: var(--validation-success);
+}
+
+/* Validation Tooltip */
+.sacred-validation-tooltip {
+    position: absolute;
+    top: calc(100% + var(--validation-message-spacing));
+    left: 0;
+    right: 0;
+    padding: var(--validation-message-spacing);
+    background: var(--surface-primary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--border-radius-sm);
+    box-shadow: var(--elevation-2);
+    z-index: var(--validation-tooltip-z-index);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4px);
+    transition: 
+        opacity var(--validation-duration) var(--ease-golden),
+        transform var(--validation-duration) var(--ease-golden),
+        visibility var(--validation-duration) var(--ease-golden);
+}
+
+.sacred-input:focus + .sacred-validation-tooltip,
+.sacred-validation-tooltip[data-visible="true"] {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+/* ------------------------
+ * Validation Icons
+ * Sacred indicator patterns
+ * ------------------------ */
+
+/* Icon Container */
+.sacred-validation-icon-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--validation-icon-size);
+    height: var(--validation-icon-size);
+}
+
+/* Base Icon Styles */
+.sacred-validation-icon {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: 
+        opacity var(--validation-duration) var(--ease-golden),
+        transform var(--validation-duration) var(--ease-golden);
+}
+
+/* Icon States */
+.sacred-validation-icon[data-visible="true"] {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Success Icon */
+.sacred-icon-success {
+    color: var(--validation-success);
+}
+
+.sacred-icon-success::before {
+    content: '';
+    width: 40%;
+    height: 80%;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg) translate(-10%, -10%);
+}
+
+/* Error Icon */
+.sacred-icon-error {
+    color: var(--validation-error);
+}
+
+.sacred-icon-error::before,
+.sacred-icon-error::after {
+    content: '';
+    position: absolute;
+    width: 80%;
+    height: 2px;
+    background: currentColor;
+    border-radius: var(--border-radius-pill);
+}
+
+.sacred-icon-error::before {
+    transform: rotate(45deg);
+}
+
+.sacred-icon-error::after {
+    transform: rotate(-45deg);
+}
+
+/* Warning Icon */
+.sacred-icon-warning {
+    color: var(--validation-warning);
+}
+
+.sacred-icon-warning::before {
+    content: '';
+    width: 90%;
+    height: 90%;
+    border: 2px solid currentColor;
+    clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+}
+
+.sacred-icon-warning::after {
+    content: '';
+    position: absolute;
+    bottom: 25%;
+    width: 2px;
+    height: 25%;
+    background: currentColor;
+    border-radius: var(--border-radius-pill);
+}
+
+/* Info Icon */
+.sacred-icon-info {
+    color: var(--validation-info);
+}
+
+.sacred-icon-info::before {
+    content: '';
+    width: 90%;
+    height: 90%;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+}
+
+.sacred-icon-info::after {
+    content: 'i';
+    position: absolute;
+    font-family: serif;
+    font-style: italic;
+    font-weight: bold;
+    font-size: calc(var(--validation-icon-size) * 0.5);
+}
+
+/* Loading Icon */
+.sacred-icon-loading {
+    color: var(--validation-info);
+}
+
+.sacred-icon-loading::before {
+    content: '';
+    width: 80%;
+    height: 80%;
+    border: 2px solid transparent;
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: iconSpin 0.8s linear infinite;
+}
+
+@keyframes iconSpin {
+    to { transform: rotate(360deg); }
+}
+
+/* Required Icon */
+.sacred-icon-required {
+    color: var(--validation-error);
+}
+
+.sacred-icon-required::before {
+    content: '*';
+    font-size: calc(var(--validation-icon-size) * 0.7);
+    font-weight: var(--font-weight-bold);
+}
+
+/* Optional Icon */
+.sacred-icon-optional {
+    color: var(--text-secondary);
+}
+
+.sacred-icon-optional::before {
+    content: '○';
+    font-size: calc(var(--validation-icon-size) * 0.7);
+}
+
+/* Icon Positioning */
+.sacred-input-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.sacred-input-icon-left {
+    left: var(--validation-message-spacing);
+}
+
+.sacred-input-icon-right {
+    right: var(--validation-message-spacing);
+}
+
+/* Icon Groups */
+.sacred-validation-icon-group {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--validation-message-spacing) * var(--phi-inverse));
+}
+
+/* Icon Sizes */
+.sacred-validation-icon-sm {
+    --validation-icon-size: calc(var(--phi-space-3) * var(--phi));
+}
+
+.sacred-validation-icon-lg {
+    --validation-icon-size: calc(var(--phi-space-5) * var(--phi));
+}
+
+/* Icon with Background */
+.sacred-validation-icon-bg {
+    padding: calc(var(--validation-message-spacing) * var(--phi-inverse));
+    border-radius: var(--border-radius-sm);
+}
+
+.sacred-validation-icon-bg.sacred-icon-success {
+    background: rgba(var(--validation-success), 0.1);
+}
+
+.sacred-validation-icon-bg.sacred-icon-error {
+    background: rgba(var(--validation-error), 0.1);
+}
+
+.sacred-validation-icon-bg.sacred-icon-warning {
+    background: rgba(var(--validation-warning), 0.1);
+}
+
+.sacred-validation-icon-bg.sacred-icon-info {
+    background: rgba(var(--validation-info), 0.1);
+}
+/* ------------------------
+ * Validation Animations
+ * Sacred motion patterns
+ * ------------------------ */
+
+/* Base Animation Properties */
+.sacred-validation-animated {
+    --animation-offset: 8px;
+    --animation-scale: 0.95;
+    --animation-rotate: 3deg;
+    --animation-shake-offset: 4px;
+    
+    will-change: transform, opacity;
+}
+
+/* Fade Animations */
+@keyframes validationFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(var(--animation-offset)) scale(var(--animation-scale));
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes validationFadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(calc(var(--animation-offset) * -1)) scale(var(--animation-scale));
+    }
+}
+
+/* Shake Animation */
+@keyframes validationShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(calc(var(--animation-shake-offset) * -1)); }
+    75% { transform: translateX(var(--animation-shake-offset)); }
+}
+
+/* Pulse Animation */
+@keyframes validationPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Sacred Spiral Animation */
+@keyframes validationSpiral {
+    0% {
+        opacity: 0;
+        transform: rotate(calc(var(--animation-rotate) * -1)) scale(var(--animation-scale));
+    }
+    100% {
+        opacity: 1;
+        transform: rotate(0) scale(1);
+    }
+}
+
+/* Divine Flow Animation */
+@keyframes validationFlow {
+    0% {
+        opacity: 0;
+        transform: translateY(var(--animation-offset)) rotate(calc(var(--animation-rotate) * -1));
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotate(0);
+    }
+}
+
+/* Animation States */
+.sacred-validation-message[data-state="entering"] {
+    animation: validationFadeIn var(--validation-duration) var(--ease-golden) forwards;
+}
+
+.sacred-validation-message[data-state="exiting"] {
+    animation: validationFadeOut var(--validation-duration) var(--ease-golden) forwards;
+}
+
+/* Error State Animations */
+.sacred-input[data-valid="false"] {
+    animation: validationShake 0.4s var(--ease-golden);
+}
+
+/* Success State Animations */
+.sacred-input[data-valid="true"] .sacred-validation-icon {
+    animation: validationPulse 0.4s var(--ease-golden);
+}
+
+/* Warning State Animations */
+.sacred-input[data-warning="true"] {
+    animation: validationFlow 0.4s var(--ease-golden);
+}
+
+/* Progress Animation */
+@keyframes validationProgress {
+    from { width: 0; }
+    to { width: var(--progress); }
+}
+
+.sacred-validation-progress-bar {
+    animation: validationProgress 0.6s var(--ease-golden);
+}
+
+/* Strength Indicator Animation */
+@keyframes strengthSegment {
+    from {
+        transform: scaleX(0);
+        opacity: 0;
+    }
+    to {
+        transform: scaleX(1);
+        opacity: 1;
+    }
+}
+
+.sacred-strength-segment[data-active="true"] {
+    transform-origin: left;
+    animation: strengthSegment 0.3s var(--ease-golden) forwards;
+}
+
+/* Icon State Transitions */
+.sacred-validation-icon {
+    transition: 
+        color var(--validation-duration) var(--ease-golden),
+        transform var(--validation-duration) var(--ease-golden),
+        opacity var(--validation-duration) var(--ease-golden);
+}
+
+/* Sacred Reveal Animation */
+@keyframes validationReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(var(--animation-offset));
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+}
+
+.sacred-validation-message[data-animate="reveal"] {
+    animation: validationReveal 0.4s var(--ease-golden) forwards;
+}
+
+/* Stagger Children Animation */
+.sacred-validation-list > * {
+    opacity: 0;
+    animation: validationFadeIn 0.3s var(--ease-golden) forwards;
+}
+
+.sacred-validation-list > *:nth-child(1) { animation-delay: calc(var(--validation-delay) * 1); }
+.sacred-validation-list > *:nth-child(2) { animation-delay: calc(var(--validation-delay) * 2); }
+.sacred-validation-list > *:nth-child(3) { animation-delay: calc(var(--validation-delay) * 3); }
+.sacred-validation-list > *:nth-child(4) { animation-delay: calc(var(--validation-delay) * 4); }
+.sacred-validation-list > *:nth-child(5) { animation-delay: calc(var(--validation-delay) * 5); }
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .sacred-validation-animated,
+    .sacred-validation-message,
+    .sacred-validation-icon,
+    .sacred-validation-progress-bar,
+    .sacred-strength-segment {
+        animation: none !important;
+        transition: opacity var(--validation-duration) ease-in-out !important;
+    }
+}

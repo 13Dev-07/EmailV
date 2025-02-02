@@ -1,0 +1,5 @@
+# logs/error.log
+
+# This file records all error-level logs from the application.
+# It is critical for debugging and monitoring unexpected issues.
+# Managed by a RotatingFileHandler to maintain log size.

@@ -1,0 +1,1052 @@
+/**
+ * sacred-modals.css
+ * Divine overlay system based on sacred geometry principles
+ * Version: 1.0.0
+ * 
+ * This system implements:
+ * - Golden ratio proportions
+ * - Sacred geometry patterns
+ * - Divine overlay principles
+ * - Harmonic transitions
+ * - Universal flow patterns
+ */
+
+/* ------------------------
+ * Modal Variables
+ * Based on sacred proportions
+ * ------------------------ */
+ :root {
+    /* Modal Dimensions */
+    --modal-min-width: calc(320px * var(--phi));
+    --modal-max-width: calc(800px * var(--phi));
+    --modal-min-height: calc(200px * var(--phi));
+    --modal-max-height: calc(90vh * var(--phi-inverse));
+    
+    /* Spacing */
+    --modal-padding-sm: var(--phi-space-4);
+    --modal-padding-md: var(--phi-space-5);
+    --modal-padding-lg: var(--phi-space-6);
+    
+    /* Header & Footer Heights */
+    --modal-header-height: calc(var(--phi-space-7) * var(--phi));
+    --modal-footer-height: calc(var(--phi-space-7) * var(--phi-inverse));
+    
+    /* Animation Timings */
+    --modal-transition-duration: 0.3s;
+    --modal-transition-timing: var(--ease-golden);
+    
+    /* Overlay Properties */
+    --modal-overlay-blur: 8px;
+    --modal-overlay-opacity: 0.8;
+    
+    /* Z-index Layers */
+    --modal-z-overlay: 1000;
+    --modal-z-content: 1001;
+    
+    /* Elevation */
+    --modal-elevation: 
+        0 8px 16px rgba(var(--shadow-color) / calc(var(--shadow-strength) + 5%)),
+        0 16px 32px rgba(var(--shadow-color) / calc(var(--shadow-strength) + 10%));
+}
+
+/* ------------------------
+ * Base Modal Styles
+ * Core sacred overlay patterns
+ * ------------------------ */
+
+/* Modal Container */
+.sacred-modal-container {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--modal-padding-md);
+    z-index: var(--modal-z-overlay);
+    visibility: hidden;
+    opacity: 0;
+    transition: 
+        visibility var(--modal-transition-duration) var(--modal-transition-timing),
+        opacity var(--modal-transition-duration) var(--modal-transition-timing);
+}
+
+/* Modal Overlay */
+.sacred-modal-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(var(--color-cosmic-void), var(--modal-overlay-opacity));
+    backdrop-filter: blur(var(--modal-overlay-blur));
+    -webkit-backdrop-filter: blur(var(--modal-overlay-blur));
+}
+/* ------------------------
+ * Modal Content Styles
+ * Sacred content structure and harmony
+ * ------------------------ */
+
+/* Modal Content Container */
+.sacred-modal-content {
+    position: relative;
+    width: 100%;
+    max-width: var(--modal-max-width);
+    min-width: var(--modal-min-width);
+    max-height: var(--modal-max-height);
+    min-height: var(--modal-min-height);
+    background: var(--surface-primary);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--modal-elevation);
+    display: flex;
+    flex-direction: column;
+    z-index: var(--modal-z-content);
+    transform: scale(0.95) translateY(10px);
+    opacity: 0;
+    overflow: hidden;
+    transition: 
+        transform var(--modal-transition-duration) var(--modal-transition-timing),
+        opacity var(--modal-transition-duration) var(--modal-transition-timing);
+}
+
+/* Modal Header */
+.sacred-modal-header {
+    position: relative;
+    min-height: var(--modal-header-height);
+    padding: var(--modal-padding-md);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-light);
+    background: linear-gradient(
+        to right,
+        rgba(var(--color-ethereal-blue), 0.05),
+        rgba(var(--color-mystic-purple), 0.05)
+    );
+}
+
+.sacred-modal-title {
+    margin: 0;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    line-height: var(--line-height-tight);
+    flex: 1;
+}
+
+.sacred-modal-subtitle {
+    margin: var(--phi-space-2) 0 0;
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    line-height: var(--line-height-snug);
+}
+
+/* Modal Close Button */
+.sacred-modal-close {
+    position: relative;
+    width: calc(var(--phi-space-6) * var(--phi));
+    height: calc(var(--phi-space-6) * var(--phi));
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--transition-duration-normal) var(--ease-golden);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--border-radius-circle);
+}
+
+.sacred-modal-close:hover {
+    background: rgba(var(--color-divine-red), 0.1);
+    color: var(--color-divine-red);
+    transform: rotate(90deg);
+}
+
+.sacred-modal-close::before,
+.sacred-modal-close::after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 2px;
+    background: currentColor;
+    border-radius: 1px;
+    transition: transform var(--transition-duration-normal) var(--ease-golden);
+}
+
+.sacred-modal-close::before {
+    transform: rotate(45deg);
+}
+
+.sacred-modal-close::after {
+    transform: rotate(-45deg);
+}
+
+/* Modal Body */
+.sacred-modal-body {
+    flex: 1;
+    padding: var(--modal-padding-md);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar for Modal Body */
+.sacred-modal-body::-webkit-scrollbar {
+    width: calc(var(--phi-space-2) * var(--phi));
+}
+
+.sacred-modal-body::-webkit-scrollbar-track {
+    background: var(--surface-secondary);
+    border-radius: var(--border-radius-pill);
+}
+
+.sacred-modal-body::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+        to bottom,
+        var(--color-ethereal-blue),
+        var(--color-mystic-purple)
+    );
+    border-radius: var(--border-radius-pill);
+    border: 2px solid var(--surface-secondary);
+}
+
+.sacred-modal-body::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+        to bottom,
+        var(--color-mystic-purple),
+        var(--color-ethereal-blue)
+    );
+}
+
+/* Modal Footer */
+.sacred-modal-footer {
+    min-height: var(--modal-footer-height);
+    padding: var(--modal-padding-md);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--phi-space-3);
+    border-top: 1px solid var(--border-light);
+    background: linear-gradient(
+        to right,
+        rgba(var(--color-ethereal-blue), 0.02),
+        rgba(var(--color-mystic-purple), 0.02)
+    );
+}
+
+/* Modal Content Sections */
+.sacred-modal-section {
+    padding: var(--modal-padding-md) 0;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.sacred-modal-section:last-child {
+    border-bottom: none;
+}
+
+.sacred-modal-section-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary);
+    margin: 0 0 var(--phi-space-3);
+}
+
+.sacred-modal-section-content {
+    color: var(--text-secondary);
+    line-height: var(--line-height-relaxed);
+}
+
+/* Modal Grid Layout */
+.sacred-modal-grid {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(calc(var(--modal-min-width) * var(--phi-inverse)), 1fr)
+    );
+    gap: var(--phi-space-4);
+}
+
+/* Modal Form Groups */
+.sacred-modal-form-group {
+    margin-bottom: var(--phi-space-4);
+}
+
+.sacred-modal-form-group:last-child {
+    margin-bottom: 0;
+}
+
+.sacred-modal-label {
+    display: block;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-secondary);
+    margin-bottom: var(--phi-space-2);
+}
+
+/* Modal Content Loading State */
+.sacred-modal-loading {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(var(--surface-primary), 0.8);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: calc(var(--modal-z-content) + 1);
+}
+
+.sacred-modal-spinner {
+    width: calc(var(--phi-space-6) * var(--phi));
+    height: calc(var(--phi-space-6) * var(--phi));
+    border: 2px solid transparent;
+    border-top-color: var(--color-ethereal-blue);
+    border-right-color: var(--color-mystic-purple);
+    border-radius: 50%;
+    animation: modalSpin 1s linear infinite;
+}
+
+@keyframes modalSpin {
+    to { transform: rotate(360deg); }
+}
+
+/* Modal Content Transitions */
+.sacred-modal-fade {
+    transition: opacity var(--modal-transition-duration) var(--modal-transition-timing);
+}
+
+.sacred-modal-slide {
+    transition: 
+        opacity var(--modal-transition-duration) var(--modal-transition-timing),
+        transform var(--modal-transition-duration) var(--modal-transition-timing);
+}
+/* ------------------------
+ * Modal Animation States
+ * Sacred transition patterns and divine flow states
+ * ------------------------ */
+
+/* Base Animation Properties */
+.sacred-modal-animated {
+    --animation-timing: var(--modal-transition-duration);
+    --animation-easing: var(--modal-transition-timing);
+    --animation-scale-start: 0.95;
+    --animation-scale-end: 1;
+    --animation-translate-y-start: 20px;
+    --animation-translate-y-end: 0;
+    --animation-blur-start: 8px;
+    --animation-blur-end: 0;
+    --animation-rotate-start: -2deg;
+    --animation-rotate-end: 0;
+}
+
+/* Modal Opening States */
+.sacred-modal-container[data-state="opening"] {
+    visibility: visible;
+    opacity: 1;
+}
+
+.sacred-modal-container[data-state="opening"] .sacred-modal-overlay {
+    animation: overlayEnter var(--animation-timing) var(--animation-easing) forwards;
+}
+
+.sacred-modal-container[data-state="opening"] .sacred-modal-content {
+    animation: modalEnter var(--animation-timing) var(--animation-easing) forwards;
+}
+
+/* Modal Closing States */
+.sacred-modal-container[data-state="closing"] {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: none;
+}
+
+.sacred-modal-container[data-state="closing"] .sacred-modal-overlay {
+    animation: overlayExit var(--animation-timing) var(--animation-easing) forwards;
+}
+
+.sacred-modal-container[data-state="closing"] .sacred-modal-content {
+    animation: modalExit var(--animation-timing) var(--animation-easing) forwards;
+}
+
+/* Modal Active State */
+.sacred-modal-container[data-state="active"] {
+    visibility: visible;
+    opacity: 1;
+}
+
+.sacred-modal-container[data-state="active"] .sacred-modal-content {
+    transform: scale(var(--animation-scale-end)) 
+               translateY(var(--animation-translate-y-end)) 
+               rotate(var(--animation-rotate-end));
+    opacity: 1;
+}
+
+/* Sacred Entry Animations */
+@keyframes overlayEnter {
+    0% {
+        opacity: 0;
+        backdrop-filter: blur(0);
+    }
+    100% {
+        opacity: 1;
+        backdrop-filter: blur(var(--modal-overlay-blur));
+    }
+}
+
+@keyframes modalEnter {
+    0% {
+        opacity: 0;
+        transform: scale(var(--animation-scale-start)) 
+                  translateY(var(--animation-translate-y-start)) 
+                  rotate(var(--animation-rotate-start));
+        filter: blur(var(--animation-blur-start));
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(calc(var(--animation-scale-end) * 1.02)) 
+                  translateY(calc(var(--animation-translate-y-end) * 0.3)) 
+                  rotate(calc(var(--animation-rotate-end) * 0.5));
+        filter: blur(calc(var(--animation-blur-end) * 0.5));
+    }
+    100% {
+        opacity: 1;
+        transform: scale(var(--animation-scale-end)) 
+                  translateY(var(--animation-translate-y-end)) 
+                  rotate(var(--animation-rotate-end));
+        filter: blur(var(--animation-blur-end));
+    }
+}
+
+/* Sacred Exit Animations */
+@keyframes overlayExit {
+    0% {
+        opacity: 1;
+        backdrop-filter: blur(var(--modal-overlay-blur));
+    }
+    100% {
+        opacity: 0;
+        backdrop-filter: blur(0);
+    }
+}
+
+@keyframes modalExit {
+    0% {
+        opacity: 1;
+        transform: scale(var(--animation-scale-end)) 
+                  translateY(var(--animation-translate-y-end)) 
+                  rotate(var(--animation-rotate-end));
+        filter: blur(var(--animation-blur-end));
+    }
+    100% {
+        opacity: 0;
+        transform: scale(calc(var(--animation-scale-start) * 0.95)) 
+                  translateY(calc(var(--animation-translate-y-start) * -1)) 
+                  rotate(calc(var(--animation-rotate-start) * -1));
+        filter: blur(var(--animation-blur-start));
+    }
+}
+
+/* Sacred Flow Animations */
+.sacred-modal-flow-enter {
+    animation: modalFlowEnter var(--animation-timing) var(--animation-easing) forwards;
+}
+
+.sacred-modal-flow-exit {
+    animation: modalFlowExit var(--animation-timing) var(--animation-easing) forwards;
+}
+
+@keyframes modalFlowEnter {
+    0% {
+        opacity: 0;
+        transform: translateY(100%) scale(0.9);
+    }
+    50% {
+        opacity: 0.5;
+        transform: translateY(-10%) scale(1.02);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes modalFlowExit {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        opacity: 0.5;
+        transform: translateY(10%) scale(0.98);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-100%) scale(0.9);
+    }
+}
+
+/* Sacred Spiral Animations */
+.sacred-modal-spiral-enter {
+    animation: modalSpiralEnter var(--animation-timing) var(--animation-easing) forwards;
+}
+
+.sacred-modal-spiral-exit {
+    animation: modalSpiralExit var(--animation-timing) var(--animation-easing) forwards;
+}
+
+@keyframes modalSpiralEnter {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotate(-540deg);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(1.1) rotate(-180deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+}
+
+@keyframes modalSpiralExit {
+    0% {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(0.9) rotate(180deg);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0) rotate(540deg);
+    }
+}
+
+/* Sacred Expansion Animations */
+.sacred-modal-expand-enter {
+    animation: modalExpandEnter var(--animation-timing) var(--animation-easing) forwards;
+}
+
+.sacred-modal-expand-exit {
+    animation: modalExpandExit var(--animation-timing) var(--animation-easing) forwards;
+}
+
+@keyframes modalExpandEnter {
+    0% {
+        opacity: 0;
+        clip-path: circle(0% at center);
+    }
+    50% {
+        opacity: 0.5;
+        clip-path: circle(60% at center);
+    }
+    100% {
+        opacity: 1;
+        clip-path: circle(120% at center);
+    }
+}
+
+@keyframes modalExpandExit {
+    0% {
+        opacity: 1;
+        clip-path: circle(120% at center);
+    }
+    50% {
+        opacity: 0.5;
+        clip-path: circle(60% at center);
+    }
+    100% {
+        opacity: 0;
+        clip-path: circle(0% at center);
+    }
+}
+/* ------------------------
+ * Modal Variants
+ * Sacred container patterns and divine manifestations
+ * ------------------------ */
+
+/* Crystalline Modal */
+.sacred-modal-crystalline {
+    --crystal-opacity: 0.7;
+    --crystal-blur: 15px;
+    --crystal-border: 1px;
+    --crystal-highlight: rgba(255, 255, 255, 0.1);
+    --crystal-shadow: rgba(0, 0, 0, 0.1);
+
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, var(--crystal-opacity)),
+        rgba(255, 255, 255, calc(var(--crystal-opacity) * 0.5))
+    );
+    backdrop-filter: 
+        blur(var(--crystal-blur))
+        saturate(180%)
+        brightness(1.1);
+    -webkit-backdrop-filter: 
+        blur(var(--crystal-blur))
+        saturate(180%)
+        brightness(1.1);
+    border: var(--crystal-border) solid var(--crystal-highlight);
+    box-shadow: 
+        0 4px 32px var(--crystal-shadow),
+        inset 0 2px 4px var(--crystal-highlight),
+        inset 0 -2px 4px var(--crystal-shadow);
+}
+
+.sacred-modal-crystalline::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        var(--crystal-highlight),
+        transparent 80%
+    );
+    opacity: 0;
+    transition: opacity 0.3s var(--ease-golden);
+    pointer-events: none;
+}
+
+.sacred-modal-crystalline:hover::before {
+    opacity: 1;
+}
+
+/* Merkaba Modal */
+.sacred-modal-merkaba {
+    --merkaba-primary: var(--color-ethereal-blue);
+    --merkaba-secondary: var(--color-mystic-purple);
+    --merkaba-accent: var(--color-sacred-gold);
+
+    background: linear-gradient(
+        135deg,
+        rgba(var(--merkaba-primary), 0.05),
+        rgba(var(--merkaba-secondary), 0.05)
+    );
+    border: 2px solid transparent;
+    border-image: linear-gradient(
+        var(--angle-sacred),
+        var(--merkaba-primary),
+        var(--merkaba-secondary)
+    ) 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.sacred-modal-merkaba::before,
+.sacred-modal-merkaba::after {
+    content: '';
+    position: absolute;
+    inset: -50%;
+    background: conic-gradient(
+        from var(--angle-golden),
+        transparent,
+        rgba(var(--merkaba-accent), 0.1),
+        transparent
+    );
+    animation: merkabaSpin 12s linear infinite;
+}
+
+.sacred-modal-merkaba::after {
+    animation-direction: reverse;
+    animation-duration: 15s;
+}
+
+@keyframes merkabaSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Flower of Life Modal */
+.sacred-modal-flower {
+    --flower-primary: var(--color-spiritual-green);
+    --flower-secondary: var(--color-sacred-gold);
+    --flower-pattern-size: 60px;
+    --flower-pattern-color: rgba(255, 255, 255, 0.03);
+
+    background: radial-gradient(
+        circle at center,
+        rgba(var(--flower-primary), 0.05),
+        rgba(var(--flower-secondary), 0.05)
+    );
+    position: relative;
+}
+
+.sacred-modal-flower::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: repeating-radial-gradient(
+        circle at 0 0,
+        transparent 0,
+        transparent calc(var(--flower-pattern-size) - 1px),
+        var(--flower-pattern-color) var(--flower-pattern-size)
+    );
+    background-size: var(--flower-pattern-size) var(--flower-pattern-size);
+    mask-image: radial-gradient(circle at center, black, transparent 80%);
+    opacity: 0.5;
+    animation: flowerPulse 8s ease-in-out infinite;
+}
+
+@keyframes flowerPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.7; }
+}
+
+/* Metatron's Cube Modal */
+.sacred-modal-metatron {
+    --metatron-primary: var(--color-ethereal-blue);
+    --metatron-secondary: var(--color-mystic-purple);
+    --metatron-accent: var(--color-sacred-gold);
+
+    background: linear-gradient(
+        135deg,
+        rgba(var(--metatron-primary), 0.05),
+        rgba(var(--metatron-secondary), 0.05)
+    );
+    position: relative;
+    overflow: hidden;
+}
+
+.sacred-modal-metatron::before {
+    content: '';
+    position: absolute;
+    inset: -100%;
+    background: 
+        conic-gradient(
+            from 0deg at 50% 50%,
+            transparent,
+            rgba(var(--metatron-primary), 0.1),
+            transparent 60deg
+        ),
+        conic-gradient(
+            from 120deg at 50% 50%,
+            transparent,
+            rgba(var(--metatron-secondary), 0.1),
+            transparent 60deg
+        ),
+        conic-gradient(
+            from 240deg at 50% 50%,
+            transparent,
+            rgba(var(--metatron-accent), 0.1),
+            transparent 60deg
+        );
+    animation: metatronRotate 20s linear infinite;
+}
+
+@keyframes metatronRotate {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.5); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+/* Vesica Piscis Modal */
+.sacred-modal-vesica {
+    --vesica-primary: var(--color-ethereal-blue);
+    --vesica-secondary: var(--color-spiritual-green);
+
+    background: radial-gradient(
+        circle at center,
+        rgba(var(--vesica-primary), 0.05),
+        transparent
+    );
+    position: relative;
+    overflow: hidden;
+}
+
+.sacred-modal-vesica::before,
+.sacred-modal-vesica::after {
+    content: '';
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    top: -25%;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle at center,
+        rgba(var(--vesica-secondary), 0.05),
+        transparent 70%
+    );
+}
+
+.sacred-modal-vesica::before {
+    left: -25%;
+    animation: vesicaBreath 8s ease-in-out infinite;
+}
+
+.sacred-modal-vesica::after {
+    right: -25%;
+    animation: vesicaBreath 8s ease-in-out infinite reverse;
+}
+
+@keyframes vesicaBreath {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+/* ------------------------
+ * Modal Interactive Features
+ * Sacred interaction patterns and divine responses
+ * ------------------------ */
+
+/* Magnetic Modal Effect */
+.sacred-modal-magnetic {
+    --magnetic-strength: 0.5;
+    --magnetic-transition: 0.1s;
+    --magnetic-ease: cubic-bezier(0.33, 1, 0.68, 1);
+    
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    will-change: transform;
+}
+
+.sacred-modal-magnetic.active {
+    transition: transform var(--magnetic-transition) var(--magnetic-ease);
+}
+
+/* Energy Field Effect */
+.sacred-modal-energy-field {
+    --energy-color: var(--color-ethereal-blue);
+    --energy-intensity: 0.2;
+    --energy-radius: 100px;
+    
+    position: relative;
+    overflow: hidden;
+}
+
+.sacred-modal-energy-field::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle var(--energy-radius) at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(var(--energy-color), var(--energy-intensity)),
+        transparent
+    );
+    opacity: 0;
+    transition: opacity 0.3s var(--ease-golden);
+    pointer-events: none;
+}
+
+.sacred-modal-energy-field:hover::before {
+    opacity: 1;
+}
+
+/* Sacred Ripple Effect */
+.sacred-modal-ripple {
+    --ripple-color: var(--color-ethereal-blue);
+    --ripple-duration: 0.8s;
+    
+    position: relative;
+    overflow: hidden;
+}
+
+.sacred-modal-ripple .ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(var(--ripple-color), 0.3);
+    transform: scale(0);
+    animation: rippleEffect var(--ripple-duration) var(--ease-golden);
+    pointer-events: none;
+}
+
+@keyframes rippleEffect {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Divine Focus States */
+.sacred-modal-focus-aware {
+    --focus-ring-color: var(--color-ethereal-blue);
+    --focus-ring-size: 3px;
+    --focus-ring-offset: 2px;
+    
+    position: relative;
+}
+
+.sacred-modal-focus-aware:focus-visible {
+    outline: none;
+}
+
+.sacred-modal-focus-aware:focus-visible::after {
+    content: '';
+    position: absolute;
+    inset: calc(var(--focus-ring-offset) * -1);
+    border-radius: inherit;
+    border: var(--focus-ring-size) solid rgba(var(--focus-ring-color), 0.5);
+    animation: focusPulse 2s var(--ease-golden) infinite;
+}
+
+@keyframes focusPulse {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.02); }
+}
+
+/* Sacred Hover States */
+.sacred-modal-hover-aware {
+    --hover-translate-y: -4px;
+    --hover-scale: 1.02;
+    --hover-shadow-color: var(--color-ethereal-blue);
+    --hover-duration: 0.3s;
+    
+    transition: 
+        transform var(--hover-duration) var(--ease-golden),
+        box-shadow var(--hover-duration) var(--ease-golden);
+}
+
+.sacred-modal-hover-aware:hover {
+    transform: translateY(var(--hover-translate-y)) scale(var(--hover-scale));
+    box-shadow: 
+        0 8px 24px rgba(var(--hover-shadow-color), 0.15),
+        0 16px 48px rgba(var(--hover-shadow-color), 0.1);
+}
+
+/* Sacred Gesture Support */
+.sacred-modal-gesture {
+    --gesture-scale: 0.95;
+    --gesture-duration: 0.2s;
+    
+    touch-action: manipulation;
+}
+
+.sacred-modal-gesture:active {
+    transform: scale(var(--gesture-scale));
+    transition: transform var(--gesture-duration) var(--ease-golden);
+}
+
+/* Divine Scroll Effects */
+.sacred-modal-scroll {
+    --scroll-indicator-color: var(--color-ethereal-blue);
+    --scroll-indicator-size: 4px;
+    --scroll-shadow-size: 100px;
+    
+    position: relative;
+}
+
+.sacred-modal-scroll::before,
+.sacred-modal-scroll::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: var(--scroll-shadow-size);
+    pointer-events: none;
+    transition: opacity 0.3s var(--ease-golden);
+}
+
+.sacred-modal-scroll::before {
+    top: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(var(--surface-primary), 1),
+        rgba(var(--surface-primary), 0)
+    );
+}
+
+.sacred-modal-scroll::after {
+    bottom: 0;
+    background: linear-gradient(
+        to top,
+        rgba(var(--surface-primary), 1),
+        rgba(var(--surface-primary), 0)
+    );
+}
+
+.sacred-modal-scroll[data-scroll="top"]::before {
+    opacity: 0;
+}
+
+.sacred-modal-scroll[data-scroll="bottom"]::after {
+    opacity: 0;
+}
+
+/* Sacred Drag Interaction */
+.sacred-modal-draggable {
+    --drag-handle-color: var(--color-ethereal-blue);
+    --drag-handle-size: 32px;
+    
+    cursor: grab;
+    user-select: none;
+    touch-action: none;
+}
+
+.sacred-modal-draggable:active {
+    cursor: grabbing;
+}
+
+.sacred-modal-drag-handle {
+    width: var(--drag-handle-size);
+    height: 4px;
+    margin: 8px auto;
+    background: rgba(var(--drag-handle-color), 0.3);
+    border-radius: 2px;
+    transition: background-color 0.3s var(--ease-golden);
+}
+
+.sacred-modal-draggable:hover .sacred-modal-drag-handle {
+    background: rgba(var(--drag-handle-color), 0.5);
+}
+
+/* Divine Resize Interaction */
+.sacred-modal-resizable {
+    --resize-handle-color: var(--color-ethereal-blue);
+    --resize-handle-size: 10px;
+    
+    position: relative;
+    resize: both;
+    overflow: auto;
+}
+
+.sacred-modal-resize-handle {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: var(--resize-handle-size);
+    height: var(--resize-handle-size);
+    background: linear-gradient(
+        135deg,
+        transparent 50%,
+        rgba(var(--resize-handle-color), 0.3) 50%
+    );
+    cursor: se-resize;
+}
+
+/* Sacred Loading States */
+.sacred-modal-loading {
+    --loading-color: var(--color-ethereal-blue);
+    --loading-size: 48px;
+    
+    position: relative;
+}
+
+.sacred-modal-loading::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(var(--surface-primary), 0.8);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sacred-modal-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--loading-size);
+    height: var(--loading-size);
+    margin: calc(var(--loading-size) / -2);
+    border: 2px solid transparent;
+    border-top-color: rgba(var(--loading-color), 1);
+    border-right-color: rgba(var(--loading-color), 0.5);
+    border-radius: 50%;
+    animation: sacredSpin 1s linear infinite;
+}
+
+@keyframes sacredSpin {
+    to { transform: rotate(360deg); }
+}

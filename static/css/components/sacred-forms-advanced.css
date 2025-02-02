@@ -1,0 +1,729 @@
+/**
+ * sacred-forms-advanced.css
+ * Advanced divine form system based on sacred geometry principles
+ * Version: 1.0.0
+ * 
+ * This system implements:
+ * - Golden ratio proportions
+ * - Sacred geometry patterns
+ * - Divine input manifestations
+ * - Universal form validation
+ * - Sacred number sequences
+ */
+
+/* ------------------------
+ * Advanced Form Variables
+ * Based on sacred proportions
+ * ------------------------ */
+ :root {
+    /* Advanced Input Sizes */
+    --input-advanced-height-sm: calc(var(--phi-space-6) * var(--phi-inverse));
+    --input-advanced-height-md: calc(var(--phi-space-7) * var(--phi-inverse));
+    --input-advanced-height-lg: calc(var(--phi-space-8) * var(--phi-inverse));
+    
+    /* Multi-select Heights */
+    --multiselect-min-height: calc(var(--phi-space-7) * var(--phi));
+    --multiselect-max-height: calc(var(--phi-space-9) * var(--phi));
+    
+    /* Tag Sizes */
+    --tag-height: calc(var(--phi-space-5) * var(--phi-inverse));
+    --tag-padding: calc(var(--phi-space-2) * var(--phi));
+    
+    /* Slider Track */
+    --slider-track-height: calc(var(--phi-space-1) * var(--phi));
+    --slider-thumb-size: calc(var(--phi-space-4) * var(--phi));
+    
+    /* File Upload */
+    --upload-area-min-height: calc(var(--phi-space-8) * var(--phi));
+    --upload-border-width: 2px;
+    --upload-border-style: dashed;
+    
+    /* Rich Text Editor */
+    --editor-min-height: calc(var(--phi-space-8) * var(--phi));
+    --editor-toolbar-height: calc(var(--phi-space-6) * var(--phi));
+    
+    /* Date Picker */
+    --date-picker-width: calc(300px * var(--phi));
+    --date-cell-size: calc(var(--phi-space-6) * var(--phi));
+    
+    /* Color Picker */
+    --color-picker-width: calc(280px * var(--phi));
+    --color-swatch-size: calc(var(--phi-space-5) * var(--phi));
+    
+    /* Validation States */
+    --validation-icon-size: calc(var(--phi-space-4) * var(--phi));
+    --validation-message-offset: var(--phi-space-2);
+    
+    /* Animation Timings */
+    --form-animation-duration: 0.3s;
+    --form-animation-timing: var(--ease-golden);
+}
+
+/* ------------------------
+ * Advanced Input Base
+ * Core sacred patterns
+ * ------------------------ */
+
+.sacred-input-advanced {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: var(--input-advanced-height-md);
+    padding: 0 calc(var(--phi-space-4) * var(--phi));
+    background: var(--surface-primary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--border-radius-md);
+    transition: all var(--form-animation-duration) var(--form-animation-timing);
+}
+
+.sacred-input-advanced:focus-within {
+    border-color: var(--color-ethereal-blue);
+    box-shadow: 0 0 0 2px rgba(var(--color-ethereal-blue), 0.2);
+}
+
+/* Input Label Advanced */
+.sacred-label-advanced {
+    position: absolute;
+    top: 50%;
+    left: calc(var(--phi-space-4) * var(--phi));
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    pointer-events: none;
+    transition: all var(--form-animation-duration) var(--form-animation-timing);
+}
+
+.sacred-input-advanced:focus-within .sacred-label-advanced,
+.sacred-input-advanced[data-filled="true"] .sacred-label-advanced {
+    top: 0;
+    transform: translateY(-50%) scale(0.85);
+    color: var(--color-ethereal-blue);
+    background: var(--surface-primary);
+    padding: 0 var(--phi-space-2);
+}
+/* ------------------------
+ * Multi-select Components
+ * Sacred selection patterns
+ * ------------------------ */
+
+/* Multi-select Container */
+.sacred-multiselect {
+    position: relative;
+    min-height: var(--multiselect-min-height);
+    max-height: var(--multiselect-max-height);
+    border: 1px solid var(--border-light);
+    border-radius: var(--border-radius-md);
+    background: var(--surface-primary);
+    transition: all var(--form-animation-duration) var(--form-animation-timing);
+}
+
+.sacred-multiselect:focus-within {
+    border-color: var(--color-ethereal-blue);
+    box-shadow: 0 0 0 2px rgba(var(--color-ethereal-blue), 0.2);
+}
+
+/* Selected Tags Container */
+.sacred-multiselect-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: calc(var(--phi-space-2) * var(--phi));
+    padding: calc(var(--phi-space-2) * var(--phi));
+    min-height: var(--tag-height);
+}
+
+/* Individual Tag */
+.sacred-tag {
+    display: inline-flex;
+    align-items: center;
+    height: var(--tag-height);
+    padding: 0 var(--tag-padding);
+    background: rgba(var(--color-ethereal-blue), 0.1);
+    border-radius: calc(var(--tag-height) / 2);
+    color: var(--color-ethereal-blue);
+    font-size: var(--font-size-sm);
+    gap: var(--phi-space-2);
+    transition: all var(--form-animation-duration) var(--form-animation-timing);
+}
+
+.sacred-tag:hover {
+    background: rgba(var(--color-ethereal-blue), 0.2);
+    transform: translateY(-1px);
+}
+
+/* Tag Remove Button */
+.sacred-tag-remove {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(var(--tag-height) * 0.6);
+    height: calc(var(--tag-height) * 0.6);
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    color: currentColor;
+    cursor: pointer;
+    padding: 0;
+    transition: all var(--form-animation-duration) var(--form-animation-timing);
+}
+
+.sacred-tag-remove:hover {
+    background: rgba(var(--color-ethereal-blue), 0.2);
+    transform: rotate(90deg);
+}
+
+/* Multi-select Input */
+.sacred-multiselect-input {
+    flex: 1;
+    min-width: 60px;
+    border: none;
+    background: transparent;
+    color: var(--text-primary);
+    font-size: var(--font-size-base);
+    padding: calc(var(--phi-space-2) * var(--phi));
+}
+
+.sacred-multiselect-input:focus {
+    outline: none;
+}
+
+/* Dropdown Container */
+.sacred-multiselect-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: var(--phi-space-2);
+    background: var(--surface-primary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--elevation-3);
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(var(--phi-space-2)) scale(0.98);
+    transition: all var(--form-animation-duration) var(--form-animation-timing);
+}
+
+.sacred-multiselect-dropdown[data-visible="true"] {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+/* Option List */
+.sacred-multiselect-options {
+    max-height: calc(var(--multiselect-max-height) * 1.5);
+    overflow-y: auto;
+    padding: calc(var(--phi-space-2) * var(--phi));
+}
+
+/* Individual Option */
+.sacred-multiselect-option {
+    display: flex;
+    align-items: center;
+    gap: var(--phi-space-3);
+    padding: calc(var(--phi-space-2) * var(--phi)) calc(var(--phi-space-3) * var(--phi));
+    cursor: pointer;
+    border-radius: var(--border-radius-sm);
+    transition: all var(--form-animation-duration) var(--form-animation-timing);
+}
+
+.sacred-multiselect-option:hover {
+    background: rgba(var(--color-ethereal-blue), 0.1);
+}
+
+.sacred-multiselect-option[aria-selected="true"] {
+    background: rgba(var(--color-ethereal-blue), 0.1);
+    color: var(--color-ethereal-blue);
+}
+
+/* Option Checkbox */
+.sacred-multiselect-checkbox {
+    position: relative;
+    width: calc(var(--phi-space-4) * var(--phi));
+    height: calc(var(--phi-space-4) * var(--phi));
+    border: 2px solid var(--border-medium);
+    border-radius: var(--border-radius-sm);
+    transition: all var(--form-animation-duration) var(--form-animation-timing);
+}
+
+.sacred-multiselect-option[aria-selected="true"] .sacred-multiselect-checkbox {
+    background: var(--color-ethereal-blue);
+    border-color: var(--color-ethereal-blue);
+}
+
+.sacred-multiselect-option[aria-selected="true"] .sacred-multiselect-checkbox::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 30%;
+    height: 60%;
+    border: 2px solid white;
+    border-top: 0;
+    border-left: 0;
+    transform: translate(-50%, -60%) rotate(45deg);
+}
+
+/* Group Header */
+.sacred-multiselect-group {
+    padding: calc(var(--phi-space-2) * var(--phi)) calc(var(--phi-space-3) * var(--phi));
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Empty State */
+.sacred-multiselect-empty {
+    padding: calc(var(--phi-space-4) * var(--phi));
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+}
+
+/* Loading State */
+.sacred-multiselect-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: calc(var(--phi-space-4) * var(--phi));
+    color: var(--text-secondary);
+}
+
+/* Search Input */
+.sacred-multiselect-search {
+    position: relative;
+    padding: calc(var(--phi-space-2) * var(--phi));
+    border-bottom: 1px solid var(--border-light);
+}
+
+.sacred-multiselect-search-input {
+    width: 100%;
+    height: var(--input-advanced-height-sm);
+    padding: 0 calc(var(--phi-space-3) * var(--phi));
+    border: 1px solid var(--border-light);
+    border-radius: var(--border-radius-sm);
+    background: var(--surface-secondary);
+    color: var(--text-primary);
+    transition: all var(--form-animation-duration) var(--form-animation-timing);
+}
+
+.sacred-multiselect-search-input:focus {
+    border-color: var(--color-ethereal-blue);
+    box-shadow: 0 0 0 2px rgba(var(--color-ethereal-blue), 0.2);
+}
+/* ------------------------
+ * Advanced Input Variants
+ * Sacred input manifestations
+ * ------------------------ */
+
+/* Ethereal Input */
+.sacred-input-ethereal {
+    background: linear-gradient(
+        135deg,
+        rgba(var(--color-ethereal-blue), 0.05),
+        rgba(var(--color-mystic-purple), 0.05)
+    );
+    border: 2px solid transparent;
+    border-image: linear-gradient(
+        var(--angle-sacred),
+        var(--color-ethereal-blue),
+        var(--color-mystic-purple)
+    ) 1;
+}
+
+.sacred-input-ethereal:focus-within {
+    background: linear-gradient(
+        135deg,
+        rgba(var(--color-ethereal-blue), 0.08),
+        rgba(var(--color-mystic-purple), 0.08)
+    );
+    box-shadow: 
+        0 0 20px rgba(var(--color-ethereal-blue), 0.1),
+        inset 0 0 10px rgba(var(--color-mystic-purple), 0.05);
+}
+
+/* Glass Input */
+.sacred-input-glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.sacred-input-glass:focus-within {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+/* Sacred Scroll Input */
+.sacred-input-scroll {
+    --scroll-height: calc(var(--phi-space-8) * var(--phi));
+    height: var(--scroll-height);
+    overflow-y: auto;
+    padding: calc(var(--phi-space-3) * var(--phi));
+    line-height: var(--line-height-relaxed);
+    background: 
+        linear-gradient(var(--surface-primary) 33%, rgba(255, 255, 255, 0)),
+        linear-gradient(rgba(255, 255, 255, 0), var(--surface-primary) 66%) 0 100%,
+        radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)),
+        radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)) 0 100%;
+    background-repeat: no-repeat;
+    background-size: 100% 45px, 100% 45px, 100% 15px, 100% 15px;
+    background-attachment: local, local, scroll, scroll;
+}
+
+/* Divine Search Input */
+.sacred-input-search {
+    padding-left: calc(var(--phi-space-6) * var(--phi));
+}
+
+.sacred-input-search::before {
+    content: '';
+    position: absolute;
+    left: calc(var(--phi-space-3) * var(--phi));
+    width: calc(var(--phi-space-4) * var(--phi));
+    height: calc(var(--phi-space-4) * var(--phi));
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");
+    background-size: contain;
+    opacity: 0.5;
+    transition: opacity var(--form-animation-duration) var(--form-animation-timing);
+}
+
+.sacred-input-search:focus-within::before {
+    opacity: 1;
+}
+
+/* Sacred Number Input */
+.sacred-input-number {
+    --number-button-width: calc(var(--phi-space-5) * var(--phi));
+}
+
+.sacred-input-number-controls {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    width: var(--number-button-width);
+    border-left: 1px solid var(--border-light);
+}
+
+.sacred-number-button {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--form-animation-duration) var(--form-animation-timing);
+}
+
+.sacred-number-button:hover {
+    background: rgba(var(--color-ethereal-blue), 0.1);
+    color: var(--color-ethereal-blue);
+}
+
+.sacred-number-button:first-child {
+    border-bottom: 1px solid var(--border-light);
+}
+
+/* Password Input */
+.sacred-input-password {
+    padding-right: calc(var(--phi-space-6) * var(--phi));
+}
+
+.sacred-password-toggle {
+    position: absolute;
+    right: calc(var(--phi-space-3) * var(--phi));
+    width: calc(var(--phi-space-4) * var(--phi));
+    height: calc(var(--phi-space-4) * var(--phi));
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0;
+    transition: all var(--form-animation-duration) var(--form-animation-timing);
+}
+
+.sacred-password-toggle:hover {
+    color: var(--color-ethereal-blue);
+    transform: scale(1.1);
+}
+
+/* Sacred Textarea */
+.sacred-textarea {
+    --textarea-min-height: calc(var(--phi-space-8) * var(--phi));
+    min-height: var(--textarea-min-height);
+    resize: vertical;
+    line-height: var(--line-height-relaxed);
+    padding: calc(var(--phi-space-3) * var(--phi));
+}
+
+/* Auto-expanding Textarea */
+.sacred-textarea-auto {
+    overflow: hidden;
+    resize: none;
+    transition: height var(--form-animation-duration) var(--form-animation-timing);
+}
+
+/* Sacred Select */
+.sacred-select {
+    appearance: none;
+    padding-right: calc(var(--phi-space-7) * var(--phi));
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right calc(var(--phi-space-3) * var(--phi)) center;
+    background-size: calc(var(--phi-space-4) * var(--phi));
+}
+
+/* Sacred Input with Icon */
+.sacred-input-icon {
+    padding-left: calc(var(--phi-space-6) * var(--phi));
+}
+
+.sacred-input-icon-leading {
+    position: absolute;
+    left: calc(var(--phi-space-3) * var(--phi));
+    width: calc(var(--phi-space-4) * var(--phi));
+    height: calc(var(--phi-space-4) * var(--phi));
+    color: var(--text-secondary);
+    transition: color var(--form-animation-duration) var(--form-animation-timing);
+}
+
+.sacred-input-icon:focus-within .sacred-input-icon-leading {
+    color: var(--color-ethereal-blue);
+}
+
+/* Sacred Input with Counter */
+.sacred-input-counter {
+    position: relative;
+}
+
+.sacred-counter {
+    position: absolute;
+    right: calc(var(--phi-space-3) * var(--phi));
+    bottom: calc(var(--phi-space-2) * -1);
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+}
+
+.sacred-counter[data-overflow="true"] {
+    color: var(--color-divine-red);
+}
+/* ------------------------
+ * Rich Form Controls
+ * Sacred advanced input manifestations
+ * ------------------------ */
+
+/* Rich Text Editor */
+.sacred-editor {
+    --editor-border: 1px solid var(--border-light);
+    
+    border: var(--editor-border);
+    border-radius: var(--border-radius-md);
+    background: var(--surface-primary);
+    min-height: var(--editor-min-height);
+}
+
+/* Editor Toolbar */
+.sacred-editor-toolbar {
+    display: flex;
+    align-items: center;
+    gap: var(--phi-space-2);
+    height: var(--editor-toolbar-height);
+    padding: calc(var(--phi-space-2) * var(--phi));
+    border-bottom: var(--editor-border);
+    background: linear-gradient(
+        to bottom,
+        rgba(var(--color-ethereal-blue), 0.05),
+        transparent
+    );
+}
+
+.sacred-editor-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(var(--phi-space-5) * var(--phi));
+    height: calc(var(--phi-space-5) * var(--phi));
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    transition: all var(--form-animation-duration) var(--form-animation-timing);
+}
+
+.sacred-editor-button:hover {
+    background: rgba(var(--color-ethereal-blue), 0.1);
+    color: var(--color-ethereal-blue);
+}
+
+.sacred-editor-button[data-active="true"] {
+    background: rgba(var(--color-ethereal-blue), 0.1);
+    color: var(--color-ethereal-blue);
+}
+
+/* Editor Content */
+.sacred-editor-content {
+    padding: calc(var(--phi-space-3) * var(--phi));
+    min-height: calc(var(--editor-min-height) - var(--editor-toolbar-height));
+    outline: none;
+}
+
+/* File Upload Dropzone */
+.sacred-dropzone {
+    position: relative;
+    min-height: var(--upload-area-min-height);
+    border: var(--upload-border-width) var(--upload-border-style) var(--border-light);
+    border-radius: var(--border-radius-lg);
+    background: linear-gradient(
+        135deg,
+        rgba(var(--color-ethereal-blue), 0.02),
+        rgba(var(--color-mystic-purple), 0.02)
+    );
+    transition: all var(--form-animation-duration) var(--form-animation-timing);
+}
+
+.sacred-dropzone[data-active="true"] {
+    border-color: var(--color-ethereal-blue);
+    background: rgba(var(--color-ethereal-blue), 0.05);
+}
+
+.sacred-dropzone-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: calc(var(--phi-space-3) * var(--phi));
+    padding: calc(var(--phi-space-4) * var(--phi));
+    text-align: center;
+}
+
+.sacred-dropzone-icon {
+    width: calc(var(--phi-space-6) * var(--phi));
+    height: calc(var(--phi-space-6) * var(--phi));
+    color: var(--text-secondary);
+    opacity: 0.5;
+    transition: all var(--form-animation-duration) var(--form-animation-timing);
+}
+
+.sacred-dropzone[data-active="true"] .sacred-dropzone-icon {
+    color: var(--color-ethereal-blue);
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* File Preview */
+.sacred-file-preview {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--phi-space-3) * var(--phi));
+    padding: calc(var(--phi-space-3) * var(--phi));
+    background: var(--surface-secondary);
+    border-radius: var(--border-radius-md);
+    margin-top: calc(var(--phi-space-3) * var(--phi));
+}
+
+.sacred-file-icon {
+    width: calc(var(--phi-space-5) * var(--phi));
+    height: calc(var(--phi-space-5) * var(--phi));
+    color: var(--color-ethereal-blue);
+}
+
+.sacred-file-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.sacred-file-name {
+    font-weight: var(--font-weight-medium);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sacred-file-size {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+}
+
+.sacred-file-remove {
+    padding: var(--phi-space-2);
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--form-animation-duration) var(--form-animation-timing);
+}
+
+.sacred-file-remove:hover {
+    color: var(--color-divine-red);
+    transform: scale(1.1);
+}
+
+/* Color Picker */
+.sacred-color-picker {
+    width: var(--color-picker-width);
+    padding: calc(var(--phi-space-3) * var(--phi));
+    background: var(--surface-primary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--elevation-3);
+}
+
+.sacred-color-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: calc(var(--phi-space-2) * var(--phi));
+    margin-bottom: calc(var(--phi-space-3) * var(--phi));
+}
+
+.sacred-color-swatch {
+    width: var(--color-swatch-size);
+    height: var(--color-swatch-size);
+    border-radius: var(--border-radius-sm);
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all var(--form-animation-duration) var(--form-animation-timing);
+}
+
+.sacred-color-swatch:hover {
+    transform: scale(1.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.sacred-color-swatch[data-selected="true"] {
+    border-color: var(--color-ethereal-blue);
+    box-shadow: 0 0 0 2px rgba(var(--color-ethereal-blue), 0.2);
+}
+
+/* Custom Color Input */
+.sacred-color-custom {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--phi-space-3) * var(--phi));
+}
+
+.sacred-color-input {
+    width: 100%;
+    height: var(--input-advanced-height-sm);
+    padding: 0 calc(var(--phi-space-3) * var(--phi));
+    border: 1px solid var(--border-light);
+    border-radius: var(--border-radius-sm);
+    font-family: var(--font-monospace);
+}
+
+.sacred-color-preview {
+    width: var(--color-swatch-size);
+    height: var(--color-swatch-size);
+    border-radius: var(--border-radius-sm);
+    border: 1px solid var(--border-light);
+}

@@ -1,0 +1,3 @@
+spamtrap1@example.com
+spamtrap2@example.com
+spamtrap3@example.com

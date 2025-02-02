@@ -1,0 +1,699 @@
+/**
+ * sacred-tables.css
+ * Divine data structure system based on sacred geometry principles
+ * Version: 1.0.0
+ * 
+ * This system implements:
+ * - Golden ratio proportions
+ * - Sacred geometry patterns
+ * - Divine data organization
+ * - Universal alignment
+ * - Sacred number sequences
+ */
+
+/* ------------------------
+ * Table Variables
+ * Based on sacred proportions
+ * ------------------------ */
+ :root {
+    /* Table Dimensions */
+    --table-min-width: 100%;
+    --table-max-width: calc(1200px * var(--phi));
+    --table-cell-min-width: calc(100px * var(--phi));
+    
+    /* Cell Padding */
+    --table-cell-padding-x: var(--phi-space-4);
+    --table-cell-padding-y: var(--phi-space-3);
+    
+    /* Header Height */
+    --table-header-height: calc(var(--phi-space-6) * var(--phi));
+    
+    /* Border Properties */
+    --table-border-width: 1px;
+    --table-border-color: var(--border-light);
+    
+    /* Row Properties */
+    --table-row-hover-bg: rgba(var(--color-ethereal-blue), 0.05);
+    --table-row-selected-bg: rgba(var(--color-ethereal-blue), 0.1);
+    --table-row-height: calc(var(--phi-space-7) * var(--phi-inverse));
+    
+    /* Animation Timings */
+    --table-transition-duration: 0.2s;
+    --table-sort-duration: 0.3s;
+    
+    /* Stripe Colors */
+    --table-stripe-odd: rgba(var(--color-ethereal-blue), 0.02);
+    --table-stripe-even: transparent;
+    
+    /* Scrollbar Properties */
+    --table-scrollbar-width: calc(var(--phi-space-2) * var(--phi));
+    --table-scrollbar-radius: var(--border-radius-pill);
+}
+
+/* ------------------------
+ * Base Table Styles
+ * Core sacred patterns
+ * ------------------------ */
+
+.sacred-table-container {
+    position: relative;
+    width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+}
+
+.sacred-table {
+    width: var(--table-min-width);
+    max-width: var(--table-max-width);
+    margin: 0 auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+}
+/* ------------------------
+ * Table Header Styles
+ * Sacred header manifestations
+ * ------------------------ */
+
+/* Header Container */
+.sacred-table thead {
+    position: relative;
+    background: linear-gradient(
+        to bottom,
+        rgba(var(--color-ethereal-blue), 0.05),
+        rgba(var(--color-mystic-purple), 0.02)
+    );
+}
+
+/* Sticky Header */
+.sacred-table thead.sticky {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+/* Header Cells */
+.sacred-table th {
+    height: var(--table-header-height);
+    padding: var(--table-cell-padding-y) var(--table-cell-padding-x);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary);
+    text-align: left;
+    white-space: nowrap;
+    border-bottom: calc(var(--table-border-width) * 2) solid var(--table-border-color);
+    transition: background-color var(--table-transition-duration) var(--ease-golden);
+    user-select: none;
+}
+
+/* Header Cell Hover */
+.sacred-table th:hover {
+    background: rgba(var(--color-ethereal-blue), 0.05);
+}
+
+/* Sortable Headers */
+.sacred-table th[data-sortable="true"] {
+    cursor: pointer;
+    padding-right: calc(var(--table-cell-padding-x) * 2);
+    position: relative;
+}
+
+/* Sort Icons */
+.sacred-table th[data-sortable="true"]::after {
+    content: '';
+    position: absolute;
+    right: var(--table-cell-padding-x);
+    top: 50%;
+    transform: translateY(-50%);
+    width: calc(var(--phi-space-3) * var(--phi));
+    height: calc(var(--phi-space-3) * var(--phi));
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 15l5 5 5-5'/%3E%3Cpath d='M7 9l5-5 5 5'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.3;
+    transition: all var(--table-sort-duration) var(--ease-golden);
+}
+
+/* Sort States */
+.sacred-table th[data-sort="asc"]::after {
+    opacity: 1;
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.sacred-table th[data-sort="desc"]::after {
+    opacity: 1;
+    transform: translateY(-50%) rotate(0deg);
+}
+
+/* Header Groups */
+.sacred-table thead tr:first-child th {
+    background: linear-gradient(
+        to bottom,
+        rgba(var(--color-ethereal-blue), 0.08),
+        rgba(var(--color-ethereal-blue), 0.05)
+    );
+}
+
+/* Column Resize Handle */
+.sacred-table th .resize-handle {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: calc(var(--phi-space-2) * var(--phi));
+    cursor: col-resize;
+    background: transparent;
+    transition: background-color var(--table-transition-duration) var(--ease-golden);
+}
+
+.sacred-table th .resize-handle:hover,
+.sacred-table th .resize-handle.resizing {
+    background: rgba(var(--color-ethereal-blue), 0.2);
+}
+
+/* Header Actions */
+.sacred-table-header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--phi-space-2);
+}
+
+/* Header Icons */
+.sacred-table-header-icon {
+    width: calc(var(--phi-space-4) * var(--phi));
+    height: calc(var(--phi-space-4) * var(--phi));
+    color: var(--text-secondary);
+    opacity: 0.7;
+    transition: all var(--table-transition-duration) var(--ease-golden);
+}
+
+.sacred-table th:hover .sacred-table-header-icon {
+    opacity: 1;
+    color: var(--color-ethereal-blue);
+}
+
+/* Header Filters */
+.sacred-table-filter {
+    position: absolute;
+    top: 100%;
+    right: var(--table-cell-padding-x);
+    min-width: calc(var(--table-cell-min-width) * var(--phi));
+    padding: var(--phi-space-3);
+    background: var(--surface-primary);
+    border: var(--table-border-width) solid var(--table-border-color);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--elevation-3);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(var(--phi-space-2)) scale(0.95);
+    transition: all var(--table-transition-duration) var(--ease-golden);
+    z-index: 3;
+}
+
+.sacred-table th[data-filtered="true"] .sacred-table-filter,
+.sacred-table th:focus-within .sacred-table-filter {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+/* Header Search */
+.sacred-table-search {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.sacred-table-search-input {
+    width: 100%;
+    padding: var(--phi-space-2) var(--phi-space-3);
+    padding-left: calc(var(--phi-space-3) * var(--phi));
+    border: var(--table-border-width) solid var(--table-border-color);
+    border-radius: var(--border-radius-sm);
+    background: var(--surface-secondary);
+    color: var(--text-primary);
+    transition: all var(--table-transition-duration) var(--ease-golden);
+}
+
+.sacred-table-search-input:focus {
+    border-color: var(--color-ethereal-blue);
+    box-shadow: 0 0 0 2px rgba(var(--color-ethereal-blue), 0.2);
+}
+
+.sacred-table-search-icon {
+    position: absolute;
+    left: var(--phi-space-2);
+    width: calc(var(--phi-space-3) * var(--phi));
+    height: calc(var(--phi-space-3) * var(--phi));
+    color: var(--text-secondary);
+}
+/* ------------------------
+ * Table Body Styles
+ * Sacred content manifestations
+ * ------------------------ */
+
+/* Body Container */
+.sacred-table tbody {
+    position: relative;
+    background: linear-gradient(
+        to bottom,
+        rgba(var(--color-ethereal-blue), 0.02),
+        transparent
+    );
+}
+
+/* Row Styles */
+.sacred-table tbody tr {
+    transition: all var(--table-transition-duration) var(--ease-golden);
+    background: transparent;
+}
+
+/* Row States */
+.sacred-table tbody tr:hover {
+    background: var(--table-row-hover-bg);
+    transform: translateX(var(--phi-space-1));
+}
+
+.sacred-table tbody tr[data-selected="true"] {
+    background: var(--table-row-selected-bg);
+    box-shadow: inset 4px 0 0 var(--color-ethereal-blue);
+}
+
+/* Striped Rows */
+.sacred-table[data-striped="true"] tbody tr:nth-child(odd) {
+    background: var(--table-stripe-odd);
+}
+
+.sacred-table[data-striped="true"] tbody tr:nth-child(even) {
+    background: var(--table-stripe-even);
+}
+
+/* Body Cells */
+.sacred-table td {
+    height: var(--table-row-height);
+    padding: var(--table-cell-padding-y) var(--table-cell-padding-x);
+    color: var(--text-primary);
+    border-bottom: var(--table-border-width) solid var(--table-border-color);
+    transition: all var(--table-transition-duration) var(--ease-golden);
+}
+
+/* Cell Alignments */
+.sacred-table td[data-align="left"] {
+    text-align: left;
+}
+
+.sacred-table td[data-align="center"] {
+    text-align: center;
+}
+
+.sacred-table td[data-align="right"] {
+    text-align: right;
+}
+
+/* Cell Types */
+.sacred-table td[data-type="number"] {
+    font-family: var(--font-monospace);
+    text-align: right;
+}
+
+.sacred-table td[data-type="date"] {
+    font-family: var(--font-monospace);
+    white-space: nowrap;
+}
+
+.sacred-table td[data-type="status"] {
+    white-space: nowrap;
+}
+
+/* Status Indicators */
+.sacred-table-status {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--phi-space-2);
+    padding: var(--phi-space-1) var(--phi-space-3);
+    border-radius: var(--border-radius-pill);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+}
+
+.sacred-table-status::before {
+    content: '';
+    width: calc(var(--phi-space-2) * var(--phi));
+    height: calc(var(--phi-space-2) * var(--phi));
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.sacred-table-status[data-status="success"] {
+    color: var(--color-spiritual-green);
+    background: rgba(var(--color-spiritual-green), 0.1);
+}
+
+.sacred-table-status[data-status="error"] {
+    color: var(--color-divine-red);
+    background: rgba(var(--color-divine-red), 0.1);
+}
+
+.sacred-table-status[data-status="warning"] {
+    color: var(--color-sacred-gold);
+    background: rgba(var(--color-sacred-gold), 0.1);
+}
+
+.sacred-table-status[data-status="info"] {
+    color: var(--color-ethereal-blue);
+    background: rgba(var(--color-ethereal-blue), 0.1);
+}
+
+/* Cell Actions */
+.sacred-table-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--phi-space-2);
+    opacity: 0;
+    transition: opacity var(--table-transition-duration) var(--ease-golden);
+}
+
+tr:hover .sacred-table-actions {
+    opacity: 1;
+}
+
+/* Action Buttons */
+.sacred-table-action-btn {
+    padding: var(--phi-space-1) var(--phi-space-2);
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--table-transition-duration) var(--ease-golden);
+    border-radius: var(--border-radius-sm);
+}
+
+.sacred-table-action-btn:hover {
+    background: rgba(var(--color-ethereal-blue), 0.1);
+    color: var(--color-ethereal-blue);
+}
+
+/* Expandable Rows */
+.sacred-table tr[data-expandable="true"] {
+    cursor: pointer;
+}
+
+.sacred-table tr[data-expandable="true"] td:first-child {
+    padding-left: calc(var(--table-cell-padding-x) * 2);
+    position: relative;
+}
+
+.sacred-table tr[data-expandable="true"] td:first-child::before {
+    content: '';
+    position: absolute;
+    left: var(--table-cell-padding-x);
+    top: 50%;
+    transform: translateY(-50%) rotate(-90deg);
+    width: calc(var(--phi-space-3) * var(--phi));
+    height: calc(var(--phi-space-3) * var(--phi));
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: transform var(--table-transition-duration) var(--ease-golden);
+}
+
+.sacred-table tr[data-expanded="true"] td:first-child::before {
+    transform: translateY(-50%) rotate(0);
+}
+
+/* Expanded Content */
+.sacred-table-expanded-content {
+    padding: var(--table-cell-padding-y) var(--table-cell-padding-x);
+    background: var(--surface-secondary);
+    border-bottom: var(--table-border-width) solid var(--table-border-color);
+}
+
+/* Loading State */
+.sacred-table tbody[data-loading="true"] {
+    position: relative;
+    min-height: calc(var(--table-row-height) * 5);
+}
+
+.sacred-table tbody[data-loading="true"]::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(var(--color-ethereal-blue), 0.1),
+        transparent
+    );
+    animation: tableLoading 1.5s infinite;
+}
+
+@keyframes tableLoading {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+/* ------------------------
+ * Table Cell Variants
+ * Sacred data manifestations
+ * ------------------------ */
+
+/* Cell Emphasis Variants */
+.sacred-table td.cell-primary {
+    color: var(--color-ethereal-blue);
+    font-weight: var(--font-weight-medium);
+}
+
+.sacred-table td.cell-secondary {
+    color: var(--color-mystic-purple);
+    font-style: italic;
+}
+
+.sacred-table td.cell-highlight {
+    background: linear-gradient(
+        to right,
+        rgba(var(--color-sacred-gold), 0.1),
+        transparent
+    );
+    font-weight: var(--font-weight-medium);
+}
+
+/* Cell Size Variants */
+.sacred-table td.cell-compact {
+    padding: calc(var(--table-cell-padding-y) * 0.5) 
+             calc(var(--table-cell-padding-x) * 0.75);
+}
+
+.sacred-table td.cell-expanded {
+    padding: calc(var(--table-cell-padding-y) * 1.5)
+             calc(var(--table-cell-padding-x) * 1.25);
+}
+
+/* Cell Content Variants */
+.sacred-table td.cell-truncate {
+    max-width: var(--table-cell-min-width);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sacred-table td.cell-wrap {
+    white-space: normal;
+    word-break: break-word;
+}
+
+.sacred-table td.cell-nowrap {
+    white-space: nowrap;
+}
+
+/* Cell Interactive Variants */
+.sacred-table td.cell-interactive {
+    cursor: pointer;
+    transition: all var(--table-transition-duration) var(--ease-golden);
+}
+
+.sacred-table td.cell-interactive:hover {
+    background: rgba(var(--color-ethereal-blue), 0.1);
+    transform: scale(1.02);
+}
+
+/* Cell Value Types */
+.sacred-table td.cell-currency {
+    font-family: var(--font-monospace);
+    text-align: right;
+}
+
+.sacred-table td.cell-currency[data-trend="positive"] {
+    color: var(--color-spiritual-green);
+}
+
+.sacred-table td.cell-currency[data-trend="negative"] {
+    color: var(--color-divine-red);
+}
+
+.sacred-table td.cell-percentage {
+    font-family: var(--font-monospace);
+    text-align: right;
+}
+
+.sacred-table td.cell-percentage[data-trend="positive"]::after {
+    content: '↑';
+    color: var(--color-spiritual-green);
+    margin-left: var(--phi-space-1);
+}
+
+.sacred-table td.cell-percentage[data-trend="negative"]::after {
+    content: '↓';
+    color: var(--color-divine-red);
+    margin-left: var(--phi-space-1);
+}
+
+/* Cell Progress Variants */
+.sacred-table td.cell-progress {
+    padding: calc(var(--table-cell-padding-y) * 0.75)
+             var(--table-cell-padding-x);
+}
+
+.sacred-progress-bar {
+    width: 100%;
+    height: calc(var(--phi-space-2) * var(--phi));
+    background: rgba(var(--color-ethereal-blue), 0.1);
+    border-radius: var(--border-radius-pill);
+    overflow: hidden;
+}
+
+.sacred-progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        var(--color-ethereal-blue),
+        var(--color-mystic-purple)
+    );
+    border-radius: inherit;
+    transition: width var(--table-transition-duration) var(--ease-golden);
+}
+
+/* Cell Badge Variants */
+.sacred-table td.cell-badge {
+    padding: calc(var(--table-cell-padding-y) * 0.75)
+             var(--table-cell-padding-x);
+}
+
+.sacred-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--phi-space-2);
+    padding: var(--phi-space-1) var(--phi-space-3);
+    border-radius: var(--border-radius-pill);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+}
+
+.sacred-badge-success {
+    background: rgba(var(--color-spiritual-green), 0.1);
+    color: var(--color-spiritual-green);
+}
+
+.sacred-badge-error {
+    background: rgba(var(--color-divine-red), 0.1);
+    color: var(--color-divine-red);
+}
+
+.sacred-badge-warning {
+    background: rgba(var(--color-sacred-gold), 0.1);
+    color: var(--color-sacred-gold);
+}
+
+.sacred-badge-info {
+    background: rgba(var(--color-ethereal-blue), 0.1);
+    color: var(--color-ethereal-blue);
+}
+
+/* Cell Avatar Variants */
+.sacred-table td.cell-avatar {
+    padding: calc(var(--table-cell-padding-y) * 0.5)
+             var(--table-cell-padding-x);
+}
+
+.sacred-avatar {
+    width: calc(var(--phi-space-5) * var(--phi));
+    height: calc(var(--phi-space-5) * var(--phi));
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--surface-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: var(--font-weight-medium);
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}
+
+.sacred-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Cell Action Variants */
+.sacred-table td.cell-actions {
+    padding: calc(var(--table-cell-padding-y) * 0.5)
+             var(--table-cell-padding-x);
+    white-space: nowrap;
+}
+
+.sacred-action-group {
+    display: flex;
+    align-items: center;
+    gap: var(--phi-space-2);
+}
+
+.sacred-action-button {
+    padding: var(--phi-space-2);
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    transition: all var(--table-transition-duration) var(--ease-golden);
+}
+
+.sacred-action-button:hover {
+    background: rgba(var(--color-ethereal-blue), 0.1);
+    color: var(--color-ethereal-blue);
+}
+
+/* Cell Checkbox Variants */
+.sacred-table td.cell-checkbox {
+    width: calc(var(--phi-space-6) * var(--phi));
+    padding: 0 var(--table-cell-padding-x);
+}
+
+.sacred-checkbox {
+    position: relative;
+    width: calc(var(--phi-space-4) * var(--phi));
+    height: calc(var(--phi-space-4) * var(--phi));
+    border: 2px solid var(--border-medium);
+    border-radius: var(--border-radius-sm);
+    transition: all var(--table-transition-duration) var(--ease-golden);
+    cursor: pointer;
+}
+
+.sacred-checkbox[data-checked="true"] {
+    background: var(--color-ethereal-blue);
+    border-color: var(--color-ethereal-blue);
+}
+
+.sacred-checkbox[data-checked="true"]::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 30%;
+    height: 60%;
+    border: 2px solid white;
+    border-top: 0;
+    border-left: 0;
+    transform: translate(-50%, -60%) rotate(45deg);
+}

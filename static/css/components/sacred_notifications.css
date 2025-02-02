@@ -1,0 +1,814 @@
+/**
+ * sacred-notifications.css
+ * Divine notification system based on sacred geometry principles
+ * Version: 1.0.0
+ * 
+ * This system implements:
+ * - Golden ratio proportions
+ * - Sacred geometry patterns
+ * - Divine message manifestations
+ * - Universal flow patterns
+ * - Sacred number sequences
+ */
+
+/* ------------------------
+ * Notification Variables
+ * Based on sacred proportions
+ * ------------------------ */
+ :root {
+    /* Notification Sizes */
+    --notification-width-sm: calc(280px * var(--phi));
+    --notification-width-md: calc(320px * var(--phi));
+    --notification-width-lg: calc(380px * var(--phi));
+    
+    /* Spacing */
+    --notification-padding-sm: var(--phi-space-3);
+    --notification-padding-md: var(--phi-space-4);
+    --notification-padding-lg: var(--phi-space-5);
+    --notification-spacing: var(--phi-space-3);
+    
+    /* Animation Timings */
+    --notification-duration-in: 0.5s;
+    --notification-duration-out: 0.3s;
+    --notification-duration-hover: 0.2s;
+    
+    /* Elevation Levels */
+    --notification-elevation-1: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --notification-elevation-2: 0 8px 12px rgba(0, 0, 0, 0.15);
+    --notification-elevation-3: 0 12px 18px rgba(0, 0, 0, 0.2);
+    
+    /* Status Colors */
+    --notification-success-bg: rgba(var(--color-spiritual-green), 0.1);
+    --notification-success-border: rgba(var(--color-spiritual-green), 0.3);
+    --notification-success-text: var(--color-spiritual-green);
+    
+    --notification-error-bg: rgba(var(--color-divine-red), 0.1);
+    --notification-error-border: rgba(var(--color-divine-red), 0.3);
+    --notification-error-text: var(--color-divine-red);
+    
+    --notification-warning-bg: rgba(var(--color-sacred-gold), 0.1);
+    --notification-warning-border: rgba(var(--color-sacred-gold), 0.3);
+    --notification-warning-text: var(--color-sacred-gold);
+    
+    --notification-info-bg: rgba(var(--color-ethereal-blue), 0.1);
+    --notification-info-border: rgba(var(--color-ethereal-blue), 0.3);
+    --notification-info-text: var(--color-ethereal-blue);
+    
+    /* Z-index Layers */
+    --notification-z-index: 9999;
+}
+
+/* ------------------------
+ * Notification Container
+ * Sacred message vessel
+ * ------------------------ */
+
+.sacred-notifications-container {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    gap: var(--notification-spacing);
+    padding: var(--notification-padding-md);
+    z-index: var(--notification-z-index);
+    pointer-events: none;
+}
+/* ------------------------
+ * Notification Positions
+ * Sacred spatial arrangements
+ * ------------------------ */
+
+/* Top Positions */
+.sacred-notifications-top {
+    top: 0;
+    width: 100%;
+}
+
+.sacred-notifications-top-center {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    align-items: center;
+}
+
+.sacred-notifications-top-right {
+    top: 0;
+    right: 0;
+    align-items: flex-end;
+}
+
+.sacred-notifications-top-left {
+    top: 0;
+    left: 0;
+    align-items: flex-start;
+}
+
+/* Bottom Positions */
+.sacred-notifications-bottom {
+    bottom: 0;
+    width: 100%;
+    flex-direction: column-reverse;
+}
+
+.sacred-notifications-bottom-center {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    align-items: center;
+    flex-direction: column-reverse;
+}
+
+.sacred-notifications-bottom-right {
+    bottom: 0;
+    right: 0;
+    align-items: flex-end;
+    flex-direction: column-reverse;
+}
+
+.sacred-notifications-bottom-left {
+    bottom: 0;
+    left: 0;
+    align-items: flex-start;
+    flex-direction: column-reverse;
+}
+
+/* Center Positions */
+.sacred-notifications-center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    align-items: center;
+}
+
+.sacred-notifications-center-right {
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    align-items: flex-end;
+}
+
+.sacred-notifications-center-left {
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    align-items: flex-start;
+}
+
+/* Position Modifiers */
+.sacred-notifications-container[data-position*="top"] {
+    --notification-translate-y: -20px;
+    --notification-translate-show: translateY(0);
+    --notification-translate-hide: translateY(var(--notification-translate-y));
+}
+
+.sacred-notifications-container[data-position*="bottom"] {
+    --notification-translate-y: 20px;
+    --notification-translate-show: translateY(0);
+    --notification-translate-hide: translateY(var(--notification-translate-y));
+}
+
+.sacred-notifications-container[data-position*="center"] {
+    --notification-scale: 0.95;
+    --notification-translate-show: scale(1);
+    --notification-translate-hide: scale(var(--notification-scale));
+}
+
+/* Stack Order */
+.sacred-notifications-container[data-stack="true"] > * {
+    --stack-offset: calc(var(--notification-spacing) * 0.5);
+    --stack-scale: 0.95;
+    
+    transition: 
+        transform var(--notification-duration-hover) var(--ease-golden),
+        opacity var(--notification-duration-hover) var(--ease-golden);
+}
+
+.sacred-notifications-container[data-stack="true"][data-position*="top"] > *:not(:first-child) {
+    transform: translateY(calc(var(--stack-offset) * var(--notification-index, 1))) 
+               scale(calc(1 - (var(--notification-index, 1) * 0.05)));
+    opacity: calc(1 - (var(--notification-index, 1) * 0.2));
+}
+
+.sacred-notifications-container[data-stack="true"][data-position*="bottom"] > *:not(:last-child) {
+    transform: translateY(calc(var(--stack-offset) * var(--notification-index, 1) * -1))
+               scale(calc(1 - (var(--notification-index, 1) * 0.05)));
+    opacity: calc(1 - (var(--notification-index, 1) * 0.2));
+}
+
+/* Position-based Animations */
+@keyframes slideInTop {
+    from {
+        transform: translateY(var(--notification-translate-y));
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInBottom {
+    from {
+        transform: translateY(calc(var(--notification-translate-y) * -1));
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(var(--notification-scale));
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Position-based Exit Animations */
+@keyframes slideOutTop {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(calc(var(--notification-translate-y) * -1));
+        opacity: 0;
+    }
+}
+
+@keyframes slideOutBottom {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(var(--notification-translate-y));
+        opacity: 0;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(20px);
+        opacity: 0;
+    }
+}
+
+@keyframes slideOutLeft {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(-20px);
+        opacity: 0;
+    }
+}
+
+@keyframes scaleOut {
+    from {
+        transform: scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: scale(var(--notification-scale));
+        opacity: 0;
+    }
+}
+
+/* Position-specific Styles */
+.sacred-notifications-container[data-position*="top"] .sacred-notification {
+    animation: slideInTop var(--notification-duration-in) var(--ease-golden) forwards;
+}
+
+.sacred-notifications-container[data-position*="bottom"] .sacred-notification {
+    animation: slideInBottom var(--notification-duration-in) var(--ease-golden) forwards;
+}
+
+.sacred-notifications-container[data-position*="right"] .sacred-notification {
+    animation: slideInRight var(--notification-duration-in) var(--ease-golden) forwards;
+}
+
+.sacred-notifications-container[data-position*="left"] .sacred-notification {
+    animation: slideInLeft var(--notification-duration-in) var(--ease-golden) forwards;
+}
+
+.sacred-notifications-container[data-position="center"] .sacred-notification {
+    animation: scaleIn var(--notification-duration-in) var(--ease-golden) forwards;
+}
+
+/* ------------------------
+ * Notification Types
+ * Sacred message variations
+ * ------------------------ */
+
+/* Base Notification */
+.sacred-notification {
+    --notification-width: var(--notification-width-md);
+    --notification-bg: var(--surface-primary);
+    --notification-border: var(--border-light);
+    --notification-text: var(--text-primary);
+    
+    position: relative;
+    width: var(--notification-width);
+    padding: var(--notification-padding-md);
+    background: var(--notification-bg);
+    border: 1px solid var(--notification-border);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--notification-elevation-1);
+    pointer-events: all;
+    overflow: hidden;
+    display: flex;
+    gap: var(--notification-spacing);
+    align-items: flex-start;
+    transition: all var(--notification-duration-hover) var(--ease-golden);
+}
+
+/* Success Notification */
+.sacred-notification-success {
+    --notification-bg: var(--notification-success-bg);
+    --notification-border: var(--notification-success-border);
+    --notification-text: var(--notification-success-text);
+    
+    background: linear-gradient(
+        135deg,
+        var(--notification-success-bg),
+        rgba(var(--color-spiritual-green), 0.05)
+    );
+}
+
+.sacred-notification-success::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(var(--color-spiritual-green), 0.1),
+        transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.3s var(--ease-golden);
+}
+
+.sacred-notification-success:hover::before {
+    opacity: 1;
+}
+
+/* Error Notification */
+.sacred-notification-error {
+    --notification-bg: var(--notification-error-bg);
+    --notification-border: var(--notification-error-border);
+    --notification-text: var(--notification-error-text);
+    
+    background: linear-gradient(
+        135deg,
+        var(--notification-error-bg),
+        rgba(var(--color-divine-red), 0.05)
+    );
+}
+
+.sacred-notification-error::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(var(--color-divine-red), 0.1),
+        transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.3s var(--ease-golden);
+}
+
+.sacred-notification-error:hover::before {
+    opacity: 1;
+}
+
+/* Warning Notification */
+.sacred-notification-warning {
+    --notification-bg: var(--notification-warning-bg);
+    --notification-border: var(--notification-warning-border);
+    --notification-text: var(--notification-warning-text);
+    
+    background: linear-gradient(
+        135deg,
+        var(--notification-warning-bg),
+        rgba(var(--color-sacred-gold), 0.05)
+    );
+}
+
+.sacred-notification-warning::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(var(--color-sacred-gold), 0.1),
+        transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.3s var(--ease-golden);
+}
+
+.sacred-notification-warning:hover::before {
+    opacity: 1;
+}
+
+/* Info Notification */
+.sacred-notification-info {
+    --notification-bg: var(--notification-info-bg);
+    --notification-border: var(--notification-info-border);
+    --notification-text: var(--notification-info-text);
+    
+    background: linear-gradient(
+        135deg,
+        var(--notification-info-bg),
+        rgba(var(--color-ethereal-blue), 0.05)
+    );
+}
+
+.sacred-notification-info::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(var(--color-ethereal-blue), 0.1),
+        transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.3s var(--ease-golden);
+}
+
+.sacred-notification-info:hover::before {
+    opacity: 1;
+}
+
+/* Notification Content */
+.sacred-notification-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.sacred-notification-title {
+    margin: 0 0 var(--phi-space-2);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    color: var(--notification-text);
+    line-height: var(--line-height-snug);
+}
+
+.sacred-notification-message {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    line-height: var(--line-height-relaxed);
+}
+
+/* Notification Icons */
+.sacred-notification-icon {
+    flex-shrink: 0;
+    width: var(--phi-space-5);
+    height: var(--phi-space-5);
+    color: var(--notification-text);
+}
+
+/* Close Button */
+.sacred-notification-close {
+    flex-shrink: 0;
+    width: var(--phi-space-4);
+    height: var(--phi-space-4);
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--notification-duration-hover) var(--ease-golden);
+    opacity: 0.5;
+}
+
+.sacred-notification-close:hover {
+    opacity: 1;
+    transform: rotate(90deg);
+}
+
+/* Progress Bar */
+.sacred-notification-progress {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    background: var(--notification-text);
+    opacity: 0.2;
+    transform-origin: left;
+}
+
+.sacred-notification[data-autohide="true"] .sacred-notification-progress {
+    animation: progressShrink var(--notification-duration) linear forwards;
+}
+
+@keyframes progressShrink {
+    from { width: 100%; }
+    to { width: 0%; }
+}
+
+/* Notification Sizes */
+.sacred-notification-sm {
+    --notification-width: var(--notification-width-sm);
+    padding: var(--notification-padding-sm);
+}
+
+.sacred-notification-lg {
+    --notification-width: var(--notification-width-lg);
+    padding: var(--notification-padding-lg);
+}
+
+/* Notification Variants */
+.sacred-notification-minimal {
+    background: var(--surface-primary);
+    border: none;
+    box-shadow: var(--notification-elevation-2);
+}
+
+.sacred-notification-glass {
+    background: rgba(var(--surface-primary), 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.sacred-notification-bordered {
+    border-width: 2px;
+    border-left-width: 4px;
+}
+
+.sacred-notification-accent {
+    border: none;
+    box-shadow: inset 4px 0 0 var(--notification-border);
+}
+/* ------------------------
+ * Animation States
+ * Sacred transition patterns
+ * ------------------------ */
+
+/* Base Animation Properties */
+.sacred-notification {
+    --animation-offset: 20px;
+    --animation-scale: 0.95;
+    --animation-rotate: 2deg;
+    --animation-blur: 10px;
+    
+    will-change: transform, opacity;
+}
+
+/* Entry Animations */
+@keyframes notificationFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(var(--animation-offset)) scale(var(--animation-scale));
+        filter: blur(var(--animation-blur));
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+@keyframes notificationSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(calc(var(--animation-offset) * 2));
+    }
+    50% {
+        transform: translateX(calc(var(--animation-offset) * -0.5));
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes notificationExpand {
+    from {
+        opacity: 0;
+        transform: scale(0);
+        clip-path: circle(0% at center);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+        clip-path: circle(150% at center);
+    }
+}
+
+/* Exit Animations */
+@keyframes notificationFadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(calc(var(--animation-offset) * -1)) scale(var(--animation-scale));
+        filter: blur(var(--animation-blur));
+    }
+}
+
+@keyframes notificationSlideOut {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(calc(var(--animation-offset) * 0.5));
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(calc(var(--animation-offset) * -2));
+    }
+}
+
+@keyframes notificationCollapse {
+    from {
+        opacity: 1;
+        transform: scale(1);
+        clip-path: circle(150% at center);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0);
+        clip-path: circle(0% at center);
+    }
+}
+
+/* Sacred Geometry Animations */
+@keyframes notificationSacredSpin {
+    0% {
+        transform: rotate(0deg) scale(var(--animation-scale));
+        opacity: 0;
+    }
+    50% {
+        transform: rotate(var(--angle-golden)) scale(1.02);
+        opacity: 0.5;
+    }
+    100% {
+        transform: rotate(0deg) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes notificationSacredPulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(var(--notification-text), 0.2);
+    }
+    70% {
+        transform: scale(1.02);
+        box-shadow: 0 0 0 10px rgba(var(--notification-text), 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(var(--notification-text), 0);
+    }
+}
+
+/* Animation States */
+.sacred-notification[data-state="entering"] {
+    animation: notificationFadeIn var(--notification-duration-in) var(--ease-golden) forwards;
+}
+
+.sacred-notification[data-state="exiting"] {
+    animation: notificationFadeOut var(--notification-duration-out) var(--ease-golden) forwards;
+}
+
+/* Animation Variants */
+.sacred-notification[data-animation="slide"] {
+    &[data-state="entering"] {
+        animation: notificationSlideIn var(--notification-duration-in) var(--ease-golden) forwards;
+    }
+    
+    &[data-state="exiting"] {
+        animation: notificationSlideOut var(--notification-duration-out) var(--ease-golden) forwards;
+    }
+}
+
+.sacred-notification[data-animation="expand"] {
+    &[data-state="entering"] {
+        animation: notificationExpand var(--notification-duration-in) var(--ease-golden) forwards;
+    }
+    
+    &[data-state="exiting"] {
+        animation: notificationCollapse var(--notification-duration-out) var(--ease-golden) forwards;
+    }
+}
+
+.sacred-notification[data-animation="sacred"] {
+    &[data-state="entering"] {
+        animation: notificationSacredSpin var(--notification-duration-in) var(--ease-golden) forwards;
+    }
+    
+    &[data-state="exiting"] {
+        animation: notificationSacredSpin var(--notification-duration-out) var(--ease-golden) reverse forwards;
+    }
+}
+
+/* Hover Animations */
+.sacred-notification:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--notification-elevation-2);
+}
+
+.sacred-notification[data-interactive="true"]:hover {
+    animation: notificationSacredPulse var(--notification-duration-normal) var(--ease-golden);
+}
+
+/* Progress Animation */
+@keyframes notificationProgress {
+    from {
+        width: 100%;
+    }
+    to {
+        width: 0%;
+    }
+}
+
+.sacred-notification-progress {
+    animation: notificationProgress var(--notification-duration) linear;
+}
+
+/* Stagger Animations */
+.sacred-notification[data-index] {
+    animation-delay: calc(var(--notification-index, 0) * 100ms);
+}
+
+/* Chain Animations */
+.sacred-notification[data-chain="true"] {
+    --chain-delay: 50ms;
+    
+    .sacred-notification-icon {
+        animation: notificationSacredSpin var(--notification-duration-in) var(--ease-golden) forwards;
+        animation-delay: var(--chain-delay);
+    }
+    
+    .sacred-notification-title {
+        animation: notificationSlideIn var(--notification-duration-in) var(--ease-golden) forwards;
+        animation-delay: calc(var(--chain-delay) * 2);
+    }
+    
+    .sacred-notification-message {
+        animation: notificationSlideIn var(--notification-duration-in) var(--ease-golden) forwards;
+        animation-delay: calc(var(--chain-delay) * 3);
+    }
+}
+
+/* Gesture Animations */
+.sacred-notification[data-swipeable="true"] {
+    touch-action: pan-x;
+    
+    &[data-swiping="true"] {
+        transition: transform var(--notification-duration-hover) linear;
+    }
+    
+    &[data-swiped="true"] {
+        animation: notificationSlideOut var(--notification-duration-out) var(--ease-golden) forwards;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .sacred-notification {
+        animation: none !important;
+        transition: opacity var(--notification-duration-in) ease-in-out !important;
+    }
+}

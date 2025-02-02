@@ -1,0 +1,15 @@
+version: 0.0
+Resources:
+  - TargetService:
+      Type: AWS::ECS::Service
+      Properties:
+        TaskDefinition: <TASK_DEFINITION>
+        LoadBalancerInfo:
+          ContainerName: "email-validator"
+          ContainerPort: 8000
+        PlatformVersion: "LATEST"
+Hooks:
+  - BeforeInstall: "scripts/before_install.sh"
+  - AfterInstall: "scripts/after_install.sh"
+  - ApplicationStart: "scripts/start_application.sh"
+  - ValidateService: "scripts/validate_service.sh"

@@ -1,0 +1,239 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "graphTooltip": 0,
+  "links": [],
+  "panels": [
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "Requests / second",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 20,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "reqps"
+        }
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "legend": {
+          "calcs": ["mean", "max"],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        }
+      },
+      "targets": [
+        {
+          "expr": "rate(email_validation_requests_total[5m])",
+          "legendFormat": "{{status}}"
+        }
+      ],
+      "title": "Email Validation Request Rate",
+      "type": "timeseries"
+    },
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1000
+              }
+            ]
+          },
+          "unit": "ms"
+        }
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": ["mean"],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "targets": [
+        {
+          "expr": "rate(email_validation_duration_seconds_sum[5m]) / rate(email_validation_duration_seconds_count[5m]) * 1000",
+          "legendFormat": "Average Duration"
+        }
+      ],
+      "title": "Average Response Time",
+      "type": "gauge"
+    },
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          }
+        }
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "id": 3,
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
+        }
+      },
+      "targets": [
+        {
+          "expr": "validation_errors_total",
+          "legendFormat": "{{error_type}}"
+        }
+      ],
+      "title": "Validation Errors by Type",
+      "type": "piechart"
+    },
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "Connections",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 20,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false
+          }
+        }
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 8
+      },
+      "id": 4,
+      "targets": [
+        {
+          "expr": "smtp_connection_pool_size",
+          "legendFormat": "{{server}}"
+        }
+      ],
+      "title": "SMTP Connection Pool Size",
+      "type": "timeseries"
+    }
+  ],
+  "refresh": "10s",
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": [
+    "email-validator",
+    "monitoring"
+  ],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "title": "Email Validator Complete Dashboard",
+  "uid": "email_validator_v1",
+  "version": 1
+}

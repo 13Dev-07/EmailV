@@ -1,0 +1,659 @@
+/**
+ * sacred-grid.css
+ * Divine grid system based on sacred geometry principles
+ * Version: 1.0.0
+ * 
+ * This system implements:
+ * - Golden ratio proportions
+ * - Sacred geometry patterns
+ * - Divine spatial organization
+ * - Universal alignment
+ * - Sacred number sequences
+ */
+
+/* ------------------------
+ * Grid Variables
+ * Based on sacred proportions
+ * ------------------------ */
+ :root {
+    /* Grid Columns */
+    --grid-columns: 12;
+    --grid-columns-phi: 8;  /* Based on Fibonacci sequence */
+    
+    /* Grid Gaps */
+    --grid-gap-xs: calc(var(--phi-space-2) * var(--phi));
+    --grid-gap-sm: calc(var(--phi-space-3) * var(--phi));
+    --grid-gap-md: calc(var(--phi-space-4) * var(--phi));
+    --grid-gap-lg: calc(var(--phi-space-5) * var(--phi));
+    --grid-gap-xl: calc(var(--phi-space-6) * var(--phi));
+    
+    /* Container Widths */
+    --container-sm: calc(640px * var(--phi-inverse));
+    --container-md: calc(768px * var(--phi-inverse));
+    --container-lg: calc(1024px * var(--phi-inverse));
+    --container-xl: calc(1280px * var(--phi-inverse));
+    --container-2xl: calc(1536px * var(--phi-inverse));
+    
+    /* Sacred Ratios */
+    --ratio-square: 1;
+    --ratio-portrait: calc(1 / var(--phi));
+    --ratio-landscape: var(--phi);
+    --ratio-widescreen: calc(16 / 9);
+    --ratio-ultrawide: calc(21 / 9);
+    
+    /* Grid Areas */
+    --grid-area-golden: var(--phi-inverse);  /* 0.618 */
+    --grid-area-complement: calc(1 - var(--phi-inverse));  /* 0.382 */
+}
+
+/* ------------------------
+ * Base Grid Container
+ * Sacred vessel for content
+ * ------------------------ */
+
+.sacred-grid {
+    display: grid;
+    gap: var(--grid-gap-md);
+}
+
+/* ------------------------
+ * Grid Layout Systems
+ * Sacred spatial arrangements
+ * ------------------------ */
+
+/* Standard Grid System */
+.sacred-grid-standard {
+    grid-template-columns: repeat(var(--grid-columns), 1fr);
+}
+
+/* Golden Ratio Grid */
+.sacred-grid-golden {
+    grid-template-columns: repeat(var(--grid-columns-phi), 1fr);
+}
+
+/* Fibonacci Grid */
+.sacred-grid-fibonacci {
+    grid-template-columns: 1fr 1fr 2fr 3fr 5fr 8fr;
+}
+
+/* Dynamic Auto-fit Grid */
+.sacred-grid-auto-fit {
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(min(100%, var(--min-column-width, 250px)), 1fr)
+    );
+}
+
+/* Dynamic Auto-fill Grid */
+.sacred-grid-auto-fill {
+    grid-template-columns: repeat(
+        auto-fill,
+        minmax(min(100%, var(--min-column-width, 250px)), 1fr)
+    );
+}
+
+/* Sacred Proportion Grids */
+.sacred-grid-2-1 {
+    grid-template-columns: var(--grid-area-golden) calc(1 - var(--grid-area-golden));
+}
+
+.sacred-grid-1-2 {
+    grid-template-columns: calc(1 - var(--grid-area-golden)) var(--grid-area-golden);
+}
+
+.sacred-grid-1-1-1 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* Masonry-style Grid */
+.sacred-grid-masonry {
+    grid-template-columns: repeat(auto-fill, minmax(var(--min-column-width, 250px), 1fr));
+    grid-auto-rows: var(--grid-gap-md);
+    grid-auto-flow: dense;
+}
+
+.sacred-grid-masonry > * {
+    grid-row: span var(--span, 1);
+}
+
+/* Responsive Grid Areas */
+.sacred-grid-areas {
+    grid-template-areas: var(--grid-template-areas);
+    grid-template-columns: var(--grid-template-columns);
+    grid-template-rows: var(--grid-template-rows);
+}
+
+/* Holy Grail Layout */
+.sacred-grid-holy-grail {
+    grid-template-areas:
+        "header header header"
+        "nav main aside"
+        "footer footer footer";
+    grid-template-columns: calc(var(--phi-space-7) * var(--phi)) 1fr calc(var(--phi-space-7) * var(--phi));
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+}
+
+/* Dashboard Grid */
+.sacred-grid-dashboard {
+    grid-template-areas:
+        "sidebar header header"
+        "sidebar main main"
+        "sidebar main main";
+    grid-template-columns: calc(var(--phi-space-8) * var(--phi)) 1fr 1fr;
+    grid-template-rows: auto 1fr 1fr;
+    height: 100vh;
+}
+
+/* Column Spans */
+.sacred-col-full { grid-column: 1 / -1; }
+.sacred-col-start { grid-column-start: 1; }
+.sacred-col-end { grid-column-end: -1; }
+.sacred-col-auto { grid-column: auto; }
+.sacred-col-span-1 { grid-column: span 1; }
+.sacred-col-span-2 { grid-column: span 2; }
+.sacred-col-span-3 { grid-column: span 3; }
+.sacred-col-span-4 { grid-column: span 4; }
+.sacred-col-span-5 { grid-column: span 5; }
+.sacred-col-span-6 { grid-column: span 6; }
+.sacred-col-span-7 { grid-column: span 7; }
+.sacred-col-span-8 { grid-column: span 8; }
+.sacred-col-span-9 { grid-column: span 9; }
+.sacred-col-span-10 { grid-column: span 10; }
+.sacred-col-span-11 { grid-column: span 11; }
+.sacred-col-span-12 { grid-column: span 12; }
+
+/* Row Spans */
+.sacred-row-auto { grid-row: auto; }
+.sacred-row-span-1 { grid-row: span 1; }
+.sacred-row-span-2 { grid-row: span 2; }
+.sacred-row-span-3 { grid-row: span 3; }
+.sacred-row-span-4 { grid-row: span 4; }
+.sacred-row-span-5 { grid-row: span 5; }
+.sacred-row-span-6 { grid-row: span 6; }
+
+/* Grid Flow Patterns */
+.sacred-grid-flow-row { grid-auto-flow: row; }
+.sacred-grid-flow-col { grid-auto-flow: column; }
+.sacred-grid-flow-dense { grid-auto-flow: dense; }
+.sacred-grid-flow-row-dense { grid-auto-flow: row dense; }
+.sacred-grid-flow-col-dense { grid-auto-flow: column dense; }
+
+/* Grid Gap Variations */
+.sacred-gap-xs { gap: var(--grid-gap-xs); }
+.sacred-gap-sm { gap: var(--grid-gap-sm); }
+.sacred-gap-md { gap: var(--grid-gap-md); }
+.sacred-gap-lg { gap: var(--grid-gap-lg); }
+.sacred-gap-xl { gap: var(--grid-gap-xl); }
+
+/* Column Gap Variations */
+.sacred-col-gap-xs { column-gap: var(--grid-gap-xs); }
+.sacred-col-gap-sm { column-gap: var(--grid-gap-sm); }
+.sacred-col-gap-md { column-gap: var(--grid-gap-md); }
+.sacred-col-gap-lg { column-gap: var(--grid-gap-lg); }
+.sacred-col-gap-xl { column-gap: var(--grid-gap-xl); }
+
+/* Row Gap Variations */
+.sacred-row-gap-xs { row-gap: var(--grid-gap-xs); }
+.sacred-row-gap-sm { row-gap: var(--grid-gap-sm); }
+.sacred-row-gap-md { row-gap: var(--grid-gap-md); }
+.sacred-row-gap-lg { row-gap: var(--grid-gap-lg); }
+.sacred-row-gap-xl { row-gap: var(--grid-gap-xl); }
+
+/* ------------------------
+ * Grid Templates
+ * Sacred pattern manifestations
+ * ------------------------ */
+
+/* Feature Grid Templates */
+.sacred-grid-feature {
+    --feature-rows: calc(var(--phi-space-8) * var(--phi));
+    
+    grid-template-areas:
+        "main main main sidebar"
+        "content content content sidebar";
+    grid-template-columns: repeat(3, 1fr) calc(var(--phi-space-8) * var(--phi));
+    grid-template-rows: var(--feature-rows) auto;
+}
+
+/* Card Grid Templates */
+.sacred-grid-cards {
+    --card-min-width: calc(280px * var(--phi));
+    
+    grid-template-columns: repeat(auto-fit, minmax(var(--card-min-width), 1fr));
+    grid-auto-rows: minmax(min-content, max-content);
+}
+
+/* Gallery Grid Templates */
+.sacred-grid-gallery {
+    --gallery-row-height: calc(200px * var(--phi));
+    
+    grid-template-columns: repeat(auto-fill, minmax(calc(var(--gallery-row-height) * var(--phi)), 1fr));
+    grid-auto-rows: var(--gallery-row-height);
+    grid-auto-flow: dense;
+}
+
+.sacred-grid-gallery-featured {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+/* Magazine Layout Template */
+.sacred-grid-magazine {
+    grid-template-areas:
+        "header header header"
+        "featured featured sidebar"
+        "main main sidebar"
+        "footer footer footer";
+    grid-template-columns: repeat(2, 1fr) calc(var(--phi-space-8) * var(--phi));
+    grid-template-rows: auto auto 1fr auto;
+}
+
+/* Blog Grid Template */
+.sacred-grid-blog {
+    grid-template-areas:
+        "header header header"
+        "content content sidebar"
+        "footer footer footer";
+    grid-template-columns: 1fr 1fr calc(var(--phi-space-8) * var(--phi));
+    grid-template-rows: auto 1fr auto;
+}
+
+/* Portfolio Grid Template */
+.sacred-grid-portfolio {
+    --portfolio-base: calc(300px * var(--phi));
+    
+    grid-template-columns: repeat(auto-fit, minmax(var(--portfolio-base), 1fr));
+    grid-auto-rows: var(--portfolio-base);
+    grid-auto-flow: dense;
+}
+
+.sacred-grid-portfolio > *:nth-child(4n + 1) {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+/* Dashboard Templates */
+.sacred-grid-dashboard-main {
+    grid-template-areas:
+        "stats stats stats stats"
+        "chart-1 chart-1 chart-2 chart-2"
+        "table table table sidebar";
+    grid-template-columns: repeat(3, 1fr) calc(var(--phi-space-8) * var(--phi));
+    grid-template-rows: auto 1fr 1fr;
+}
+
+/* Analytics Grid Template */
+.sacred-grid-analytics {
+    grid-template-areas:
+        "metrics metrics metrics metrics"
+        "chart-main chart-main chart-side chart-side"
+        "table-1 table-1 table-2 table-2";
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto 1fr 1fr;
+}
+
+/* Form Layout Templates */
+.sacred-grid-form {
+    --form-label-width: calc(var(--phi-space-7) * var(--phi));
+    
+    grid-template-columns: var(--form-label-width) 1fr;
+    grid-auto-rows: minmax(min-content, max-content);
+    align-items: start;
+}
+
+/* Settings Grid Template */
+.sacred-grid-settings {
+    grid-template-areas:
+        "nav content"
+        "nav content";
+    grid-template-columns: calc(var(--phi-space-8) * var(--phi)) 1fr;
+    grid-template-rows: auto 1fr;
+}
+
+/* Documentation Grid Template */
+.sacred-grid-docs {
+    grid-template-areas:
+        "sidebar content toc"
+        "sidebar content toc";
+    grid-template-columns: 
+        calc(var(--phi-space-8) * var(--phi)) 
+        1fr 
+        calc(var(--phi-space-7) * var(--phi));
+    grid-template-rows: auto 1fr;
+}
+
+/* Landing Page Template */
+.sacred-grid-landing {
+    grid-template-areas:
+        "hero hero hero"
+        "feature-1 feature-2 feature-3"
+        "main main sidebar"
+        "cta cta cta";
+    grid-template-columns: repeat(2, 1fr) calc(var(--phi-space-8) * var(--phi));
+    grid-template-rows: 100vh auto 1fr auto;
+}
+
+/* E-commerce Templates */
+.sacred-grid-product {
+    grid-template-areas:
+        "gallery gallery info"
+        "desc desc sidebar"
+        "related related related";
+    grid-template-columns: repeat(2, 1fr) calc(var(--phi-space-8) * var(--phi));
+    grid-template-rows: auto auto auto;
+}
+
+/* Area Classes */
+.sacred-area-header { grid-area: header; }
+.sacred-area-main { grid-area: main; }
+.sacred-area-sidebar { grid-area: sidebar; }
+.sacred-area-footer { grid-area: footer; }
+.sacred-area-nav { grid-area: nav; }
+.sacred-area-content { grid-area: content; }
+.sacred-area-featured { grid-area: featured; }
+.sacred-area-gallery { grid-area: gallery; }
+.sacred-area-info { grid-area: info; }
+.sacred-area-desc { grid-area: desc; }
+.sacred-area-related { grid-area: related; }
+.sacred-area-cta { grid-area: cta; }
+.sacred-area-hero { grid-area: hero; }
+.sacred-area-toc { grid-area: toc; }
+
+/* Template Modifiers */
+.sacred-template-reverse {
+    direction: rtl;
+}
+
+.sacred-template-reverse > * {
+    direction: ltr;
+}
+
+.sacred-template-stack {
+    @media (max-width: 768px) {
+        grid-template-areas: none;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+}
+/* ------------------------
+ * Grid Alignment Patterns
+ * Sacred alignment manifestations
+ * ------------------------ */
+
+/* Container Alignment */
+.sacred-grid-container {
+    --container-padding: var(--grid-gap-md);
+    
+    width: 100%;
+    max-width: var(--container-xl);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--container-padding);
+    padding-right: var(--container-padding);
+}
+
+/* Grid Item Alignment */
+.sacred-items-start {
+    align-items: start;
+}
+
+.sacred-items-center {
+    align-items: center;
+}
+
+.sacred-items-end {
+    align-items: end;
+}
+
+.sacred-items-stretch {
+    align-items: stretch;
+}
+
+.sacred-items-baseline {
+    align-items: baseline;
+}
+
+/* Content Alignment */
+.sacred-content-start {
+    align-content: start;
+}
+
+.sacred-content-center {
+    align-content: center;
+}
+
+.sacred-content-end {
+    align-content: end;
+}
+
+.sacred-content-between {
+    align-content: space-between;
+}
+
+.sacred-content-around {
+    align-content: space-around;
+}
+
+.sacred-content-evenly {
+    align-content: space-evenly;
+}
+
+/* Justify Items */
+.sacred-justify-items-start {
+    justify-items: start;
+}
+
+.sacred-justify-items-center {
+    justify-items: center;
+}
+
+.sacred-justify-items-end {
+    justify-items: end;
+}
+
+.sacred-justify-items-stretch {
+    justify-items: stretch;
+}
+
+/* Justify Content */
+.sacred-justify-content-start {
+    justify-content: start;
+}
+
+.sacred-justify-content-center {
+    justify-content: center;
+}
+
+.sacred-justify-content-end {
+    justify-content: end;
+}
+
+.sacred-justify-content-between {
+    justify-content: space-between;
+}
+
+.sacred-justify-content-around {
+    justify-content: space-around;
+}
+
+.sacred-justify-content-evenly {
+    justify-content: space-evenly;
+}
+
+/* Self Alignment */
+.sacred-self-auto {
+    align-self: auto;
+}
+
+.sacred-self-start {
+    align-self: start;
+}
+
+.sacred-self-center {
+    align-self: center;
+}
+
+.sacred-self-end {
+    align-self: end;
+}
+
+.sacred-self-stretch {
+    align-self: stretch;
+}
+
+.sacred-self-baseline {
+    align-self: baseline;
+}
+
+/* Justify Self */
+.sacred-justify-self-auto {
+    justify-self: auto;
+}
+
+.sacred-justify-self-start {
+    justify-self: start;
+}
+
+.sacred-justify-self-center {
+    justify-self: center;
+}
+
+.sacred-justify-self-end {
+    justify-self: end;
+}
+
+.sacred-justify-self-stretch {
+    justify-self: stretch;
+}
+
+/* Place Items (Shorthand) */
+.sacred-place-items-center {
+    place-items: center;
+}
+
+.sacred-place-items-start {
+    place-items: start;
+}
+
+.sacred-place-items-end {
+    place-items: end;
+}
+
+.sacred-place-items-stretch {
+    place-items: stretch;
+}
+
+/* Place Content (Shorthand) */
+.sacred-place-content-center {
+    place-content: center;
+}
+
+.sacred-place-content-start {
+    place-content: start;
+}
+
+.sacred-place-content-end {
+    place-content: end;
+}
+
+.sacred-place-content-between {
+    place-content: space-between;
+}
+
+.sacred-place-content-around {
+    place-content: space-around;
+}
+
+.sacred-place-content-evenly {
+    place-content: space-evenly;
+}
+
+/* Place Self (Shorthand) */
+.sacred-place-self-auto {
+    place-self: auto;
+}
+
+.sacred-place-self-center {
+    place-self: center;
+}
+
+.sacred-place-self-start {
+    place-self: start;
+}
+
+.sacred-place-self-end {
+    place-self: end;
+}
+
+.sacred-place-self-stretch {
+    place-self: stretch;
+}
+
+/* Golden Ratio Alignment */
+.sacred-align-golden {
+    --golden-offset: calc(100% * var(--phi-inverse));
+    margin-left: var(--golden-offset);
+}
+
+.sacred-align-golden-reverse {
+    --golden-offset: calc(100% * var(--phi-inverse));
+    margin-right: var(--golden-offset);
+}
+
+/* Sacred Center */
+.sacred-center-absolute {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.sacred-center-grid {
+    display: grid;
+    place-items: center;
+}
+
+/* Divine Stack */
+.sacred-stack {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--grid-gap-md);
+}
+
+.sacred-stack-centered {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--grid-gap-md);
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+}
+
+/* Responsive Alignment */
+@media (max-width: 768px) {
+    .sacred-stack-mobile {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .sacred-center-mobile {
+        place-items: center !important;
+    }
+    
+    .sacred-stretch-mobile {
+        place-items: stretch !important;
+    }
+}
+
+/* Alignment with Sacred Numbers */
+.sacred-margin-phi {
+    margin: calc(var(--phi-space-4) * var(--phi));
+}
+
+.sacred-padding-phi {
+    padding: calc(var(--phi-space-4) * var(--phi));
+}
+
+.sacred-gap-phi {
+    gap: calc(var(--grid-gap-md) * var(--phi));
+}

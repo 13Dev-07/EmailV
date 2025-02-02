@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_DB=0
+      - DOMAIN_REPUTATION_API_URL=https://api.domain-reputation.com/check
+      - SPAM_TRAP_FILE=config/spam_traps.txt
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+      - DATABASE_URI=postgresql+psycopg2://postgres:password@db:5432/email_validation_db
+    depends_on:
+      - redis
+      - db
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: email_validation_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+  celery_worker:
+    build: .
+    command: celery -A app.tasks worker --loglevel=info
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_DB=0
+      - DOMAIN_REPUTATION_API_URL=https://api.domain-reputation.com/check
+      - SPAM_TRAP_FILE=config/spam_traps.txt
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+      - DATABASE_URI=postgresql+psycopg2://postgres:password@db:5432/email_validation_db
+    depends_on:
+      - redis
+      - db
+
+volumes:
+  postgres_data:

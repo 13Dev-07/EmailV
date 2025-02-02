@@ -1,0 +1,169 @@
+openapi: 3.0.0
+info:
+  title: Email Validator API
+  description: |
+    A robust HTTP API for validating email addresses through various methods including syntax checking, 
+    DNS verification, and SMTP validation.
+  version: 1.0.0
+
+servers:
+  - url: https://api.emailvalidator.com/v1
+    description: Production server
+  - url: http://localhost:8000/v1
+    description: Local development server
+
+security:
+  - ApiKeyAuth: []
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+  
+  schemas:
+    ValidationRequest:
+      type: object
+      required:
+        - email
+      properties:
+        email:
+          type: string
+          format: email
+          example: "user@example.com"
+    
+    BatchValidationRequest:
+      type: object
+      required:
+        - emails
+      properties:
+        emails:
+          type: array
+          items:
+            type: string
+            format: email
+          maxItems: 100
+          example: ["user1@example.com", "user2@example.com"]
+    
+    ValidationResponse:
+      type: object
+      properties:
+        is_valid:
+          type: boolean
+        checks:
+          type: object
+          properties:
+            format:
+              type: boolean
+            dns:
+              type: boolean
+            smtp:
+              type: boolean
+        error:
+          type: string
+          nullable: true
+    
+    BatchValidationResponse:
+      type: object
+      properties:
+        results:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/ValidationResponse'
+    
+    HealthCheckResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [healthy, degraded, unhealthy]
+        version:
+          type: string
+        uptime:
+          type: number
+
+paths:
+  /validate:
+    post:
+      summary: Validate a single email address
+      description: Validates an email address using all available methods
+      operationId: validateEmail
+      tags:
+        - Validation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ValidationRequest'
+      responses:
+        '200':
+          description: Validation result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationResponse'
+        '400':
+          description: Invalid request format
+        '429':
+          description: Too many requests
+        '500':
+          description: Internal server error
+
+  /validate/batch:
+    post:
+      summary: Validate multiple email addresses
+      description: Validates multiple email addresses in a single request
+      operationId: validateEmailBatch
+      tags:
+        - Validation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchValidationRequest'
+      responses:
+        '200':
+          description: Batch validation results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchValidationResponse'
+        '400':
+          description: Invalid request format
+        '429':
+          description: Too many requests
+        '500':
+          description: Internal server error
+
+  /health:
+    get:
+      summary: Check service health
+      description: Returns the current health status of the service
+      operationId: healthCheck
+      tags:
+        - Monitoring
+      responses:
+        '200':
+          description: Service health information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthCheckResponse'
+
+  /metrics:
+    get:
+      summary: Get service metrics
+      description: Returns Prometheus-formatted metrics for monitoring
+      operationId: getMetrics
+      tags:
+        - Monitoring
+      responses:
+        '200':
+          description: Prometheus metrics
+          content:
+            text/plain:
+              schema:
+                type: string

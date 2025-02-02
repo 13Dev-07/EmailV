@@ -1,0 +1,92 @@
+version: '3.8'
+
+services:
+  haproxy:
+    image: haproxy:2.4
+    ports:
+      - "80:80"
+      - "8404:8404"
+    volumes:
+      - ./config/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    depends_on:
+      - validator1
+      - validator2
+      - validator3
+    networks:
+      - validator_net
+
+  validator1:
+    build: .
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - NODE_ID=1
+      - METRICS_PORT=9090
+    networks:
+      - validator_net
+    depends_on:
+      - redis
+
+  validator2:
+    build: .
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - NODE_ID=2
+      - METRICS_PORT=9091
+    networks:
+      - validator_net
+    depends_on:
+      - redis
+
+  validator3:
+    build: .
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - NODE_ID=3
+      - METRICS_PORT=9092
+    networks:
+      - validator_net
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:6-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - validator_net
+
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    networks:
+      - validator_net
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./config/grafana/provisioning:/etc/grafana/provisioning
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    networks:
+      - validator_net
+    depends_on:
+      - prometheus
+
+networks:
+  validator_net:
+    driver: bridge
+
+volumes:
+  redis_data:
+  prometheus_data:
+  grafana_data:

@@ -1,0 +1,110 @@
+groups:
+  - name: email_validator_alerts
+    rules:
+      # High Error Rate Alert
+      - alert: HighValidationErrorRate
+        expr: |
+          rate(email_validator_validation_errors_total[5m]) /
+          rate(email_validator_validations_total[5m]) > 0.1
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: High validation error rate detected
+          description: "Error rate is above 10% for the last 5 minutes"
+
+      # High Step-Specific Error Rate Alert
+      - alert: HighStepErrorRate
+        expr: |
+          sum(rate(validation_step_errors_total[5m])) by (step_name) /
+          sum(rate(email_validation_step_duration_seconds_count[5m])) by (step_name) > 0.05
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: High error rate in validation step
+          description: "Error rate for {{ $labels.step_name }} is above 5% for the last 5 minutes"
+
+      # High Latency Alert
+      - alert: HighValidationLatency
+        expr: |
+          histogram_quantile(0.95, rate(email_validation_duration_seconds_bucket[5m])) > 2
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: High validation latency detected
+          description: "95th percentile of validation duration is above 2 seconds"
+
+      # Step Duration Alert
+      - alert: SlowValidationStep
+        expr: |
+          histogram_quantile(0.95, sum(rate(email_validation_step_duration_seconds_bucket[5m])) by (step_name, le)) > 1
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: Slow validation step detected
+          description: "95th percentile of {{ $labels.step_name }} duration is above 1 second"
+
+      # High Queue Size Alert
+      - alert: HighValidationQueueSize
+        expr: email_validation_queue_size > 1000
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: High validation queue size
+          description: "Validation queue size has been above 1000 for 5 minutes"
+
+      # Worker Count Alert
+      - alert: LowWorkerCount
+        expr: email_validation_active_workers < 3
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: Low worker count
+          description: "Number of active validation workers is below 3"
+
+      # Cache Hit Rate Alert
+      - alert: LowCacheHitRate
+        expr: |
+          rate(dns_cache_misses_total[5m]) /
+          (rate(dns_cache_hits_total[5m]) + rate(dns_cache_misses_total[5m])) > 0.7
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: Low cache hit rate
+          description: "Cache hit rate is below 30% for the last 10 minutes"
+
+      # SMTP Connection Issues
+      - alert: SMTPConnectionFailures
+        expr: rate(smtp_connection_failures_total[5m]) > 0.1
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: High SMTP connection failure rate
+          description: "SMTP connection failures detected"
+
+      # Rate Limiting Alert
+      - alert: HighRateLimitExceeded
+        expr: rate(rate_limit_exceeded_total[5m]) > 10
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: High rate of throttled requests
+          description: "Many requests are being rate limited"
+
+      # System Resource Alerts
+      - alert: HighMemoryUsage
+        expr: process_resident_memory_bytes / container_memory_limit_bytes > 0.85
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: High memory usage
+          description: "Memory usage is above 85%"

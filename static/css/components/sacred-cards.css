@@ -1,0 +1,895 @@
+/**
+ * sacred-cards.css
+ * Divine container system based on sacred geometry principles
+ * Version: 1.0.0
+ * 
+ * This system implements:
+ * - Golden ratio proportions
+ * - Sacred geometry patterns
+ * - Divine container principles
+ * - Harmonic spacing
+ * - Universal flow patterns
+ */
+
+/* ------------------------
+ * Card Variables
+ * Based on sacred proportions
+ * ------------------------ */
+ :root {
+    /* Card Dimensions */
+    --card-min-width: calc(280px * var(--phi-inverse));
+    --card-max-width: calc(600px * var(--phi));
+    
+    /* Aspect Ratios */
+    --card-ratio-golden: calc(1 / var(--phi)); /* 0.618 */
+    --card-ratio-square: 1;
+    --card-ratio-display: calc(9 / 16);
+    
+    /* Spacing */
+    --card-padding-sm: var(--phi-space-3);
+    --card-padding-md: var(--phi-space-4);
+    --card-padding-lg: var(--phi-space-5);
+    
+    /* Border Properties */
+    --card-border-width: 1px;
+    --card-border-radius-sm: var(--border-radius-sm);
+    --card-border-radius-md: var(--border-radius-md);
+    --card-border-radius-lg: var(--border-radius-lg);
+    
+    /* Elevation Levels */
+    --card-elevation-1: 
+        0 2px 4px rgba(var(--shadow-color) / calc(var(--shadow-strength) + 2%)),
+        0 1px 2px rgba(var(--shadow-color) / calc(var(--shadow-strength) + 4%));
+    --card-elevation-2:
+        0 4px 8px rgba(var(--shadow-color) / calc(var(--shadow-strength) + 4%)),
+        0 2px 4px rgba(var(--shadow-color) / calc(var(--shadow-strength) + 6%));
+    --card-elevation-3:
+        0 8px 16px rgba(var(--shadow-color) / calc(var(--shadow-strength) + 6%)),
+        0 4px 8px rgba(var(--shadow-color) / calc(var(--shadow-strength) + 8%));
+    
+    /* Animation Timings */
+    --card-transition: all var(--transition-duration-normal) var(--ease-golden);
+    
+    /* Glassmorphism */
+    --card-glass-opacity: 0.7;
+    --card-glass-blur: 10px;
+    --card-glass-saturation: 1.4;
+    
+    /* Header Footer Heights */
+    --card-header-height: calc(var(--phi-space-6) * var(--phi));
+    --card-footer-height: calc(var(--phi-space-6) * var(--phi-inverse));
+}
+
+/* ------------------------
+ * Base Card Styles
+ * Core sacred container patterns
+ * ------------------------ */
+
+.sacred-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: var(--card-min-width);
+    background-color: var(--surface-primary);
+    border: var(--card-border-width) solid var(--border-light);
+    border-radius: var(--card-border-radius-md);
+    box-shadow: var(--card-elevation-1);
+    transition: var(--card-transition);
+    overflow: hidden;
+}
+/* ------------------------
+ * Card Variants
+ * Sacred container patterns
+ * ------------------------ */
+
+/* Elevated Card */
+.sacred-card-elevated {
+    border-color: transparent;
+    box-shadow: var(--card-elevation-2);
+}
+
+.sacred-card-elevated:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--card-elevation-3);
+}
+
+/* Glass Card */
+.sacred-card-glass {
+    background-color: rgba(var(--surface-primary), var(--card-glass-opacity));
+    backdrop-filter: blur(var(--card-glass-blur)) saturate(var(--card-glass-saturation));
+    -webkit-backdrop-filter: blur(var(--card-glass-blur)) saturate(var(--card-glass-saturation));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Sacred Card */
+.sacred-card-sacred {
+    background: linear-gradient(
+        var(--angle-golden),
+        rgba(var(--color-ethereal-blue), 0.1),
+        rgba(var(--color-mystic-purple), 0.1)
+    );
+    border-color: rgba(var(--color-ethereal-blue), 0.2);
+}
+
+/* Divine Card */
+.sacred-card-divine {
+    background: linear-gradient(
+        var(--angle-divine),
+        rgba(var(--color-sacred-gold), 0.1),
+        rgba(var(--color-spiritual-green), 0.1)
+    );
+    border-color: rgba(var(--color-sacred-gold), 0.2);
+}
+
+/* Interactive Card */
+.sacred-card-interactive {
+    cursor: pointer;
+    transition: var(--card-transition);
+}
+
+.sacred-card-interactive:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--card-elevation-2);
+}
+
+.sacred-card-interactive:active {
+    transform: translateY(0);
+    box-shadow: var(--card-elevation-1);
+}
+/* ------------------------
+ * Enhanced Card Variants
+ * Advanced sacred container patterns
+ * ------------------------ */
+
+/* Crystalline Card */
+.sacred-card-crystalline {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.05)
+    );
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(21px) saturate(180%);
+    -webkit-backdrop-filter: blur(21px) saturate(180%);
+    box-shadow: 
+        0 4px 32px rgba(0, 0, 0, 0.1),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+
+.sacred-card-crystalline::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(255, 255, 255, 0.1) 0%,
+        transparent 60%
+    );
+    opacity: 0;
+    transition: opacity 0.3s var(--ease-golden);
+}
+
+.sacred-card-crystalline:hover::before {
+    opacity: 1;
+}
+
+/* Merkaba Card */
+.sacred-card-merkaba {
+    background: linear-gradient(
+        45deg,
+        rgba(var(--color-ethereal-blue), 0.05),
+        rgba(var(--color-mystic-purple), 0.05)
+    );
+    border: 2px solid transparent;
+    border-image: linear-gradient(
+        var(--angle-sacred),
+        var(--color-ethereal-blue),
+        var(--color-mystic-purple)
+    ) 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.sacred-card-merkaba::before,
+.sacred-card-merkaba::after {
+    content: '';
+    position: absolute;
+    inset: -50%;
+    background: conic-gradient(
+        from var(--angle-golden),
+        transparent,
+        rgba(var(--color-ethereal-blue), 0.1),
+        transparent
+    );
+    animation: merkabaSpin 8s linear infinite;
+}
+
+.sacred-card-merkaba::after {
+    animation-direction: reverse;
+    animation-duration: 12s;
+}
+
+@keyframes merkabaSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Flower of Life Card */
+.sacred-card-flower {
+    position: relative;
+    background: radial-gradient(
+        circle at center,
+        rgba(var(--color-sacred-gold), 0.05),
+        rgba(var(--color-spiritual-green), 0.05)
+    );
+}
+
+.sacred-card-flower::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: repeating-radial-gradient(
+        circle at 0 0,
+        transparent 0,
+        transparent 29px,
+        rgba(255, 255, 255, 0.07) 30px,
+        transparent 31px
+    );
+    mask-image: radial-gradient(circle at center, black, transparent 70%);
+    opacity: 0.3;
+}
+
+/* Metatron's Cube Card */
+.sacred-card-metatron {
+    background: linear-gradient(
+        135deg,
+        rgba(var(--color-ethereal-blue), 0.05),
+        rgba(var(--color-mystic-purple), 0.05)
+    );
+    border: 1px solid rgba(var(--color-ethereal-blue), 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.sacred-card-metatron::before {
+    content: '';
+    position: absolute;
+    inset: -100%;
+    background: 
+        conic-gradient(
+            from 0deg at 50% 50%,
+            transparent,
+            rgba(var(--color-ethereal-blue), 0.1),
+            transparent 60deg
+        ),
+        conic-gradient(
+            from 120deg at 50% 50%,
+            transparent,
+            rgba(var(--color-mystic-purple), 0.1),
+            transparent 60deg
+        ),
+        conic-gradient(
+            from 240deg at 50% 50%,
+            transparent,
+            rgba(var(--color-sacred-gold), 0.1),
+            transparent 60deg
+        );
+    animation: metatronPulse 12s linear infinite;
+}
+
+@keyframes metatronPulse {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.5); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+/* Vesica Piscis Card */
+.sacred-card-vesica {
+    background: radial-gradient(
+        circle at center,
+        rgba(var(--color-spiritual-green), 0.05),
+        transparent
+    );
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.sacred-card-vesica::before,
+.sacred-card-vesica::after {
+    content: '';
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle at center,
+        rgba(var(--color-ethereal-blue), 0.05),
+        transparent 70%
+    );
+}
+
+.sacred-card-vesica::before {
+    left: -25%;
+    animation: vesicaPulse 6s ease-in-out infinite;
+}
+
+.sacred-card-vesica::after {
+    right: -25%;
+    animation: vesicaPulse 6s ease-in-out infinite reverse;
+}
+
+@keyframes vesicaPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* Quantum Card */
+.sacred-card-quantum {
+    background: linear-gradient(
+        135deg,
+        rgba(var(--color-ethereal-blue), 0.05),
+        rgba(var(--color-mystic-purple), 0.05)
+    );
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+}
+
+.sacred-card-quantum::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+        radial-gradient(
+            circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            rgba(var(--color-ethereal-blue), 0.1),
+            transparent 100px
+        );
+    opacity: 0;
+    transition: opacity 0.3s var(--ease-golden);
+}
+
+.sacred-card-quantum:hover::before {
+    opacity: 1;
+}
+
+/* Enhanced Existing Variants */
+.sacred-card-elevated {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.05)
+    );
+    box-shadow: 
+        var(--card-elevation-2),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+
+.sacred-card-elevated:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 
+        var(--card-elevation-3),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+}
+
+.sacred-card-glass {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.05)
+    );
+    backdrop-filter: 
+        blur(var(--card-glass-blur))
+        saturate(var(--card-glass-saturation))
+        brightness(1.1);
+    -webkit-backdrop-filter: 
+        blur(var(--card-glass-blur))
+        saturate(var(--card-glass-saturation))
+        brightness(1.1);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 
+        0 4px 32px rgba(0, 0, 0, 0.1),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+
+/* ------------------------
+ * Advanced Sacred Variants
+ * Higher-dimensional patterns
+ * ------------------------ */
+
+/* Torus Card */
+.sacred-card-torus {
+    background: radial-gradient(
+        circle at center,
+        rgba(var(--color-ethereal-blue), 0.08),
+        transparent 70%
+    );
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.sacred-card-torus::before,
+.sacred-card-torus::after {
+    content: '';
+    position: absolute;
+    inset: -100%;
+    background: conic-gradient(
+        from var(--angle-golden),
+        transparent,
+        rgba(var(--color-ethereal-blue), 0.1) 45deg,
+        rgba(var(--color-mystic-purple), 0.1) 180deg,
+        rgba(var(--color-sacred-gold), 0.1) 270deg,
+        transparent 360deg
+    );
+    animation: torusRotate 12s linear infinite;
+    mix-blend-mode: soft-light;
+}
+
+.sacred-card-torus::after {
+    animation-direction: reverse;
+    animation-duration: 15s;
+    transform-origin: 75% 75%;
+}
+
+@keyframes torusRotate {
+    from { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.5); }
+    to { transform: rotate(360deg) scale(1); }
+}
+
+/* Sri Yantra Card */
+.sacred-card-sri-yantra {
+    background: linear-gradient(
+        135deg,
+        rgba(var(--color-sacred-gold), 0.05),
+        rgba(var(--color-spiritual-green), 0.05)
+    );
+    position: relative;
+    overflow: hidden;
+}
+
+.sacred-card-sri-yantra::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 20px,
+            rgba(255, 255, 255, 0.03) 20px,
+            rgba(255, 255, 255, 0.03) 40px
+        ),
+        repeating-linear-gradient(
+            60deg,
+            transparent,
+            transparent 20px,
+            rgba(255, 255, 255, 0.03) 20px,
+            rgba(255, 255, 255, 0.03) 40px
+        ),
+        repeating-linear-gradient(
+            120deg,
+            transparent,
+            transparent 20px,
+            rgba(255, 255, 255, 0.03) 20px,
+            rgba(255, 255, 255, 0.03) 40px
+        );
+    mask-image: radial-gradient(circle at center, black 30%, transparent 70%);
+    animation: sriYantraGlow 8s ease-in-out infinite;
+}
+
+@keyframes sriYantraGlow {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+/* Platonic Solid Card */
+.sacred-card-platonic {
+    background: linear-gradient(
+        135deg,
+        rgba(var(--color-ethereal-blue), 0.05),
+        rgba(var(--color-mystic-purple), 0.05)
+    );
+    position: relative;
+    overflow: hidden;
+}
+
+.sacred-card-platonic::before {
+    content: '';
+    position: absolute;
+    inset: -50%;
+    background: 
+        linear-gradient(
+            var(--angle-sacred),
+            transparent,
+            rgba(var(--color-ethereal-blue), 0.1)
+        ),
+        linear-gradient(
+            calc(var(--angle-sacred) + 72deg),
+            transparent,
+            rgba(var(--color-mystic-purple), 0.1)
+        ),
+        linear-gradient(
+            calc(var(--angle-sacred) + 144deg),
+            transparent,
+            rgba(var(--color-sacred-gold), 0.1)
+        ),
+        linear-gradient(
+            calc(var(--angle-sacred) + 216deg),
+            transparent,
+            rgba(var(--color-spiritual-green), 0.1)
+        ),
+        linear-gradient(
+            calc(var(--angle-sacred) + 288deg),
+            transparent,
+            rgba(var(--color-divine-red), 0.1)
+        );
+    animation: platonicRotate 20s linear infinite;
+    mix-blend-mode: soft-light;
+}
+
+@keyframes platonicRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Fibonacci Spiral Card */
+.sacred-card-fibonacci {
+    background: linear-gradient(
+        135deg,
+        rgba(var(--color-sacred-gold), 0.05),
+        rgba(var(--color-spiritual-green), 0.05)
+    );
+    position: relative;
+    overflow: hidden;
+}
+
+.sacred-card-fibonacci::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: conic-gradient(
+        from var(--angle-golden),
+        transparent,
+        rgba(var(--color-ethereal-blue), 0.1),
+        transparent
+    );
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M100,0 C100,55.23 55.23,100 0,100 L0,0 Z' fill='black'/%3E%3C/svg%3E");
+    mask-size: contain;
+    animation: fibonacciSpin 15s linear infinite;
+}
+
+@keyframes fibonacciSpin {
+    from { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.618); }
+    to { transform: rotate(360deg) scale(1); }
+}
+
+/* ------------------------
+ * Enhanced Interactive Effects
+ * Sacred interaction patterns
+ * ------------------------ */
+
+/* Magnetic Effect */
+.sacred-card-magnetic {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.sacred-card-magnetic:hover {
+    transition: transform 0.1s ease;
+}
+
+/* Energy Flow Effect */
+.sacred-card-energy-flow {
+    position: relative;
+    overflow: hidden;
+}
+
+.sacred-card-energy-flow::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transform: translateX(-100%);
+    animation: energyFlow 3s var(--ease-golden) infinite;
+}
+
+@keyframes energyFlow {
+    0% { transform: translateX(-100%); }
+    50% { transform: translateX(100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Sacred Pulse Effect */
+.sacred-card-pulse {
+    animation: sacredPulse 4s var(--ease-golden) infinite;
+}
+
+@keyframes sacredPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+/* Divine Glow Effect */
+.sacred-card-glow {
+    position: relative;
+}
+
+.sacred-card-glow::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(
+        45deg,
+        var(--color-ethereal-blue),
+        var(--color-mystic-purple),
+        var(--color-sacred-gold),
+        var(--color-spiritual-green)
+    );
+    z-index: -1;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.3s var(--ease-golden);
+}
+
+.sacred-card-glow:hover::before {
+    opacity: 1;
+    animation: divineGlow 3s linear infinite;
+}
+
+@keyframes divineGlow {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+/* Quantum Ripple Effect */
+.sacred-card-ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.sacred-card-ripple::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(255, 255, 255, 0.4) 0%,
+        transparent 10%
+    );
+    opacity: 0;
+    transition: opacity 0.3s var(--ease-golden);
+}
+
+.sacred-card-ripple:hover::after {
+    opacity: 1;
+    animation: quantumRipple 1s var(--ease-golden);
+}
+
+@keyframes quantumRipple {
+    0% { transform: scale(0); opacity: 1; }
+    100% { transform: scale(4); opacity: 0; }
+}
+
+
+/* ------------------------
+ * Card Components
+ * Sacred structural elements
+ * ------------------------ */
+
+/* Card Header */
+.sacred-card-header {
+    display: flex;
+    align-items: center;
+    min-height: var(--card-header-height);
+    padding: var(--card-padding-md);
+    border-bottom: var(--card-border-width) solid var(--border-light);
+}
+
+.sacred-card-header-title {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary);
+}
+
+.sacred-card-header-subtitle {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+}
+
+/* Card Body */
+.sacred-card-body {
+    flex: 1 1 auto;
+    padding: var(--card-padding-md);
+}
+
+/* Card Footer */
+.sacred-card-footer {
+    display: flex;
+    align-items: center;
+    min-height: var(--card-footer-height);
+    padding: var(--card-padding-md);
+    border-top: var(--card-border-width) solid var(--border-light);
+}
+
+/* Card Media */
+.sacred-card-media {
+    position: relative;
+    width: 100%;
+}
+
+.sacred-card-media-golden {
+    aspect-ratio: var(--phi);
+}
+
+.sacred-card-media-square {
+    aspect-ratio: var(--card-ratio-square);
+}
+
+.sacred-card-media-display {
+    aspect-ratio: var(--card-ratio-display);
+}
+
+.sacred-card-media img,
+.sacred-card-media video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Card Overlay */
+.sacred-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.8),
+        rgba(0, 0, 0, 0) calc(50% * var(--phi))
+    );
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: var(--card-padding-md);
+    color: var(--color-celestial-white);
+}
+
+/* ------------------------
+ * Card Layouts
+ * Sacred arrangement patterns
+ * ------------------------ */
+
+/* Horizontal Card */
+.sacred-card-horizontal {
+    flex-direction: row;
+}
+
+.sacred-card-horizontal .sacred-card-media {
+    width: calc(100% * var(--card-ratio-golden));
+}
+
+/* Grid Card */
+.sacred-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--card-min-width), 1fr));
+    gap: var(--phi-space-4);
+}
+
+/* Card Group */
+.sacred-card-group {
+    display: flex;
+    gap: var(--phi-space-4);
+}
+
+.sacred-card-group .sacred-card {
+    flex: 1;
+}
+
+/* ------------------------
+ * Card States
+ * Sacred interaction patterns
+ * ------------------------ */
+
+/* Loading State */
+.sacred-card-loading {
+    position: relative;
+    overflow: hidden;
+}
+
+.sacred-card-loading::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(var(--color-ethereal-blue), 0.1),
+        transparent
+    );
+    animation: cardLoading 1.5s infinite;
+}
+
+@keyframes cardLoading {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Disabled State */
+.sacred-card-disabled {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* Selected State */
+.sacred-card-selected {
+    border-color: var(--color-ethereal-blue);
+    box-shadow: 0 0 0 2px rgba(var(--color-ethereal-blue), 0.2);
+}
+
+/* ------------------------
+ * Card Sizes
+ * Sacred proportional variants
+ * ------------------------ */
+
+/* Small Card */
+.sacred-card-sm {
+    --card-padding-md: var(--card-padding-sm);
+    --card-header-height: calc(var(--phi-space-5) * var(--phi));
+    --card-footer-height: calc(var(--phi-space-5) * var(--phi-inverse));
+}
+
+/* Large Card */
+.sacred-card-lg {
+    --card-padding-md: var(--card-padding-lg);
+    --card-header-height: calc(var(--phi-space-7) * var(--phi));
+    --card-footer-height: calc(var(--phi-space-7) * var(--phi-inverse));
+}
+
+/* ------------------------
+ * Accessibility
+ * Universal access patterns
+ * ------------------------ */
+
+.sacred-card:focus-within {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-ethereal-blue);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sacred-card {
+        transition: none;
+    }
+}
+
+/* ------------------------
+ * Print Styles
+ * Physical manifestation
+ * ------------------------ */
+
+@media print {
+    .sacred-card {
+        border: var(--card-border-width) solid #000 !important;
+        box-shadow: none !important;
+        break-inside: avoid;
+    }
+    
+    .sacred-card-glass,
+    .sacred-card-sacred,
+    .sacred-card-divine {
+        background: none !important;
+        border: var(--card-border-width) solid #000 !important;
+    }
+}

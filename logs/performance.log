@@ -1,0 +1,5 @@
+# logs/performance.log
+
+# Performance Log
+# Monitors system performance metrics such as response times, throughput, and resource utilization.
+# Helps in identifying and addressing performance bottlenecks.

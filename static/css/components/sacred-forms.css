@@ -1,0 +1,445 @@
+/**
+ * sacred-forms.css
+ * Advanced form styling system based on sacred geometry principles
+ * Version: 1.0.0
+ * 
+ * This system implements:
+ * - Golden ratio proportions for inputs
+ * - Sacred geometry patterns for focus states
+ * - Divine proportion spacing
+ * - Natural flow interactions
+ * - Universal validation states
+ */
+
+/* ------------------------
+ * Form Variables
+ * Based on sacred proportions
+ * ------------------------ */
+ :root {
+    /* Input Sizing */
+    --input-height-sm: calc(var(--phi-space-4) * 1.5);
+    --input-height-md: calc(var(--phi-space-5) * 1.5);
+    --input-height-lg: calc(var(--phi-space-6) * 1.5);
+    
+    /* Input Padding */
+    --input-padding-x: var(--phi-space-4);
+    --input-padding-y: var(--phi-space-3);
+    
+    /* Border Radius */
+    --input-radius-sm: var(--border-radius-sm);
+    --input-radius-md: var(--border-radius-md);
+    --input-radius-lg: var(--border-radius-lg);
+    
+    /* Border Widths */
+    --input-border-width: 1px;
+    --input-border-width-focus: 2px;
+    
+    /* Focus Ring */
+    --focus-ring-offset: 2px;
+    --focus-ring-width: 2px;
+    --focus-ring-alpha: 0.2;
+    
+    /* Transition Timings */
+    --input-transition: all var(--transition-duration-normal) var(--ease-golden);
+    
+    /* Validation Colors */
+    --input-valid-color: var(--status-success);
+    --input-invalid-color: var(--status-error);
+    --input-warning-color: var(--status-warning);
+    
+    /* Label Transform */
+    --label-transform-y: calc(var(--phi-space-4) * -1);
+    --label-transform-scale: var(--phi-inverse);
+    
+    /* Icon Sizes */
+    --input-icon-size: var(--phi-space-4);
+    --input-icon-offset: var(--phi-space-3);
+}
+
+/* ------------------------
+ * Base Form Elements
+ * Core styling for form components
+ * ------------------------ */
+
+/* Form Container */
+.sacred-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--phi-space-4);
+    width: 100%;
+    max-width: calc(600px * var(--phi-inverse));
+}
+
+/* Form Group */
+.form-group {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--phi-space-2);
+}
+
+/* Labels */
+.sacred-label {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    transition: var(--input-transition);
+    user-select: none;
+}
+
+/* Floating Labels */
+.label-float {
+    position: absolute;
+    top: 50%;
+    left: var(--input-padding-x);
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: var(--input-transition);
+}
+
+.sacred-input:focus ~ .label-float,
+.sacred-input:not(:placeholder-shown) ~ .label-float {
+    transform: 
+        translateY(var(--label-transform-y)) 
+        scale(var(--label-transform-scale));
+    color: var(--color-ethereal-blue);
+}
+
+/* Base Input Styling */
+.sacred-input {
+    width: 100%;
+    height: var(--input-height-md);
+    padding: var(--input-padding-y) var(--input-padding-x);
+    font-size: var(--font-size-base);
+    line-height: 1.5;
+    color: var(--text-primary);
+    background-color: var(--surface-secondary);
+    border: var(--input-border-width) solid var(--border-medium);
+    border-radius: var(--input-radius-md);
+    transition: var(--input-transition);
+}
+/* ------------------------
+ * Input States
+ * Interactive and validation states
+ * ------------------------ */
+
+/* Focus State */
+.sacred-input:focus {
+    outline: none;
+    border-color: var(--color-ethereal-blue);
+    background-color: var(--surface-primary);
+    box-shadow: 
+        0 0 0 var(--focus-ring-offset) var(--surface-primary),
+        0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width))
+        rgba(var(--color-ethereal-blue), var(--focus-ring-alpha));
+}
+
+/* Hover State */
+.sacred-input:hover:not(:focus):not(:disabled) {
+    border-color: var(--border-heavy);
+    background-color: var(--surface-tertiary);
+}
+
+/* Disabled State */
+.sacred-input:disabled,
+.sacred-input[readonly] {
+    background-color: var(--surface-quaternary);
+    border-color: var(--border-light);
+    opacity: var(--alpha-medium);
+    cursor: not-allowed;
+}
+
+/* Validation States */
+.sacred-input.is-valid {
+    border-color: var(--input-valid-color);
+    padding-right: calc(var(--input-height-md) + var(--input-padding-x));
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2328a745' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--input-padding-x) center;
+    background-size: var(--input-icon-size) var(--input-icon-size);
+}
+
+.sacred-input.is-invalid {
+    border-color: var(--input-invalid-color);
+    padding-right: calc(var(--input-height-md) + var(--input-padding-x));
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23dc3545' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'%3E%3C/line%3E%3Cline x1='6' y1='6' x2='18' y2='18'%3E%3C/line%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--input-padding-x) center;
+    background-size: var(--input-icon-size) var(--input-icon-size);
+}
+
+.sacred-input.is-warning {
+    border-color: var(--input-warning-color);
+    padding-right: calc(var(--input-height-md) + var(--input-padding-x));
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffc107' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z'%3E%3C/path%3E%3Cline x1='12' y1='9' x2='12' y2='13'%3E%3C/line%3E%3Cline x1='12' y1='17' x2='12.01' y2='17'%3E%3C/line%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--input-padding-x) center;
+    background-size: var(--input-icon-size) var(--input-icon-size);
+}
+
+/* Validation Messages */
+.sacred-feedback {
+    display: none;
+    width: 100%;
+    margin-top: var(--phi-space-2);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-tight);
+}
+
+.sacred-input.is-valid ~ .valid-feedback,
+.sacred-input.is-invalid ~ .invalid-feedback,
+.sacred-input.is-warning ~ .warning-feedback {
+    display: block;
+}
+
+.valid-feedback {
+    color: var(--input-valid-color);
+}
+
+.invalid-feedback {
+    color: var(--input-invalid-color);
+}
+
+.warning-feedback {
+    color: var(--input-warning-color);
+}
+
+/* ------------------------
+ * Input Sizes
+ * Size variations based on golden ratio
+ * ------------------------ */
+
+/* Small Inputs */
+.sacred-input-sm {
+    height: var(--input-height-sm);
+    padding: calc(var(--input-padding-y) * var(--phi-inverse))
+             calc(var(--input-padding-x) * var(--phi-inverse));
+    font-size: var(--font-size-sm);
+    border-radius: var(--input-radius-sm);
+}
+
+/* Large Inputs */
+.sacred-input-lg {
+    height: var(--input-height-lg);
+    padding: calc(var(--input-padding-y) * var(--phi))
+             calc(var(--input-padding-x) * var(--phi));
+    font-size: var(--font-size-lg);
+    border-radius: var(--input-radius-lg);
+}
+
+/* ------------------------
+ * Custom Form Controls
+ * Sacred geometry-based form elements
+ * ------------------------ */
+
+/* Checkboxes */
+.sacred-checkbox {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--phi-space-3);
+    cursor: pointer;
+}
+
+.sacred-checkbox input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.sacred-checkbox .checkmark {
+    position: relative;
+    width: var(--phi-space-4);
+    height: var(--phi-space-4);
+    background-color: var(--surface-secondary);
+    border: var(--input-border-width) solid var(--border-medium);
+    border-radius: var(--input-radius-sm);
+    transition: var(--input-transition);
+}
+
+.sacred-checkbox input:checked ~ .checkmark {
+    background-color: var(--color-ethereal-blue);
+    border-color: var(--color-ethereal-blue);
+}
+
+.sacred-checkbox .checkmark::after {
+    content: '';
+    position: absolute;
+    display: none;
+    left: 50%;
+    top: 50%;
+    width: calc(var(--phi-space-2) * var(--phi));
+    height: var(--phi-space-3);
+    border: solid var(--surface-primary);
+    border-width: 0 2px 2px 0;
+    transform: translate(-50%, -60%) rotate(45deg);
+}
+
+.sacred-checkbox input:checked ~ .checkmark::after {
+    display: block;
+}
+
+/* Radio Buttons */
+.sacred-radio {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--phi-space-3);
+    cursor: pointer;
+}
+
+.sacred-radio input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.sacred-radio .radiomark {
+    position: relative;
+    width: var(--phi-space-4);
+    height: var(--phi-space-4);
+    background-color: var(--surface-secondary);
+    border: var(--input-border-width) solid var(--border-medium);
+    border-radius: 50%;
+    transition: var(--input-transition);
+}
+
+.sacred-radio input:checked ~ .radiomark {
+    border-color: var(--color-ethereal-blue);
+}
+
+.sacred-radio .radiomark::after {
+    content: '';
+    position: absolute;
+    display: none;
+    left: 50%;
+    top: 50%;
+    width: calc(var(--phi-space-2) * var(--phi));
+    height: calc(var(--phi-space-2) * var(--phi));
+    background-color: var(--color-ethereal-blue);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.sacred-radio input:checked ~ .radiomark::after {
+    display: block;
+}
+
+/* Select Inputs */
+.sacred-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--input-padding-x) center;
+    background-size: var(--input-icon-size) var(--input-icon-size);
+    padding-right: calc(var(--input-padding-x) * 2 + var(--input-icon-size));
+}
+
+/* File Input */
+.sacred-file {
+    position: relative;
+    display: inline-block;
+}
+
+.sacred-file input {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+
+.sacred-file-label {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--phi-space-3);
+    padding: var(--input-padding-y) var(--input-padding-x);
+    background-color: var(--surface-secondary);
+    border: var(--input-border-width) solid var(--border-medium);
+    border-radius: var(--input-radius-md);
+    cursor: pointer;
+    transition: var(--input-transition);
+}
+
+.sacred-file input:focus ~ .sacred-file-label {
+    border-color: var(--color-ethereal-blue);
+    box-shadow: 0 0 0 var(--focus-ring-width) rgba(var(--color-ethereal-blue), var(--focus-ring-alpha));
+}
+
+/* ------------------------
+ * Form Layout Utilities
+ * Sacred geometry-based layouts
+ * ------------------------ */
+
+/* Form Grid */
+.sacred-form-grid {
+    display: grid;
+    gap: var(--phi-space-4);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+}
+
+/* Form Row */
+.sacred-form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--phi-space-4);
+}
+
+/* Form Column */
+.sacred-form-col {
+    flex: 1 1 calc(50% - var(--phi-space-4));
+    min-width: 0;
+}
+
+/* ------------------------
+ * Accessibility
+ * Enhanced form accessibility
+ * ------------------------ */
+
+/* Focus Visible */
+.sacred-input:focus-visible,
+.sacred-checkbox input:focus-visible ~ .checkmark,
+.sacred-radio input:focus-visible ~ .radiomark {
+    outline: none;
+    box-shadow: 0 0 0 var(--focus-ring-width) rgba(var(--color-ethereal-blue), var(--focus-ring-alpha));
+}
+
+/* Screen Reader Only */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Required Fields */
+.sacred-input:required ~ .sacred-label::after {
+    content: "*";
+    color: var(--input-invalid-color);
+    margin-left: var(--phi-space-1);
+}
+
+/* ------------------------
+ * Print Styles
+ * Print-friendly form styling
+ * ------------------------ */
+
+@media print {
+    .sacred-input,
+    .sacred-select,
+    .sacred-checkbox .checkmark,
+    .sacred-radio .radiomark {
+        border: 1px solid #000;
+        background: none !important;
+        box-shadow: none !important;
+    }
+    
+    .sacred-input:disabled {
+        background: #f0f0f0 !important;
+    }
+}

@@ -1,0 +1,1223 @@
+/**
+ * analytics.css
+ * Divine analytics system based on sacred geometry principles
+ * Version: 1.0.0
+ * 
+ * This system implements:
+ * - Golden ratio proportions
+ * - Sacred geometry patterns
+ * - Divine data visualization
+ * - Universal analytics layouts
+ * - Sacred number sequences
+ */
+
+/* ------------------------
+ * Analytics Variables
+ * Based on sacred proportions
+ * ------------------------ */
+ :root {
+    /* Card Dimensions */
+    --analytics-card-min-width: calc(280px * var(--phi));
+    --analytics-card-height: calc(var(--phi-space-8) * var(--phi));
+    
+    /* Chart Dimensions */
+    --chart-min-height: calc(300px * var(--phi));
+    --chart-max-height: calc(500px * var(--phi));
+    
+    /* Grid Gaps */
+    --analytics-gap-sm: calc(var(--phi-space-3) * var(--phi));
+    --analytics-gap-md: calc(var(--phi-space-4) * var(--phi));
+    --analytics-gap-lg: calc(var(--phi-space-5) * var(--phi));
+    
+    /* Metric Colors */
+    --metric-positive: var(--color-spiritual-green);
+    --metric-negative: var(--color-divine-red);
+    --metric-neutral: var(--color-ethereal-blue);
+    
+    /* Animation Timings */
+    --analytics-animation-duration: 0.8s;
+    --analytics-animation-timing: var(--ease-golden);
+}
+
+/* ------------------------
+ * Analytics Container
+ * Sacred vessel for insights
+ * ------------------------ */
+
+.sacred-analytics {
+    position: relative;
+    display: grid;
+    gap: var(--analytics-gap-md);
+    padding: calc(var(--phi-space-4) * var(--phi));
+    width: 100%;
+    min-height: 100%;
+    background: var(--surface-primary);
+    transition: all var(--analytics-animation-duration) var(--analytics-animation-timing);
+}
+
+.sacred-analytics[data-loading="true"] {
+    opacity: 0.7;
+    pointer-events: none;
+}
+/* ------------------------
+ * Analytics Grid Layout
+ * Sacred data arrangement patterns
+ * ------------------------ */
+
+/* Base Grid Container */
+.sacred-analytics-grid {
+    display: grid;
+    gap: var(--analytics-gap-md);
+    width: 100%;
+    margin: 0 auto;
+    transition: all var(--analytics-animation-duration) var(--analytics-animation-timing);
+}
+
+/* Grid Templates */
+.sacred-analytics-grid-auto {
+    grid-template-columns: repeat(
+        auto-fit, 
+        minmax(min(var(--analytics-card-min-width), 100%), 1fr)
+    );
+}
+
+.sacred-analytics-grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.sacred-analytics-grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.sacred-analytics-grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* Golden Ratio Grid */
+.sacred-analytics-grid-golden {
+    grid-template-columns: var(--phi-inverse) 1fr;
+}
+
+.sacred-analytics-grid-golden-reverse {
+    grid-template-columns: 1fr var(--phi-inverse);
+}
+
+/* Dashboard Layout */
+.sacred-analytics-grid-dashboard {
+    grid-template-areas:
+        "metrics metrics metrics metrics"
+        "main main main sidebar"
+        "chart-1 chart-1 chart-2 chart-2";
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto 1fr 1fr;
+}
+
+/* Area Classes */
+.sacred-analytics-area-metrics { grid-area: metrics; }
+.sacred-analytics-area-main { grid-area: main; }
+.sacred-analytics-area-sidebar { grid-area: sidebar; }
+.sacred-analytics-area-chart-1 { grid-area: chart-1; }
+.sacred-analytics-area-chart-2 { grid-area: chart-2; }
+
+/* Grid Spans */
+.sacred-analytics-col-full {
+    grid-column: 1 / -1;
+}
+
+.sacred-analytics-col-2 {
+    grid-column: span 2;
+}
+
+.sacred-analytics-col-3 {
+    grid-column: span 3;
+}
+
+/* Grid Row Spans */
+.sacred-analytics-row-2 {
+    grid-row: span 2;
+}
+
+.sacred-analytics-row-3 {
+    grid-row: span 3;
+}
+
+/* Grid Gap Variations */
+.sacred-analytics-grid-gap-sm {
+    gap: var(--analytics-gap-sm);
+}
+
+.sacred-analytics-grid-gap-md {
+    gap: var(--analytics-gap-md);
+}
+
+.sacred-analytics-grid-gap-lg {
+    gap: var(--analytics-gap-lg);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+    .sacred-analytics-grid-dashboard {
+        grid-template-areas:
+            "metrics metrics metrics metrics"
+            "main main main main"
+            "sidebar sidebar sidebar sidebar"
+            "chart-1 chart-1 chart-2 chart-2";
+        grid-template-rows: auto auto auto 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .sacred-analytics-grid-2,
+    .sacred-analytics-grid-3,
+    .sacred-analytics-grid-4 {
+        grid-template-columns: 1fr;
+    }
+
+    .sacred-analytics-grid-golden,
+    .sacred-analytics-grid-golden-reverse {
+        grid-template-columns: 1fr;
+    }
+
+    .sacred-analytics-grid-dashboard {
+        grid-template-areas:
+            "metrics"
+            "main"
+            "sidebar"
+            "chart-1"
+            "chart-2";
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Grid Animation States */
+.sacred-analytics-grid[data-animate="true"] {
+    --stagger-delay: 100ms;
+    
+    & > * {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: gridItemEnter var(--analytics-animation-duration) 
+                  var(--analytics-animation-timing) forwards;
+    }
+}
+
+@keyframes gridItemEnter {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Stagger Children */
+.sacred-analytics-grid[data-animate="true"] > *:nth-child(1) { animation-delay: calc(var(--stagger-delay) * 1); }
+.sacred-analytics-grid[data-animate="true"] > *:nth-child(2) { animation-delay: calc(var(--stagger-delay) * 2); }
+.sacred-analytics-grid[data-animate="true"] > *:nth-child(3) { animation-delay: calc(var(--stagger-delay) * 3); }
+.sacred-analytics-grid[data-animate="true"] > *:nth-child(4) { animation-delay: calc(var(--stagger-delay) * 4); }
+.sacred-analytics-grid[data-animate="true"] > *:nth-child(5) { animation-delay: calc(var(--stagger-delay) * 5); }
+/* ------------------------
+ * Analytics Card Component
+ * Sacred data vessel patterns
+ * ------------------------ */
+
+/* Base Card */
+.sacred-analytics-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: var(--analytics-card-height);
+    padding: calc(var(--phi-space-4) * var(--phi));
+    background: var(--surface-primary);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-light);
+    transition: all var(--analytics-animation-duration) var(--analytics-animation-timing);
+}
+
+/* Card Header */
+.sacred-analytics-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: calc(var(--phi-space-4) * var(--phi));
+}
+
+.sacred-analytics-card-title {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary);
+    line-height: var(--line-height-snug);
+}
+
+.sacred-analytics-card-subtitle {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    margin-top: calc(var(--phi-space-1) * var(--phi));
+}
+
+/* Card Content */
+.sacred-analytics-card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--phi-space-3) * var(--phi));
+}
+
+/* Card Footer */
+.sacred-analytics-card-footer {
+    margin-top: auto;
+    padding-top: calc(var(--phi-space-3) * var(--phi));
+    border-top: 1px solid var(--border-light);
+}
+
+/* Card Variants */
+.sacred-analytics-card-elevated {
+    box-shadow: var(--elevation-2);
+    border: none;
+}
+
+.sacred-analytics-card-glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.sacred-analytics-card-gradient {
+    background: linear-gradient(
+        135deg,
+        rgba(var(--color-ethereal-blue), 0.05),
+        rgba(var(--color-mystic-purple), 0.05)
+    );
+    border: 2px solid transparent;
+    border-image: linear-gradient(
+        var(--angle-sacred),
+        var(--color-ethereal-blue),
+        var(--color-mystic-purple)
+    ) 1;
+}
+
+/* Card States */
+.sacred-analytics-card[data-interactive="true"] {
+    cursor: pointer;
+}
+
+.sacred-analytics-card[data-interactive="true"]:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--elevation-3);
+}
+
+.sacred-analytics-card[data-selected="true"] {
+    border-color: var(--color-ethereal-blue);
+    box-shadow: 0 0 0 2px rgba(var(--color-ethereal-blue), 0.2);
+}
+
+/* Card Loading State */
+.sacred-analytics-card[data-loading="true"] {
+    position: relative;
+    overflow: hidden;
+}
+
+.sacred-analytics-card[data-loading="true"]::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(var(--color-ethereal-blue), 0.1),
+        transparent
+    );
+    transform: translateX(-100%);
+    animation: cardLoading 1.5s infinite;
+}
+
+@keyframes cardLoading {
+    100% { transform: translateX(100%); }
+}
+
+/* Card Actions */
+.sacred-analytics-card-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--phi-space-2);
+}
+
+.sacred-analytics-card-action {
+    padding: var(--phi-space-2);
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-radius: var(--border-radius-sm);
+    transition: all 0.2s var(--ease-golden);
+}
+
+.sacred-analytics-card-action:hover {
+    background: rgba(var(--color-ethereal-blue), 0.1);
+    color: var(--color-ethereal-blue);
+}
+
+/* Card Badge */
+.sacred-analytics-card-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--phi-space-1) var(--phi-space-2);
+    border-radius: var(--border-radius-pill);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+}
+
+.sacred-analytics-card-badge[data-status="success"] {
+    background: rgba(var(--color-spiritual-green), 0.1);
+    color: var(--color-spiritual-green);
+}
+
+.sacred-analytics-card-badge[data-status="warning"] {
+    background: rgba(var(--color-sacred-gold), 0.1);
+    color: var(--color-sacred-gold);
+}
+
+.sacred-analytics-card-badge[data-status="error"] {
+    background: rgba(var(--color-divine-red), 0.1);
+    color: var(--color-divine-red);
+}
+
+/* Card Divider */
+.sacred-analytics-card-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--border-light);
+    margin: calc(var(--phi-space-3) * var(--phi)) 0;
+}
+
+/* Card Icon */
+.sacred-analytics-card-icon {
+    width: calc(var(--phi-space-5) * var(--phi));
+    height: calc(var(--phi-space-5) * var(--phi));
+    color: var(--text-secondary);
+    transition: all var(--analytics-animation-duration) var(--analytics-animation-timing);
+}
+
+.sacred-analytics-card:hover .sacred-analytics-card-icon {
+    color: var(--color-ethereal-blue);
+    transform: scale(1.1);
+}
+/* ------------------------
+ * Analytics Metrics System
+ * Sacred measurement patterns
+ * ------------------------ */
+
+/* Base Metric Container */
+.sacred-metric {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--phi-space-2) * var(--phi));
+}
+
+/* Metric Header */
+.sacred-metric-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--phi-space-3);
+}
+
+.sacred-metric-title {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Metric Value */
+.sacred-metric-value {
+    display: flex;
+    align-items: baseline;
+    gap: var(--phi-space-2);
+    font-size: calc(var(--scale-xl) * var(--phi));
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+    color: var(--text-primary);
+    transition: all var(--analytics-animation-duration) var(--analytics-animation-timing);
+}
+
+.sacred-metric-value[data-animate="true"] {
+    animation: metricValueEnter var(--analytics-animation-duration) var(--analytics-animation-timing);
+}
+
+@keyframes metricValueEnter {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Metric Currency */
+.sacred-metric-currency {
+    font-size: var(--font-size-lg);
+    color: var(--text-secondary);
+}
+
+/* Metric Change Indicator */
+.sacred-metric-change {
+    display: flex;
+    align-items: center;
+    gap: var(--phi-space-2);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    transition: all var(--analytics-animation-duration) var(--analytics-animation-timing);
+}
+
+.sacred-metric-change[data-trend="positive"] {
+    color: var(--metric-positive);
+}
+
+.sacred-metric-change[data-trend="negative"] {
+    color: var(--metric-negative);
+}
+
+.sacred-metric-change[data-trend="neutral"] {
+    color: var(--metric-neutral);
+}
+
+/* Trend Arrow */
+.sacred-metric-trend {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(var(--phi-space-4) * var(--phi-inverse));
+    height: calc(var(--phi-space-4) * var(--phi-inverse));
+}
+
+.sacred-metric-trend[data-trend="positive"] {
+    transform: rotate(-45deg);
+}
+
+.sacred-metric-trend[data-trend="negative"] {
+    transform: rotate(45deg);
+}
+
+/* Metric Comparison */
+.sacred-metric-comparison {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    margin-top: calc(var(--phi-space-2) * var(--phi-inverse));
+}
+
+/* Metric Progress */
+.sacred-metric-progress {
+    position: relative;
+    width: 100%;
+    height: calc(var(--phi-space-1) * var(--phi));
+    background: rgba(var(--color-ethereal-blue), 0.1);
+    border-radius: var(--border-radius-pill);
+    overflow: hidden;
+    margin-top: var(--phi-space-2);
+}
+
+.sacred-metric-progress-bar {
+    position: absolute;
+    height: 100%;
+    left: 0;
+    background: var(--color-ethereal-blue);
+    border-radius: inherit;
+    transition: width var(--analytics-animation-duration) var(--analytics-animation-timing);
+}
+
+/* Metric Variants */
+.sacred-metric-large {
+    .sacred-metric-value {
+        font-size: calc(var(--scale-2xl) * var(--phi));
+    }
+}
+
+.sacred-metric-compact {
+    .sacred-metric-value {
+        font-size: var(--scale-lg);
+    }
+}
+
+/* Metric Grid */
+.sacred-metric-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(calc(var(--analytics-card-min-width) * 0.5), 1fr));
+    gap: calc(var(--phi-space-4) * var(--phi));
+}
+
+/* Metric Loading State */
+.sacred-metric[data-loading="true"] {
+    .sacred-metric-value,
+    .sacred-metric-change {
+        position: relative;
+        color: transparent;
+    }
+
+    .sacred-metric-value::after,
+    .sacred-metric-change::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgba(var(--color-ethereal-blue), 0.1);
+        border-radius: var(--border-radius-sm);
+        animation: metricPulse 1.5s infinite;
+    }
+}
+
+@keyframes metricPulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+/* Metric Tooltip */
+.sacred-metric-tooltip {
+    position: absolute;
+    top: calc(100% + var(--phi-space-2));
+    left: 50%;
+    transform: translateX(-50%);
+    padding: var(--phi-space-2) var(--phi-space-3);
+    background: var(--surface-primary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--border-radius-sm);
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s var(--ease-golden);
+    z-index: 10;
+}
+
+.sacred-metric:hover .sacred-metric-tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+/* ------------------------
+ * Analytics Chart System
+ * Sacred visualization patterns
+ * ------------------------ */
+
+/* Chart Container */
+.sacred-chart-container {
+    position: relative;
+    min-height: var(--chart-min-height);
+    max-height: var(--chart-max-height);
+    padding: calc(var(--phi-space-4) * var(--phi));
+    background: var(--surface-primary);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-light);
+    transition: all var(--analytics-animation-duration) var(--analytics-animation-timing);
+}
+
+/* Chart Header */
+.sacred-chart-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: calc(var(--phi-space-4) * var(--phi));
+}
+
+.sacred-chart-title {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary);
+}
+
+.sacred-chart-subtitle {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    margin-top: calc(var(--phi-space-1) * var(--phi));
+}
+
+/* Chart Controls */
+.sacred-chart-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--phi-space-3);
+}
+
+.sacred-chart-control {
+    padding: var(--phi-space-2) var(--phi-space-3);
+    border: 1px solid var(--border-light);
+    border-radius: var(--border-radius-sm);
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+    transition: all 0.2s var(--ease-golden);
+}
+
+.sacred-chart-control:hover {
+    border-color: var(--color-ethereal-blue);
+    color: var(--color-ethereal-blue);
+}
+
+.sacred-chart-control[data-active="true"] {
+    background: rgba(var(--color-ethereal-blue), 0.1);
+    border-color: var(--color-ethereal-blue);
+    color: var(--color-ethereal-blue);
+}
+
+/* Chart Canvas */
+.sacred-chart-canvas {
+    position: relative;
+    width: 100%;
+    height: calc(100% - var(--phi-space-8));
+}
+
+/* Chart Legend */
+.sacred-chart-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--phi-space-3);
+    margin-top: calc(var(--phi-space-4) * var(--phi));
+    padding-top: calc(var(--phi-space-3) * var(--phi));
+    border-top: 1px solid var(--border-light);
+}
+
+.sacred-legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--phi-space-2);
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s var(--ease-golden);
+}
+
+.sacred-legend-item:hover {
+    color: var(--text-primary);
+}
+
+.sacred-legend-item[data-active="false"] {
+    opacity: 0.5;
+}
+
+.sacred-legend-color {
+    width: calc(var(--phi-space-3) * var(--phi));
+    height: calc(var(--phi-space-3) * var(--phi));
+    border-radius: var(--border-radius-sm);
+}
+
+/* Chart Tooltip */
+.sacred-chart-tooltip {
+    position: absolute;
+    padding: var(--phi-space-3);
+    background: var(--surface-primary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--elevation-3);
+    pointer-events: none;
+    z-index: 100;
+    transition: all 0.1s var(--ease-golden);
+}
+
+.sacred-tooltip-label {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    margin-bottom: var(--phi-space-2);
+}
+
+.sacred-tooltip-value {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary);
+}
+
+/* Chart Loading State */
+.sacred-chart-loading {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(var(--surface-primary), 0.8);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 10;
+}
+
+/* Chart Empty State */
+.sacred-chart-empty {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: calc(var(--phi-space-3) * var(--phi));
+    text-align: center;
+    color: var(--text-secondary);
+    padding: calc(var(--phi-space-4) * var(--phi));
+}
+
+/* Chart Grid Lines */
+.sacred-chart-grid {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.sacred-chart-grid-line {
+    position: absolute;
+    background: rgba(var(--color-ethereal-blue), 0.05);
+}
+
+.sacred-chart-grid-line-x {
+    width: 100%;
+    height: 1px;
+}
+
+.sacred-chart-grid-line-y {
+    height: 100%;
+    width: 1px;
+}
+
+/* Chart Axes */
+.sacred-chart-axis {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+}
+
+.sacred-chart-axis-x {
+    bottom: calc(var(--phi-space-4) * -1);
+    left: 0;
+    right: 0;
+}
+
+.sacred-chart-axis-y {
+    top: 0;
+    bottom: 0;
+    left: calc(var(--phi-space-4) * -1);
+    flex-direction: column-reverse;
+}
+/* ------------------------
+ * Analytics Timeline System
+ * Sacred temporal patterns
+ * ------------------------ */
+
+/* Timeline Container */
+.sacred-timeline {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--phi-space-4) * var(--phi));
+    padding: calc(var(--phi-space-4) * var(--phi));
+    background: var(--surface-primary);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-light);
+}
+
+/* Timeline Navigation */
+.sacred-timeline-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--phi-space-4);
+}
+
+/* Timeline Period Selector */
+.sacred-timeline-periods {
+    display: flex;
+    align-items: center;
+    gap: var(--phi-space-2);
+    padding: calc(var(--phi-space-1) * var(--phi));
+    background: var(--surface-secondary);
+    border-radius: var(--border-radius-pill);
+}
+
+.sacred-timeline-period {
+    padding: var(--phi-space-2) var(--phi-space-4);
+    border-radius: var(--border-radius-pill);
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.3s var(--ease-golden);
+}
+
+.sacred-timeline-period:hover {
+    color: var(--color-ethereal-blue);
+}
+
+.sacred-timeline-period[data-active="true"] {
+    background: var(--color-ethereal-blue);
+    color: white;
+}
+
+/* Timeline Date Range */
+.sacred-timeline-range {
+    display: flex;
+    align-items: center;
+    gap: var(--phi-space-3);
+}
+
+.sacred-timeline-date {
+    padding: var(--phi-space-2) var(--phi-space-4);
+    border: 1px solid var(--border-light);
+    border-radius: var(--border-radius-md);
+    font-size: var(--font-size-sm);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.3s var(--ease-golden);
+}
+
+.sacred-timeline-date:hover {
+    border-color: var(--color-ethereal-blue);
+    color: var(--color-ethereal-blue);
+}
+
+/* Timeline Controls */
+.sacred-timeline-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--phi-space-2);
+}
+
+.sacred-timeline-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(var(--phi-space-5) * var(--phi));
+    height: calc(var(--phi-space-5) * var(--phi));
+    border: 1px solid var(--border-light);
+    border-radius: var(--border-radius-md);
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.3s var(--ease-golden);
+}
+
+.sacred-timeline-button:hover {
+    border-color: var(--color-ethereal-blue);
+    color: var(--color-ethereal-blue);
+}
+
+.sacred-timeline-button[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Timeline Slider */
+.sacred-timeline-slider {
+    position: relative;
+    height: calc(var(--phi-space-6) * var(--phi));
+    padding: var(--phi-space-2) 0;
+}
+
+.sacred-timeline-track {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: calc(var(--phi-space-1) * var(--phi));
+    background: rgba(var(--color-ethereal-blue), 0.1);
+    border-radius: var(--border-radius-pill);
+    transform: translateY(-50%);
+}
+
+.sacred-timeline-progress {
+    position: absolute;
+    height: 100%;
+    background: var(--color-ethereal-blue);
+    border-radius: inherit;
+}
+
+.sacred-timeline-handle {
+    position: absolute;
+    top: 50%;
+    width: calc(var(--phi-space-4) * var(--phi));
+    height: calc(var(--phi-space-4) * var(--phi));
+    background: white;
+    border: 2px solid var(--color-ethereal-blue);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    cursor: grab;
+    transition: transform 0.2s var(--ease-golden);
+}
+
+.sacred-timeline-handle:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.sacred-timeline-handle:active {
+    cursor: grabbing;
+}
+
+/* Timeline Markers */
+.sacred-timeline-markers {
+    position: relative;
+    height: calc(var(--phi-space-4) * var(--phi));
+    margin-top: var(--phi-space-2);
+}
+
+.sacred-timeline-marker {
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+    font-size: var(--font-size-xs);
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+/* Timeline Tooltip */
+.sacred-timeline-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: var(--phi-space-2) var(--phi-space-3);
+    background: var(--surface-primary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--border-radius-sm);
+    font-size: var(--font-size-sm);
+    color: var(--text-primary);
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s var(--ease-golden);
+}
+
+.sacred-timeline-handle:hover .sacred-timeline-tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Timeline Loading State */
+.sacred-timeline[data-loading="true"] {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* Timeline Animation */
+@keyframes timelineProgress {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+}
+
+.sacred-timeline-progress[data-animate="true"] {
+    transform-origin: left;
+    animation: timelineProgress 0.8s var(--ease-golden);
+}
+/* ------------------------
+ * Analytics Comparison System
+ * Sacred comparative patterns
+ * ------------------------ */
+
+/* Comparison Container */
+.sacred-comparison {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--phi-space-4) * var(--phi));
+    padding: calc(var(--phi-space-4) * var(--phi));
+    background: var(--surface-primary);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-light);
+}
+
+/* Comparison Header */
+.sacred-comparison-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sacred-comparison-title {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary);
+}
+
+/* Comparison Grid */
+.sacred-comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: calc(var(--phi-space-4) * var(--phi));
+    position: relative;
+}
+
+.sacred-comparison-grid::after {
+    content: 'vs';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    background: var(--surface-primary);
+    padding: var(--phi-space-2);
+    border-radius: 50%;
+    border: 1px solid var(--border-light);
+}
+
+/* Comparison Item */
+.sacred-comparison-item {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--phi-space-3) * var(--phi));
+    padding: calc(var(--phi-space-3) * var(--phi));
+    background: var(--surface-secondary);
+    border-radius: var(--border-radius-md);
+    transition: all var(--analytics-animation-duration) var(--analytics-animation-timing);
+}
+
+.sacred-comparison-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--elevation-2);
+}
+
+/* Comparison Metrics */
+.sacred-comparison-metrics {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--phi-space-3);
+}
+
+.sacred-comparison-metric {
+    display: flex;
+    flex-direction: column;
+    gap: var(--phi-space-1);
+}
+
+.sacred-comparison-label {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+}
+
+.sacred-comparison-value {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary);
+}
+
+/* Comparison Indicator */
+.sacred-comparison-indicator {
+    display: flex;
+    align-items: center;
+    gap: var(--phi-space-2);
+    font-size: var(--font-size-sm);
+    padding: var(--phi-space-1) var(--phi-space-2);
+    border-radius: var(--border-radius-pill);
+    width: fit-content;
+}
+
+.sacred-comparison-indicator[data-trend="positive"] {
+    background: rgba(var(--color-spiritual-green), 0.1);
+    color: var(--color-spiritual-green);
+}
+
+.sacred-comparison-indicator[data-trend="negative"] {
+    background: rgba(var(--color-divine-red), 0.1);
+    color: var(--color-divine-red);
+}
+
+.sacred-comparison-indicator[data-trend="neutral"] {
+    background: rgba(var(--color-ethereal-blue), 0.1);
+    color: var(--color-ethereal-blue);
+}
+
+/* Comparison Progress */
+.sacred-comparison-progress {
+    position: relative;
+    height: calc(var(--phi-space-2) * var(--phi));
+    background: rgba(var(--color-ethereal-blue), 0.1);
+    border-radius: var(--border-radius-pill);
+    overflow: hidden;
+}
+
+.sacred-comparison-bar {
+    position: absolute;
+    height: 100%;
+    background: var(--color-ethereal-blue);
+    border-radius: inherit;
+    transition: width var(--analytics-animation-duration) var(--analytics-animation-timing);
+}
+
+/* Comparison Details */
+.sacred-comparison-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--phi-space-2);
+    margin-top: var(--phi-space-3);
+    padding-top: var(--phi-space-3);
+    border-top: 1px solid var(--border-light);
+}
+
+.sacred-comparison-detail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--font-size-sm);
+}
+
+.sacred-comparison-key {
+    color: var(--text-secondary);
+}
+
+.sacred-comparison-stat {
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary);
+}
+
+/* Comparison Chart */
+.sacred-comparison-chart {
+    height: calc(var(--phi-space-8) * var(--phi));
+    margin-top: var(--phi-space-4);
+}
+
+/* Comparison Legend */
+.sacred-comparison-legend {
+    display: flex;
+    justify-content: center;
+    gap: calc(var(--phi-space-4) * var(--phi));
+    margin-top: var(--phi-space-4);
+    padding-top: var(--phi-space-4);
+    border-top: 1px solid var(--border-light);
+}
+
+.sacred-comparison-legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--phi-space-2);
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+}
+
+.sacred-comparison-legend-color {
+    width: calc(var(--phi-space-3) * var(--phi));
+    height: calc(var(--phi-space-3) * var(--phi));
+    border-radius: var(--border-radius-sm);
+}
+
+/* Comparison Loading State */
+.sacred-comparison[data-loading="true"] {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.sacred-comparison[data-loading="true"] .sacred-comparison-value {
+    position: relative;
+    color: transparent;
+}
+
+.sacred-comparison[data-loading="true"] .sacred-comparison-value::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(var(--color-ethereal-blue), 0.1);
+    border-radius: var(--border-radius-sm);
+    animation: comparisonPulse 1.5s infinite;
+}
+
+@keyframes comparisonPulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}

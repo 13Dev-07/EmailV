@@ -1,0 +1,5 @@
+# logs/audit.log
+
+# Audit Log
+# Tracks all validation requests and significant actions for compliance and auditing purposes.
+# Each entry includes timestamp, action, user identifier, and details.

@@ -1,0 +1,851 @@
+/**
+ * sacred-base.css
+ * Core styling system based on sacred geometry and universal principles
+ * Version: 1.0.0
+ */
+
+/* ------------------------
+ * Universal Constants
+ * Based on sacred geometry, golden ratio, and fibonacci sequence
+ * ------------------------ */
+ :root {
+    /* Core Mathematical Constants */
+    --phi: 1.618033988749895;              /* Golden Ratio (φ) */
+    --phi-inverse: 0.618033988749895;      /* 1/φ */
+    --phi-squared: 2.618033988749895;      /* φ² */
+    --sqrt-phi: 1.272019649514069;         /* √φ */
+    --pi: 3.141592653589793;               /* π */
+    --e: 2.718281828459045;                /* e (Euler's number) */
+    
+    /* Sacred Number Sequences */
+    --fibonacci: 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144;
+    --lucas: 2, 1, 3, 4, 7, 11, 18, 29, 47, 76, 123;
+    
+    /* Sacred Angles */
+    --angle-golden: 137.5077640500378deg;  /* Golden Angle (φ * 360° / φ²) */
+    --angle-pentagon: 72deg;               /* 360° / 5 */
+    --angle-hexagon: 60deg;                /* 360° / 6 */
+    --angle-octagon: 45deg;                /* 360° / 8 */
+    --angle-dodecagon: 30deg;              /* 360° / 12 */
+    
+    /* Vesica Piscis Ratios */
+    --vesica-ratio: 1.732050807568877;     /* √3 */
+    --vesica-height: calc(100% * var(--vesica-ratio));
+    
+    /* Metatron's Cube Proportions */
+    --metatron-unit: 1rem;
+    --metatron-radius: calc(var(--metatron-unit) * var(--phi));
+    --metatron-inner: calc(var(--metatron-radius) * var(--phi-inverse));
+    
+    /* Flower of Life Grid */
+    --flower-radius: calc(var(--metatron-unit) * 2);
+    --flower-spacing: calc(var(--flower-radius) * var(--sqrt-phi));
+
+    /* ------------------------
+     * Spacing System
+     * Based on Fibonacci sequence
+     * ------------------------ */
+    --space-xxs: 0.1rem;          /* 1 */
+    --space-xs: 0.2rem;           /* 2 */
+    --space-sm: 0.3rem;           /* 3 */
+    --space-md: 0.5rem;           /* 5 */
+    --space-lg: 0.8rem;           /* 8 */
+    --space-xl: 1.3rem;           /* 13 */
+    --space-xxl: 2.1rem;          /* 21 */
+    --space-xxxl: 3.4rem;         /* 34 */
+    --space-huge: 5.5rem;         /* 55 */
+    
+    /* Dynamic Spacing (Responsive) */
+    --space-dynamic-sm: clamp(var(--space-sm), 1vw, var(--space-md));
+    --space-dynamic-md: clamp(var(--space-md), 2vw, var(--space-lg));
+    --space-dynamic-lg: clamp(var(--space-lg), 3vw, var(--space-xl));
+    
+    /* ------------------------
+     * Sacred Color System
+     * Based on universal elements and chakra energies
+     * ------------------------ */
+    /* Primary Sacred Colors */
+    --color-cosmic-void: #0a0b1a;          /* Deep Space */
+    --color-cosmic-background: #1a1b2e;     /* Cosmic Background */
+    --color-celestial-white: #f8f9ff;       /* Pure Light */
+    --color-ethereal-blue: #4c7bf3;         /* Throat Chakra */
+    --color-mystic-purple: #b84af7;         /* Crown Chakra */
+    --color-sacred-gold: #ffd700;           /* Solar Plexus */
+    --color-spiritual-green: #00f5d4;       /* Heart Chakra */
+    --color-divine-red: #ff3366;            /* Root Chakra */
+    
+    /* Secondary Sacred Colors */
+    --color-sacral-orange: #ff7f50;         /* Sacral Chakra */
+    --color-third-eye-indigo: #4b0082;      /* Third Eye */
+    --color-earth-brown: #8b4513;           /* Grounding */
+    --color-aether-silver: #c0c0c0;         /* Universal Connection */
+    
+    /* Gradient Combinations */
+    --gradient-cosmic: linear-gradient(
+        var(--angle-golden),
+        var(--color-cosmic-background),
+        var(--color-ethereal-blue)
+    );
+    
+    --gradient-spiritual: linear-gradient(
+        var(--angle-pentagon),
+        var(--color-spiritual-green),
+        var(--color-mystic-purple)
+    );
+    
+    --gradient-divine: linear-gradient(
+        var(--angle-dodecagon),
+        var(--color-divine-red),
+        var(--color-sacred-gold)
+    );
+    
+    /* Alpha Channels */
+    --alpha-overlay: 0.8;
+    --alpha-backdrop: 0.6;
+    --alpha-hover: 0.9;
+    --alpha-active: 1;
+    --alpha-disabled: 0.5;
+
+    /* ------------------------
+     * Sacred Typography Scale
+     * Based on golden ratio progression
+     * ------------------------ */
+    --font-size-base: 1rem;
+    --font-size-xs: calc(var(--font-size-base) / var(--phi-squared));
+    --font-size-sm: calc(var(--font-size-base) / var(--phi));
+    --font-size-md: var(--font-size-base);
+    --font-size-lg: calc(var(--font-size-base) * var(--phi));
+    --font-size-xl: calc(var(--font-size-base) * var(--phi-squared));
+    --font-size-xxl: calc(var(--font-size-base) * var(--phi) * var(--phi));
+    --font-size-xxxl: calc(var(--font-size-base) * var(--phi-squared) * var(--phi));
+    
+    /* Line Heights */
+    --line-height-tight: var(--phi-inverse);    /* 0.618 */
+    --line-height-base: 1;
+    --line-height-relaxed: var(--phi);          /* 1.618 */
+    --line-height-loose: var(--phi-squared);    /* 2.618 */
+    
+    /* Font Weights */
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    /* Font Families */
+    --font-primary: 'Sacred Geometry', system-ui, -apple-system, BlinkMacSystemFont;
+    --font-secondary: 'Geometrica', 'Helvetica Neue', Arial, sans-serif;
+    --font-monospace: 'Sacred Mono', 'Fira Code', monospace;
+
+    /* Letter Spacing */
+    --letter-spacing-tight: -0.05em;
+    --letter-spacing-normal: 0;
+    --letter-spacing-wide: 0.05em;
+    --letter-spacing-wider: 0.1em;
+
+    /* ------------------------
+     * Sacred Geometry Shapes
+     * ------------------------ */
+    --border-radius-sm: calc(var(--space-sm) * var(--phi-inverse));
+    --border-radius-md: calc(var(--space-md) * var(--phi-inverse));
+    --border-radius-lg: calc(var(--space-lg) * var(--phi-inverse));
+    --border-radius-circle: 50%;
+    --border-radius-pill: 9999px;
+    
+    /* Sacred Polygons */
+    --triangle-size: calc(var(--space-xl) * var(--phi));
+    --pentagon-size: calc(var(--space-xl) * var(--phi-squared));
+    --hexagon-size: calc(var(--space-xxl) * var(--phi));
+    
+    /* ------------------------
+     * Animation & Transition
+     * Based on Fibonacci timing
+     * ------------------------ */
+    --transition-duration-instant: 0.1s;
+    --transition-duration-fast: 0.2s;
+    --transition-duration-normal: 0.3s;
+    --transition-duration-slow: 0.5s;
+    --transition-duration-slower: 0.8s;
+    --transition-duration-slowest: 1.3s;
+    
+    /* Easing Functions */
+    --ease-in-phi: cubic-bezier(0.618, 0, 0.618, 1);
+    --ease-out-phi: cubic-bezier(0.382, 0, 0.382, 1);
+    --ease-in-out-phi: cubic-bezier(0.618, 0, 0.382, 1);
+    
+    /* Animation Timing */
+    --animation-duration-short: var(--transition-duration-fast);
+    --animation-duration-medium: var(--transition-duration-normal);
+    --animation-duration-long: var(--transition-duration-slow);
+
+    /* ------------------------
+ * Core Element Styling
+ * Based on sacred geometry principles
+ * ------------------------ */
+
+/* Base Reset with Sacred Proportions */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Root Element */
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    background: var(--color-cosmic-background);
+    color: var(--color-celestial-white);
+    height: 100%;
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+}
+
+/* Body Sacred Structure */
+body {
+    font-family: var(--font-primary);
+    line-height: var(--line-height-relaxed);
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    overflow-x: hidden;
+    background-image: 
+        radial-gradient(
+            circle at 50% 50%,
+            var(--color-cosmic-void),
+            var(--color-cosmic-background)
+        );
+    position: relative;
+}
+
+/* Sacred Background Patterns */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 0L97 25L97 75L50 100L3 75L3 25z' fill='none' stroke='rgba(255,255,255,0.05)'/%3E%3C/svg%3E");
+    background-size: calc(var(--space-xxl) * var(--phi));
+    pointer-events: none;
+    z-index: var(--z-background);
+    opacity: 0.1;
+    animation: backgroundRotate calc(var(--transition-duration-slowest) * var(--phi)) linear infinite;
+}
+
+/* Sacred Grid System */
+.sacred-geometry-grid {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(
+            calc(100% / var(--phi-squared)),
+            1fr
+        )
+    );
+    gap: var(--space-xl);
+    padding: var(--space-xxl);
+    position: relative;
+}
+
+/* Phi-based Container */
+.phi-container {
+    width: 100%;
+    max-width: calc(1440px / var(--phi));
+    margin: 0 auto;
+    padding: 0 var(--space-xl);
+    position: relative;
+}
+
+/* Sacred Typography Hierarchy */
+h1, h2, h3, h4, h5, h6 {
+    line-height: var(--line-height-tight);
+    margin-bottom: var(--space-xl);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--letter-spacing-tight);
+    position: relative;
+}
+
+h1 {
+    font-size: var(--font-size-xxxl);
+    background: var(--gradient-cosmic);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 var(--space-xs) rgba(76, 123, 243, 0.3);
+}
+
+h2 {
+    font-size: var(--font-size-xxl);
+    color: var(--color-celestial-white);
+}
+
+h3 {
+    font-size: var(--font-size-xl);
+    color: var(--color-ethereal-blue);
+}
+
+h4 {
+    font-size: var(--font-size-lg);
+    color: var(--color-mystic-purple);
+}
+
+h5 {
+    font-size: var(--font-size-md);
+    color: var(--color-spiritual-green);
+}
+
+h6 {
+    font-size: var(--font-size-sm);
+    color: var(--color-sacred-gold);
+}
+
+/* Paragraph Styling */
+p {
+    margin-bottom: var(--space-lg);
+    line-height: var(--line-height-relaxed);
+    max-width: calc(70ch * var(--phi-inverse)); /* Optimal reading width */
+}
+
+/* Sacred Links */
+a {
+    color: var(--color-ethereal-blue);
+    text-decoration: none;
+    transition: all var(--transition-duration-normal) var(--ease-out-phi);
+    position: relative;
+    padding: var(--space-xxs) var(--space-xs);
+}
+
+a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform var(--transition-duration-normal) var(--ease-out-phi);
+}
+
+a:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+a:focus {
+    outline: none;
+    box-shadow: 0 0 0 var(--space-xxs) var(--color-ethereal-blue);
+    border-radius: var(--border-radius-sm);
+}
+
+/* Sacred Button Styles */
+.sacred-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-lg) var(--space-xl);
+    border: none;
+    border-radius: var(--border-radius-lg);
+    background: var(--gradient-cosmic);
+    color: var(--color-celestial-white);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition: all var(--transition-duration-normal) var(--ease-out-phi);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.sacred-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-spiritual);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity var(--transition-duration-normal) var(--ease-out-phi);
+}
+
+.sacred-button:hover::before {
+    opacity: 1;
+}
+
+.sacred-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 var(--space-xxs) var(--color-ethereal-blue),
+                0 0 var(--space-lg) var(--color-ethereal-blue);
+}
+
+.sacred-button:active {
+    transform: translateY(1px);
+}
+
+/* Sacred Form Elements */
+.sacred-input {
+    width: 100%;
+    padding: var(--space-lg);
+    border: 2px solid transparent;
+    border-radius: var(--border-radius-md);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--color-celestial-white);
+    font-size: var(--font-size-base);
+    transition: all var(--transition-duration-normal) var(--ease-out-phi);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.sacred-input:focus {
+    outline: none;
+    border-color: var(--color-ethereal-blue);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 0 var(--space-xxs) rgba(76, 123, 243, 0.3);
+}
+
+.sacred-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Sacred Select */
+.sacred-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--space-lg) center;
+    background-size: var(--space-lg);
+    padding-right: var(--space-xxxl);
+}
+
+/* Sacred Checkbox */
+.sacred-checkbox {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.sacred-checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.sacred-checkbox .checkmark {
+    height: var(--space-xl);
+    width: var(--space-xl);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius-sm);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: var(--space-md);
+    transition: all var(--transition-duration-normal) var(--ease-out-phi);
+}
+
+.sacred-checkbox input:checked ~ .checkmark {
+    background: var(--color-ethereal-blue);
+}
+
+.sacred-checkbox .checkmark::after {
+    content: '';
+    position: absolute;
+    display: none;
+    width: calc(var(--space-md) * var(--phi-inverse));
+    height: var(--space-lg);
+    border: solid var(--color-celestial-white);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.sacred-checkbox input:checked ~ .checkmark::after {
+    display: block;
+}
+/* ------------------------
+ * Animation Keyframes
+ * Based on sacred geometry movements
+ * ------------------------ */
+ @keyframes backgroundRotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(var(--angle-golden));
+    }
+}
+
+@keyframes sacredPulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(var(--phi));
+        opacity: var(--alpha-overlay);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes sacredSpin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(calc(var(--angle-golden) * 2));
+    }
+}
+
+@keyframes flowerOfLife {
+    0% {
+        clip-path: circle(0% at center);
+    }
+    100% {
+        clip-path: circle(100% at center);
+    }
+}
+
+@keyframes vesicaPiscesBreath {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(var(--phi-inverse));
+    }
+}
+
+/* ------------------------
+ * Utility Classes
+ * Sacred geometry helpers
+ * ------------------------ */
+
+/* Display */
+.sacred-hidden {
+    display: none !important;
+}
+
+.sacred-visible {
+    display: block !important;
+}
+
+.sacred-flex {
+    display: flex !important;
+}
+
+.sacred-grid {
+    display: grid !important;
+}
+
+/* Flexbox Utilities */
+.sacred-flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sacred-flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sacred-flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Grid Utilities */
+.sacred-grid-phi {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(calc(100% / var(--phi)), 1fr));
+    gap: var(--space-xl);
+}
+
+/* Spacing Utilities */
+.sacred-margin {
+    margin: var(--space-xl) !important;
+}
+
+.sacred-padding {
+    padding: var(--space-xl) !important;
+}
+
+.sacred-margin-phi {
+    margin: calc(var(--space-xl) * var(--phi)) !important;
+}
+
+.sacred-padding-phi {
+    padding: calc(var(--space-xl) * var(--phi)) !important;
+}
+
+/* Text Utilities */
+.sacred-text-center {
+    text-align: center !important;
+}
+
+.sacred-text-gradient {
+    background: var(--gradient-cosmic);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Sacred Shapes */
+.sacred-circle {
+    border-radius: var(--border-radius-circle);
+    aspect-ratio: 1;
+}
+
+.sacred-hexagon {
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.sacred-octagon {
+    clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+}
+
+/* ------------------------
+ * Component Styles
+ * Sacred patterns and layouts
+ * ------------------------ */
+
+/* Card Component */
+.sacred-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: var(--border-radius-lg);
+    padding: var(--space-xl);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all var(--transition-duration-normal) var(--ease-out-phi);
+}
+
+.sacred-card:hover {
+    transform: translateY(calc(var(--space-xs) * -1));
+    box-shadow: 0 var(--space-lg) var(--space-xl) rgba(0, 0, 0, 0.3);
+}
+
+/* Modal Component */
+.sacred-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
+    background: var(--color-cosmic-background);
+    padding: var(--space-xxl);
+    border-radius: var(--border-radius-lg);
+    z-index: var(--z-modal);
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-duration-normal) var(--ease-out-phi);
+}
+
+.sacred-modal.active {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    visibility: visible;
+}
+
+.sacred-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, var(--alpha-backdrop));
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    z-index: calc(var(--z-modal) - 1);
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-duration-normal) var(--ease-out-phi);
+}
+
+.sacred-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Loader Component */
+.sacred-loader {
+    position: relative;
+    width: calc(var(--space-xxl) * 2);
+    height: calc(var(--space-xxl) * 2);
+}
+
+.sacred-loader::before,
+.sacred-loader::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--border-radius-circle);
+    border: 2px solid transparent;
+    border-top-color: var(--color-ethereal-blue);
+    animation: sacredSpin calc(var(--transition-duration-slower) * var(--phi)) linear infinite;
+}
+
+.sacred-loader::after {
+    border-top-color: var(--color-mystic-purple);
+    animation-duration: calc(var(--transition-duration-slower) * var(--phi-squared));
+}
+
+/* Toast Component */
+.sacred-toast {
+    position: fixed;
+    bottom: var(--space-xl);
+    right: var(--space-xl);
+    background: var(--gradient-cosmic);
+    color: var(--color-celestial-white);
+    padding: var(--space-lg) var(--space-xl);
+    border-radius: var(--border-radius-md);
+    transform: translateY(calc(100% + var(--space-xl)));
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-duration-normal) var(--ease-out-phi);
+    z-index: var(--z-toast);
+}
+
+.sacred-toast.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ------------------------
+ * Responsive Design
+ * Based on sacred proportions
+ * ------------------------ */
+@media screen and (max-width: calc(1440px / var(--phi))) {
+    :root {
+        --font-size-base: 0.9rem;
+    }
+    
+    .phi-container {
+        padding: 0 var(--space-lg);
+    }
+}
+
+@media screen and (max-width: calc(1024px / var(--phi))) {
+    :root {
+        --font-size-base: 0.85rem;
+    }
+    
+    .sacred-geometry-grid {
+        grid-template-columns: repeat(
+            auto-fit,
+            minmax(
+                calc(100% / var(--phi)),
+                1fr
+            )
+        );
+        gap: var(--space-lg);
+    }
+}
+
+@media screen and (max-width: calc(768px / var(--phi))) {
+    :root {
+        --font-size-base: 0.8rem;
+    }
+    
+    .sacred-geometry-grid {
+        grid-template-columns: 1fr;
+        padding: var(--space-lg);
+    }
+    
+    .sacred-modal {
+        width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+}
+
+@media screen and (max-width: calc(480px / var(--phi))) {
+    :root {
+        --font-size-base: 0.75rem;
+    }
+    
+    .sacred-toast {
+        left: var(--space-md);
+        right: var(--space-md);
+        bottom: var(--space-md);
+    }
+}
+
+/* ------------------------
+ * Print Styles
+ * ------------------------ */
+@media print {
+    body {
+        background: none;
+        color: #000;
+    }
+    
+    .sacred-card {
+        box-shadow: none;
+        border: 1px solid #000;
+    }
+    
+    .sacred-button,
+    .sacred-modal,
+    .sacred-toast {
+        display: none !important;
+    }
+    
+    a[href]::after {
+        content: " (" attr(href) ")";
+    }
+    
+    abbr[title]::after {
+        content: " (" attr(title) ")";
+    }
+}
+
+/* ------------------------
+ * Accessibility
+ * ------------------------ */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+[role="button"],
+button {
+    cursor: pointer;
+}
+
+:focus-visible {
+    outline: 2px solid var(--color-ethereal-blue);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

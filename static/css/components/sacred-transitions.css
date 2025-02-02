@@ -1,0 +1,825 @@
+/**
+ * sacred-transitions.css
+ * Divine transition system based on sacred geometry principles
+ * Version: 1.0.0
+ * 
+ * This system implements:
+ * - Golden ratio timing
+ * - Sacred geometry patterns
+ * - Divine motion flows
+ * - Universal transition states
+ * - Sacred number sequences
+ */
+
+/* ------------------------
+ * Transition Variables
+ * Based on sacred proportions
+ * ------------------------ */
+ :root {
+    /* Base Timings */
+    --transition-duration-instant: 0.1s;
+    --transition-duration-quick: 0.2s;
+    --transition-duration-normal: 0.3s;
+    --transition-duration-slow: 0.5s;
+    --transition-duration-slower: 0.8s;
+    
+    /* Golden Ratio Timings */
+    --transition-golden-quick: calc(0.2s * var(--phi-inverse));
+    --transition-golden-normal: calc(0.3s * var(--phi));
+    --transition-golden-slow: calc(0.5s * var(--phi));
+    
+    /* Delays */
+    --transition-delay-minimal: 0.05s;
+    --transition-delay-short: 0.1s;
+    --transition-delay-medium: 0.2s;
+    --transition-delay-long: 0.3s;
+    
+    /* Sacred Angles */
+    --transition-angle-sacred: 72deg;  /* 360° / 5 */
+    --transition-angle-divine: 108deg; /* 360° / 3.333... */
+    --transition-angle-golden: 137.5deg; /* Golden angle */
+    
+    /* Distances */
+    --transition-distance-sm: calc(var(--phi-space-3) * var(--phi));
+    --transition-distance-md: calc(var(--phi-space-4) * var(--phi));
+    --transition-distance-lg: calc(var(--phi-space-5) * var(--phi));
+    
+    /* Z-index Layers */
+    --transition-z-index: 9999;
+    
+    /* Overlay Properties */
+    --transition-overlay-blur: 20px;
+    --transition-overlay-opacity: 0.8;
+}
+
+/* ------------------------
+ * Base Transition Styles
+ * Core sacred patterns
+ * ------------------------ */
+
+/* Page Transition Container */
+.sacred-transition-container {
+    position: fixed;
+    inset: 0;
+    z-index: var(--transition-z-index);
+    pointer-events: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: 
+        visibility var(--transition-duration-normal) var(--ease-golden),
+        opacity var(--transition-duration-normal) var(--ease-golden);
+}
+
+/* Transition Overlay */
+.sacred-transition-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(var(--color-cosmic-void), var(--transition-overlay-opacity));
+    backdrop-filter: blur(var(--transition-overlay-blur));
+    -webkit-backdrop-filter: blur(var(--transition-overlay-blur));
+}
+
+/* Active State */
+.sacred-transition-active {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: all;
+}
+/* ------------------------
+ * Page Transition Effects
+ * Sacred page transformations
+ * ------------------------ */
+
+/* Fade Transition */
+.sacred-transition-fade {
+    --fade-duration: var(--transition-duration-normal);
+    
+    &[data-state="enter"] {
+        animation: fadeEnter var(--fade-duration) var(--ease-golden) forwards;
+    }
+    
+    &[data-state="exit"] {
+        animation: fadeExit var(--fade-duration) var(--ease-golden) forwards;
+    }
+}
+
+@keyframes fadeEnter {
+    from {
+        opacity: 0;
+        transform: scale(0.98);
+        filter: blur(var(--transition-overlay-blur));
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
+}
+
+@keyframes fadeExit {
+    from {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
+    to {
+        opacity: 0;
+        transform: scale(1.02);
+        filter: blur(var(--transition-overlay-blur));
+    }
+}
+
+/* Sacred Spiral Transition */
+.sacred-transition-spiral {
+    --spiral-duration: var(--transition-golden-slow);
+    
+    &[data-state="enter"] {
+        animation: spiralEnter var(--spiral-duration) var(--ease-golden) forwards;
+    }
+    
+    &[data-state="exit"] {
+        animation: spiralExit var(--spiral-duration) var(--ease-golden) forwards;
+    }
+}
+
+@keyframes spiralEnter {
+    from {
+        opacity: 0;
+        transform: rotate(calc(var(--transition-angle-golden) * -2)) scale(0);
+    }
+    50% {
+        opacity: 0.5;
+        transform: rotate(var(--transition-angle-golden)) scale(1.1);
+    }
+    to {
+        opacity: 1;
+        transform: rotate(0) scale(1);
+    }
+}
+
+@keyframes spiralExit {
+    from {
+        opacity: 1;
+        transform: rotate(0) scale(1);
+    }
+    50% {
+        opacity: 0.5;
+        transform: rotate(calc(var(--transition-angle-golden) * -1)) scale(0.9);
+    }
+    to {
+        opacity: 0;
+        transform: rotate(calc(var(--transition-angle-golden) * -2)) scale(0);
+    }
+}
+
+/* Sacred Flow Transition */
+.sacred-transition-flow {
+    --flow-duration: var(--transition-golden-normal);
+    
+    &[data-state="enter"] {
+        animation: flowEnter var(--flow-duration) var(--ease-golden) forwards;
+    }
+    
+    &[data-state="exit"] {
+        animation: flowExit var(--flow-duration) var(--ease-golden) forwards;
+    }
+}
+
+@keyframes flowEnter {
+    from {
+        opacity: 0;
+        transform: translateY(var(--transition-distance-lg)) scale(0.95);
+        filter: blur(var(--transition-overlay-blur));
+    }
+    50% {
+        opacity: 0.5;
+        transform: translateY(calc(var(--transition-distance-lg) * -0.2)) scale(1.02);
+        filter: blur(calc(var(--transition-overlay-blur) * 0.5));
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+@keyframes flowExit {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+    50% {
+        opacity: 0.5;
+        transform: translateY(calc(var(--transition-distance-lg) * 0.2)) scale(0.98);
+        filter: blur(calc(var(--transition-overlay-blur) * 0.5));
+    }
+    to {
+        opacity: 0;
+        transform: translateY(calc(var(--transition-distance-lg) * -1)) scale(1.05);
+        filter: blur(var(--transition-overlay-blur));
+    }
+}
+
+/* Sacred Expand Transition */
+.sacred-transition-expand {
+    --expand-duration: var(--transition-golden-normal);
+    
+    &[data-state="enter"] {
+        animation: expandEnter var(--expand-duration) var(--ease-golden) forwards;
+    }
+    
+    &[data-state="exit"] {
+        animation: expandExit var(--expand-duration) var(--ease-golden) forwards;
+    }
+}
+
+@keyframes expandEnter {
+    from {
+        opacity: 0;
+        clip-path: circle(0% at var(--sacred-origin-x, 50%) var(--sacred-origin-y, 50%));
+    }
+    to {
+        opacity: 1;
+        clip-path: circle(150% at var(--sacred-origin-x, 50%) var(--sacred-origin-y, 50%));
+    }
+}
+
+@keyframes expandExit {
+    from {
+        opacity: 1;
+        clip-path: circle(150% at var(--sacred-origin-x, 50%) var(--sacred-origin-y, 50%));
+    }
+    to {
+        opacity: 0;
+        clip-path: circle(0% at var(--sacred-origin-x, 50%) var(--sacred-origin-y, 50%));
+    }
+}
+
+/* Sacred Veil Transition */
+.sacred-transition-veil {
+    --veil-duration: var(--transition-golden-slow);
+    position: relative;
+    overflow: hidden;
+}
+
+.sacred-transition-veil::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        var(--transition-angle-sacred),
+        var(--color-ethereal-blue),
+        var(--color-mystic-purple)
+    );
+    opacity: 0.2;
+    transform: translateX(-100%);
+}
+
+.sacred-transition-veil[data-state="enter"]::before {
+    animation: veilEnter var(--veil-duration) var(--ease-golden) forwards;
+}
+
+.sacred-transition-veil[data-state="exit"]::before {
+    animation: veilExit var(--veil-duration) var(--ease-golden) forwards;
+}
+
+@keyframes veilEnter {
+    from { transform: translateX(-100%); }
+    50% { transform: translateX(0); }
+    to { transform: translateX(100%); }
+}
+
+@keyframes veilExit {
+    from { transform: translateX(100%); }
+    50% { transform: translateX(0); }
+    to { transform: translateX(-100%); }
+}
+
+/* Sacred Portal Transition */
+.sacred-transition-portal {
+    --portal-duration: var(--transition-golden-slow);
+    
+    &[data-state="enter"] {
+        animation: portalEnter var(--portal-duration) var(--ease-golden) forwards;
+    }
+    
+    &[data-state="exit"] {
+        animation: portalExit var(--portal-duration) var(--ease-golden) forwards;
+    }
+}
+
+@keyframes portalEnter {
+    from {
+        opacity: 0;
+        transform: perspective(1000px) rotateY(90deg) translateZ(var(--transition-distance-lg));
+    }
+    to {
+        opacity: 1;
+        transform: perspective(1000px) rotateY(0) translateZ(0);
+    }
+}
+
+@keyframes portalExit {
+    from {
+        opacity: 1;
+        transform: perspective(1000px) rotateY(0) translateZ(0);
+    }
+    to {
+        opacity: 0;
+        transform: perspective(1000px) rotateY(-90deg) translateZ(var(--transition-distance-lg));
+    }
+}
+/* ------------------------
+ * Component Transitions
+ * Sacred element transformations
+ * ------------------------ */
+
+/* Base Component Transition */
+.sacred-component-transition {
+    --component-duration: var(--transition-duration-normal);
+    --component-delay: 0s;
+    
+    transition: 
+        transform var(--component-duration) var(--ease-golden) var(--component-delay),
+        opacity var(--component-duration) var(--ease-golden) var(--component-delay),
+        filter var(--component-duration) var(--ease-golden) var(--component-delay);
+}
+
+/* Fade Component */
+.sacred-fade {
+    &[data-state="entering"] {
+        opacity: 0;
+        transform: scale(0.98);
+    }
+    
+    &[data-state="entered"] {
+        opacity: 1;
+        transform: scale(1);
+    }
+    
+    &[data-state="exiting"] {
+        opacity: 0;
+        transform: scale(1.02);
+    }
+}
+
+/* Slide Components */
+.sacred-slide-up {
+    &[data-state="entering"] {
+        opacity: 0;
+        transform: translateY(var(--transition-distance-md));
+    }
+    
+    &[data-state="entered"] {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    &[data-state="exiting"] {
+        opacity: 0;
+        transform: translateY(calc(var(--transition-distance-md) * -1));
+    }
+}
+
+.sacred-slide-down {
+    &[data-state="entering"] {
+        opacity: 0;
+        transform: translateY(calc(var(--transition-distance-md) * -1));
+    }
+    
+    &[data-state="entered"] {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    &[data-state="exiting"] {
+        opacity: 0;
+        transform: translateY(var(--transition-distance-md));
+    }
+}
+
+/* Sacred Scale Component */
+.sacred-scale {
+    --scale-origin: center;
+    transform-origin: var(--scale-origin);
+    
+    &[data-state="entering"] {
+        opacity: 0;
+        transform: scale(var(--phi-inverse));
+    }
+    
+    &[data-state="entered"] {
+        opacity: 1;
+        transform: scale(1);
+    }
+    
+    &[data-state="exiting"] {
+        opacity: 0;
+        transform: scale(var(--phi));
+    }
+}
+
+/* Divine Rotate Component */
+.sacred-rotate {
+    --rotate-angle: var(--transition-angle-sacred);
+    
+    &[data-state="entering"] {
+        opacity: 0;
+        transform: rotate(calc(var(--rotate-angle) * -1));
+    }
+    
+    &[data-state="entered"] {
+        opacity: 1;
+        transform: rotate(0);
+    }
+    
+    &[data-state="exiting"] {
+        opacity: 0;
+        transform: rotate(var(--rotate-angle));
+    }
+}
+
+/* Flip Component */
+.sacred-flip {
+    --flip-perspective: 1000px;
+    perspective: var(--flip-perspective);
+    
+    &[data-state="entering"] {
+        opacity: 0;
+        transform: rotateY(90deg);
+    }
+    
+    &[data-state="entered"] {
+        opacity: 1;
+        transform: rotateY(0deg);
+    }
+    
+    &[data-state="exiting"] {
+        opacity: 0;
+        transform: rotateY(-90deg);
+    }
+}
+
+/* Sacred Expand Component */
+.sacred-expand {
+    --expand-origin: center;
+    transform-origin: var(--expand-origin);
+    
+    &[data-state="entering"] {
+        opacity: 0;
+        transform: scale(0);
+        clip-path: circle(0% at var(--expand-origin));
+    }
+    
+    &[data-state="entered"] {
+        opacity: 1;
+        transform: scale(1);
+        clip-path: circle(150% at var(--expand-origin));
+    }
+    
+    &[data-state="exiting"] {
+        opacity: 0;
+        transform: scale(0);
+        clip-path: circle(0% at var(--expand-origin));
+    }
+}
+
+/* Sacred Flow Component */
+.sacred-flow {
+    --flow-distance: var(--transition-distance-md);
+    --flow-rotation: var(--transition-angle-golden);
+    
+    &[data-state="entering"] {
+        opacity: 0;
+        transform: 
+            translateY(var(--flow-distance))
+            rotate(calc(var(--flow-rotation) * -1))
+            scale(0.9);
+    }
+    
+    &[data-state="entered"] {
+        opacity: 1;
+        transform: 
+            translateY(0)
+            rotate(0)
+            scale(1);
+    }
+    
+    &[data-state="exiting"] {
+        opacity: 0;
+        transform: 
+            translateY(calc(var(--flow-distance) * -1))
+            rotate(var(--flow-rotation))
+            scale(1.1);
+    }
+}
+
+/* Stagger Children */
+.sacred-stagger {
+    & > * {
+        --stagger-delay: calc(var(--index, 0) * var(--transition-delay-minimal));
+        --component-delay: var(--stagger-delay);
+    }
+}
+
+/* Sacred Reveal Component */
+.sacred-reveal {
+    --reveal-angle: var(--transition-angle-sacred);
+    position: relative;
+    overflow: hidden;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            var(--reveal-angle),
+            var(--color-ethereal-blue),
+            var(--color-mystic-purple)
+        );
+        opacity: 0.2;
+        transform: translateX(-100%);
+        z-index: 1;
+    }
+    
+    &[data-state="entering"]::before {
+        animation: revealEnter var(--component-duration) var(--ease-golden) forwards;
+    }
+    
+    &[data-state="exiting"]::before {
+        animation: revealExit var(--component-duration) var(--ease-golden) forwards;
+    }
+}
+
+@keyframes revealEnter {
+    0% { transform: translateX(-100%); }
+    50% { transform: translateX(0); }
+    100% { transform: translateX(100%); }
+}
+
+@keyframes revealExit {
+    0% { transform: translateX(100%); }
+    50% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .sacred-component-transition {
+        --component-duration: 0.1s !important;
+        transition: opacity var(--component-duration) ease-in-out !important;
+        transform: none !important;
+    }
+}
+/* ------------------------
+ * Sacred Motion Patterns
+ * Divine movement manifestations
+ * ------------------------ */
+
+/* Sacred Orbit Motion */
+.sacred-orbit {
+    --orbit-radius: calc(var(--phi-space-6) * var(--phi));
+    --orbit-duration: calc(var(--transition-golden-slow) * 2);
+    
+    position: relative;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        width: calc(var(--orbit-radius) * 2);
+        height: calc(var(--orbit-radius) * 2);
+        border: 1px solid rgba(var(--color-ethereal-blue), 0.1);
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.sacred-orbit-element {
+    position: absolute;
+    animation: orbit var(--orbit-duration) linear infinite;
+    
+    &:nth-child(2) { animation-delay: calc(var(--orbit-duration) / -4); }
+    &:nth-child(3) { animation-delay: calc(var(--orbit-duration) / -2); }
+    &:nth-child(4) { animation-delay: calc(var(--orbit-duration) / -1.333); }
+}
+
+@keyframes orbit {
+    from {
+        transform: 
+            rotate(0deg) 
+            translateX(var(--orbit-radius))
+            rotate(0deg);
+    }
+    to {
+        transform: 
+            rotate(360deg) 
+            translateX(var(--orbit-radius))
+            rotate(-360deg);
+    }
+}
+
+/* Sacred Pulse Pattern */
+.sacred-pulse-pattern {
+    --pulse-duration: var(--transition-golden-normal);
+    --pulse-color: var(--color-ethereal-blue);
+    
+    position: relative;
+    
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border: 2px solid var(--pulse-color);
+        border-radius: inherit;
+        animation: sacredPulse var(--pulse-duration) var(--ease-golden) infinite;
+        opacity: 0;
+    }
+    
+    &::after {
+        animation-delay: calc(var(--pulse-duration) / 2);
+    }
+}
+
+@keyframes sacredPulse {
+    0% {
+        transform: scale(1);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(var(--phi));
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(calc(var(--phi) * var(--phi)));
+        opacity: 0;
+    }
+}
+
+/* Divine Flow Pattern */
+.sacred-flow-pattern {
+    --flow-duration: var(--transition-golden-slow);
+    
+    position: relative;
+    overflow: hidden;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        inset: -50%;
+        background: conic-gradient(
+            from var(--transition-angle-golden),
+            transparent,
+            rgba(var(--color-ethereal-blue), 0.1),
+            transparent
+        );
+        animation: divineFlow var(--flow-duration) linear infinite;
+    }
+}
+
+@keyframes divineFlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Sacred Spiral Pattern */
+.sacred-spiral-pattern {
+    --spiral-duration: var(--transition-golden-slow);
+    --spiral-scale: var(--phi);
+    
+    animation: sacredSpiral var(--spiral-duration) var(--ease-golden) infinite alternate;
+    transform-origin: center;
+}
+
+@keyframes sacredSpiral {
+    from {
+        transform: rotate(0) scale(1);
+    }
+    to {
+        transform: 
+            rotate(var(--transition-angle-golden)) 
+            scale(var(--spiral-scale));
+    }
+}
+
+/* Merkaba Motion */
+.sacred-merkaba-motion {
+    --merkaba-duration: var(--transition-golden-slow);
+    
+    position: relative;
+    
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+        background: rgba(var(--color-ethereal-blue), 0.1);
+        animation: merkabaRotate var(--merkaba-duration) linear infinite;
+    }
+    
+    &::after {
+        animation-direction: reverse;
+        animation-duration: calc(var(--merkaba-duration) * var(--phi));
+    }
+}
+
+@keyframes merkabaRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Sacred Wave Pattern */
+.sacred-wave-pattern {
+    --wave-duration: var(--transition-golden-slow);
+    --wave-height: calc(var(--phi-space-4) * var(--phi));
+    
+    position: relative;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 25%,
+            rgba(var(--color-ethereal-blue), 0.1) 50%,
+            transparent 75%,
+            transparent 100%
+        );
+        animation: sacredWave var(--wave-duration) linear infinite;
+    }
+}
+
+@keyframes sacredWave {
+    from { transform: translateX(0); }
+    to { transform: translateX(100%); }
+}
+
+/* Divine Vortex Pattern */
+.sacred-vortex-pattern {
+    --vortex-duration: var(--transition-golden-slow);
+    
+    position: relative;
+    overflow: hidden;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        inset: -50%;
+        background: repeating-conic-gradient(
+            from var(--transition-angle-sacred),
+            rgba(var(--color-ethereal-blue), 0.1) 0deg,
+            transparent 5deg,
+            rgba(var(--color-mystic-purple), 0.1) 10deg,
+            transparent 15deg
+        );
+        animation: vortexSpin var(--vortex-duration) linear infinite;
+    }
+}
+
+@keyframes vortexSpin {
+    from { transform: rotate(0) scale(1); }
+    to { transform: rotate(360deg) scale(var(--phi)); }
+}
+
+/* Sacred Breath Pattern */
+.sacred-breath-pattern {
+    --breath-duration: var(--transition-golden-slow);
+    
+    animation: sacredBreath calc(var(--breath-duration) * 2) var(--ease-golden) infinite;
+}
+
+@keyframes sacredBreath {
+    0%, 100% { 
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    50% { 
+        transform: scale(var(--phi));
+        opacity: 1;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .sacred-orbit,
+    .sacred-pulse-pattern,
+    .sacred-flow-pattern,
+    .sacred-spiral-pattern,
+    .sacred-merkaba-motion,
+    .sacred-wave-pattern,
+    .sacred-vortex-pattern,
+    .sacred-breath-pattern {
+        animation: none !important;
+        
+        &::before,
+        &::after {
+            animation: none !important;
+        }
+    }
+}

@@ -1,0 +1,737 @@
+/**
+ * sacred-icons.css
+ * Divine iconography system based on sacred geometry principles
+ * Version: 1.0.0
+ * 
+ * This system implements:
+ * - Golden ratio proportions
+ * - Sacred geometry patterns
+ * - Divine symbolism
+ * - Universal icon alignment
+ * - Sacred number sequences
+ */
+
+/* ------------------------
+ * Icon Variables
+ * Based on sacred proportions
+ * ------------------------ */
+ :root {
+    /* Icon Sizes */
+    --icon-size-2xs: calc(var(--phi-space-3) * var(--phi-inverse));
+    --icon-size-xs: calc(var(--phi-space-4) * var(--phi-inverse));
+    --icon-size-sm: var(--phi-space-4);
+    --icon-size-md: calc(var(--phi-space-4) * var(--phi));
+    --icon-size-lg: calc(var(--phi-space-5) * var(--phi));
+    --icon-size-xl: calc(var(--phi-space-6) * var(--phi));
+    --icon-size-2xl: calc(var(--phi-space-7) * var(--phi));
+    
+    /* Stroke Widths */
+    --icon-stroke-thin: 1px;
+    --icon-stroke-regular: 1.5px;
+    --icon-stroke-medium: 2px;
+    --icon-stroke-thick: 2.5px;
+    
+    /* Animation Timings */
+    --icon-transition-duration: 0.3s;
+    --icon-animation-duration: 1s;
+    
+    /* Icon Colors */
+    --icon-color-primary: var(--color-ethereal-blue);
+    --icon-color-secondary: var(--color-mystic-purple);
+    --icon-color-accent: var(--color-sacred-gold);
+    
+    /* Icon Containers */
+    --icon-container-padding: calc(var(--phi-space-2) * var(--phi));
+    --icon-container-radius: var(--border-radius-circle);
+}
+
+/* ------------------------
+ * Base Icon Styles
+ * Core sacred patterns
+ * ------------------------ */
+
+.sacred-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--icon-size-md);
+    height: var(--icon-size-md);
+    stroke-width: var(--icon-stroke-regular);
+    stroke: currentColor;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: all var(--icon-transition-duration) var(--ease-golden);
+}
+
+/* Icon Container */
+.sacred-icon-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--icon-container-padding);
+    border-radius: var(--icon-container-radius);
+    transition: all var(--icon-transition-duration) var(--ease-golden);
+}
+/* ------------------------
+ * Icon Sizes and Variations
+ * Sacred size manifestations
+ * ------------------------ */
+
+/* Icon Sizes */
+.icon-2xs {
+    width: var(--icon-size-2xs);
+    height: var(--icon-size-2xs);
+}
+
+.icon-xs {
+    width: var(--icon-size-xs);
+    height: var(--icon-size-xs);
+}
+
+.icon-sm {
+    width: var(--icon-size-sm);
+    height: var(--icon-size-sm);
+}
+
+.icon-md {
+    width: var(--icon-size-md);
+    height: var(--icon-size-md);
+}
+
+.icon-lg {
+    width: var(--icon-size-lg);
+    height: var(--icon-size-lg);
+}
+
+.icon-xl {
+    width: var(--icon-size-xl);
+    height: var(--icon-size-xl);
+}
+
+.icon-2xl {
+    width: var(--icon-size-2xl);
+    height: var(--icon-size-2xl);
+}
+
+/* Stroke Variations */
+.icon-stroke-thin {
+    stroke-width: var(--icon-stroke-thin);
+}
+
+.icon-stroke-regular {
+    stroke-width: var(--icon-stroke-regular);
+}
+
+.icon-stroke-medium {
+    stroke-width: var(--icon-stroke-medium);
+}
+
+.icon-stroke-thick {
+    stroke-width: var(--icon-stroke-thick);
+}
+
+/* Color Variations */
+.icon-primary {
+    color: var(--icon-color-primary);
+}
+
+.icon-secondary {
+    color: var(--icon-color-secondary);
+}
+
+.icon-accent {
+    color: var(--icon-color-accent);
+}
+
+/* Sacred Color Variations */
+.icon-ethereal {
+    color: var(--color-ethereal-blue);
+    filter: drop-shadow(0 0 8px rgba(var(--color-ethereal-blue), 0.3));
+}
+
+.icon-mystic {
+    color: var(--color-mystic-purple);
+    filter: drop-shadow(0 0 8px rgba(var(--color-mystic-purple), 0.3));
+}
+
+.icon-divine {
+    color: var(--color-sacred-gold);
+    filter: drop-shadow(0 0 8px rgba(var(--color-sacred-gold), 0.3));
+}
+
+/* Gradient Icons */
+.icon-gradient {
+    position: relative;
+}
+
+.icon-gradient svg {
+    stroke: url(#sacred-gradient);
+}
+
+.icon-gradient-ethereal {
+    --gradient-start: var(--color-ethereal-blue);
+    --gradient-end: var(--color-mystic-purple);
+}
+
+.icon-gradient-divine {
+    --gradient-start: var(--color-sacred-gold);
+    --gradient-end: var(--color-spiritual-green);
+}
+
+/* Container Variations */
+.icon-container-solid {
+    background-color: rgba(var(--color-ethereal-blue), 0.1);
+}
+
+.icon-container-soft {
+    background: radial-gradient(
+        circle at center,
+        rgba(var(--color-ethereal-blue), 0.1),
+        transparent 70%
+    );
+}
+
+.icon-container-glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Sacred Container Shapes */
+.icon-container-circle {
+    border-radius: 50%;
+}
+
+.icon-container-square {
+    border-radius: var(--border-radius-md);
+}
+
+.icon-container-hexagon {
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+}
+
+.icon-container-octagon {
+    clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+}
+
+/* Interactive States */
+.icon-interactive {
+    cursor: pointer;
+    transition: all var(--icon-transition-duration) var(--ease-golden);
+}
+
+.icon-interactive:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+}
+
+/* Status Variations */
+.icon-success {
+    color: var(--color-spiritual-green);
+}
+
+.icon-error {
+    color: var(--color-divine-red);
+}
+
+.icon-warning {
+    color: var(--color-sacred-gold);
+}
+
+.icon-info {
+    color: var(--color-ethereal-blue);
+}
+
+/* Fill Variations */
+.icon-filled {
+    fill: currentColor;
+    stroke: none;
+}
+
+.icon-duotone {
+    fill: currentColor;
+    stroke: currentColor;
+    stroke-width: var(--icon-stroke-thin);
+    opacity: 0.8;
+}
+
+/* Outlined Variations */
+.icon-outlined {
+    fill: none;
+    stroke: currentColor;
+}
+
+.icon-outlined-thick {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: var(--icon-stroke-thick);
+}
+
+/* Direction Variations */
+.icon-rotate-45 {
+    transform: rotate(45deg);
+}
+
+.icon-rotate-90 {
+    transform: rotate(90deg);
+}
+
+.icon-rotate-180 {
+    transform: rotate(180deg);
+}
+
+.icon-flip-h {
+    transform: scaleX(-1);
+}
+
+.icon-flip-v {
+    transform: scaleY(-1);
+}
+
+/* Stacked Icons */
+.icon-stack {
+    position: relative;
+    display: inline-flex;
+    vertical-align: middle;
+}
+
+.icon-stack .sacred-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.icon-stack .sacred-icon:nth-child(2) {
+    transform: translate(-50%, -50%) scale(0.7);
+}
+
+/* Badge Icons */
+.icon-badge {
+    position: relative;
+}
+
+.icon-badge::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 8px;
+    height: 8px;
+    background: var(--color-divine-red);
+    border-radius: 50%;
+    border: 2px solid var(--surface-primary);
+    transform: translate(25%, -25%);
+}
+/* ------------------------
+ * Icon Animations
+ * Sacred motion patterns
+ * ------------------------ */
+
+/* Base Animation Properties */
+.sacred-icon-animated {
+    --animation-duration: var(--icon-animation-duration);
+    --animation-timing: var(--ease-golden);
+    --animation-iteration: infinite;
+    --animation-direction: normal;
+}
+
+/* Spin Animations */
+.icon-spin {
+    animation: iconSpin var(--animation-duration) linear var(--animation-iteration);
+}
+
+.icon-spin-reverse {
+    animation: iconSpin var(--animation-duration) linear var(--animation-iteration) reverse;
+}
+
+@keyframes iconSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Sacred Spin */
+.icon-spin-golden {
+    animation: iconSpinGolden calc(var(--animation-duration) * var(--phi)) var(--animation-timing) var(--animation-iteration);
+}
+
+@keyframes iconSpinGolden {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(var(--phi)); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+/* Pulse Animations */
+.icon-pulse {
+    animation: iconPulse var(--animation-duration) var(--animation-timing) var(--animation-iteration);
+}
+
+@keyframes iconPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+/* Sacred Pulse */
+.icon-pulse-sacred {
+    animation: iconPulseSacred var(--animation-duration) var(--animation-timing) var(--animation-iteration);
+}
+
+@keyframes iconPulseSacred {
+    0% { transform: scale(1); filter: brightness(1); }
+    50% { transform: scale(var(--phi)); filter: brightness(1.2); }
+    100% { transform: scale(1); filter: brightness(1); }
+}
+
+/* Breath Animation */
+.icon-breath {
+    animation: iconBreath calc(var(--animation-duration) * 2) var(--animation-timing) var(--animation-iteration);
+}
+
+@keyframes iconBreath {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.05); opacity: 1; }
+}
+
+/* Float Animation */
+.icon-float {
+    animation: iconFloat calc(var(--animation-duration) * 2) var(--animation-timing) var(--animation-iteration);
+}
+
+@keyframes iconFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Sacred Geometry Animations */
+.icon-sacred-rotate {
+    animation: iconSacredRotate var(--animation-duration) var(--animation-timing) var(--animation-iteration);
+}
+
+@keyframes iconSacredRotate {
+    0% { transform: rotate(0deg) scale(1); }
+    33% { transform: rotate(var(--angle-sacred)) scale(var(--phi-inverse)); }
+    66% { transform: rotate(calc(var(--angle-sacred) * 2)) scale(var(--phi)); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+/* Stroke Animation */
+.icon-stroke-animate {
+    stroke-dasharray: var(--stroke-length, 100);
+    stroke-dashoffset: var(--stroke-length, 100);
+    animation: iconStroke var(--animation-duration) var(--animation-timing) forwards;
+}
+
+@keyframes iconStroke {
+    to { stroke-dashoffset: 0; }
+}
+
+/* Morph Animation */
+.icon-morph path {
+    transition: d var(--animation-duration) var(--animation-timing);
+}
+
+/* Gradient Flow */
+.icon-gradient-flow {
+    position: relative;
+    overflow: hidden;
+}
+
+.icon-gradient-flow::before {
+    content: '';
+    position: absolute;
+    inset: -50%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    animation: gradientFlow var(--animation-duration) var(--animation-timing) var(--animation-iteration);
+}
+
+@keyframes gradientFlow {
+    0% { transform: translateX(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) rotate(45deg); }
+}
+
+/* Divine Glow */
+.icon-divine-glow {
+    animation: divineGlow var(--animation-duration) var(--animation-timing) var(--animation-iteration);
+}
+
+@keyframes divineGlow {
+    0%, 100% { filter: drop-shadow(0 0 2px currentColor); }
+    50% { filter: drop-shadow(0 0 10px currentColor); }
+}
+
+/* Sacred Trace */
+.icon-trace {
+    position: relative;
+}
+
+.icon-trace::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border: 2px solid currentColor;
+    border-radius: inherit;
+    opacity: 0;
+    animation: iconTrace var(--animation-duration) var(--animation-timing) var(--animation-iteration);
+}
+
+@keyframes iconTrace {
+    0% { transform: scale(1); opacity: 0; }
+    50% { transform: scale(1.2); opacity: 0.5; }
+    100% { transform: scale(1.4); opacity: 0; }
+}
+
+/* Hover Animations */
+.icon-hover-spin:hover {
+    animation: iconSpin 0.6s var(--animation-timing);
+}
+
+.icon-hover-pulse:hover {
+    animation: iconPulse 0.6s var(--animation-timing);
+}
+
+.icon-hover-shake:hover {
+    animation: iconShake 0.6s var(--animation-timing);
+}
+
+@keyframes iconShake {
+    0%, 100% { transform: rotate(0); }
+    20%, 60% { transform: rotate(12deg); }
+    40%, 80% { transform: rotate(-12deg); }
+}
+
+/* Loading States */
+.icon-loading {
+    animation: iconLoading var(--animation-duration) var(--animation-timing) var(--animation-iteration);
+}
+
+@keyframes iconLoading {
+    0% { opacity: 0.3; transform: rotate(0deg); }
+    50% { opacity: 1; transform: rotate(180deg); }
+    100% { opacity: 0.3; transform: rotate(360deg); }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .sacred-icon-animated {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+/* ------------------------
+ * Sacred Icon Patterns
+ * Divine symbolic arrangements
+ * ------------------------ */
+
+/* Vesica Piscis Pattern */
+.icon-pattern-vesica {
+    --vesica-size: calc(var(--icon-size-md) * var(--phi));
+    position: relative;
+    width: var(--vesica-size);
+    height: calc(var(--vesica-size) * 0.866); /* height = width * √3/2 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-pattern-vesica::before,
+.icon-pattern-vesica::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: rgba(var(--color-ethereal-blue), 0.1);
+}
+
+.icon-pattern-vesica::before {
+    left: -25%;
+}
+
+.icon-pattern-vesica::after {
+    right: -25%;
+}
+
+/* Flower of Life Pattern */
+.icon-pattern-flower {
+    --flower-size: calc(var(--icon-size-xl) * var(--phi));
+    position: relative;
+    width: var(--flower-size);
+    height: var(--flower-size);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: calc(var(--phi-space-2) * var(--phi));
+}
+
+.icon-pattern-flower .sacred-icon {
+    position: relative;
+}
+
+.icon-pattern-flower .sacred-icon::before {
+    content: '';
+    position: absolute;
+    inset: -50%;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle at center,
+        rgba(var(--color-ethereal-blue), 0.1),
+        transparent 70%
+    );
+}
+
+/* Merkaba Pattern */
+.icon-pattern-merkaba {
+    --merkaba-size: calc(var(--icon-size-xl) * var(--phi));
+    position: relative;
+    width: var(--merkaba-size);
+    height: var(--merkaba-size);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-pattern-merkaba::before,
+.icon-pattern-merkaba::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(var(--color-ethereal-blue), 0.1);
+    clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+}
+
+.icon-pattern-merkaba::before {
+    transform: rotate(0deg);
+}
+
+.icon-pattern-merkaba::after {
+    transform: rotate(180deg);
+}
+
+/* Sri Yantra Pattern */
+.icon-pattern-sri-yantra {
+    --yantra-size: calc(var(--icon-size-2xl) * var(--phi));
+    position: relative;
+    width: var(--yantra-size);
+    height: calc(var(--yantra-size) * 0.866);
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+}
+
+.icon-pattern-sri-yantra .sacred-icon {
+    grid-column: span 3;
+    grid-row: span 3;
+}
+
+/* Metatron's Cube Pattern */
+.icon-pattern-metatron {
+    --metatron-size: calc(var(--icon-size-2xl) * var(--phi));
+    position: relative;
+    width: var(--metatron-size);
+    height: var(--metatron-size);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: calc(var(--phi-space-3) * var(--phi));
+}
+
+.icon-pattern-metatron::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+        linear-gradient(0deg, transparent 45%, rgba(var(--color-ethereal-blue), 0.1) 45%, rgba(var(--color-ethereal-blue), 0.1) 55%, transparent 55%),
+        linear-gradient(60deg, transparent 45%, rgba(var(--color-ethereal-blue), 0.1) 45%, rgba(var(--color-ethereal-blue), 0.1) 55%, transparent 55%),
+        linear-gradient(120deg, transparent 45%, rgba(var(--color-ethereal-blue), 0.1) 45%, rgba(var(--color-ethereal-blue), 0.1) 55%, transparent 55%);
+    pointer-events: none;
+}
+
+/* Sacred Grid Pattern */
+.icon-pattern-grid {
+    --grid-size: calc(var(--icon-size-xl) * var(--phi));
+    display: grid;
+    grid-template-columns: repeat(var(--grid-columns, 3), 1fr);
+    gap: calc(var(--phi-space-3) * var(--phi));
+    width: var(--grid-size);
+    height: var(--grid-size);
+}
+
+/* Fibonacci Spiral Pattern */
+.icon-pattern-fibonacci {
+    --fibonacci-size: calc(var(--icon-size-2xl) * var(--phi));
+    position: relative;
+    width: var(--fibonacci-size);
+    height: var(--fibonacci-size);
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+}
+
+.icon-pattern-fibonacci .sacred-icon:nth-child(1) { grid-area: 1 / 1 / 2 / 2; }
+.icon-pattern-fibonacci .sacred-icon:nth-child(2) { grid-area: 1 / 2 / 3 / 3; }
+.icon-pattern-fibonacci .sacred-icon:nth-child(3) { grid-area: 2 / 3 / 4 / 4; }
+.icon-pattern-fibonacci .sacred-icon:nth-child(4) { grid-area: 3 / 4 / 6 / 5; }
+
+/* Sacred Circle Pattern */
+.icon-pattern-circle {
+    --circle-size: calc(var(--icon-size-xl) * var(--phi));
+    position: relative;
+    width: var(--circle-size);
+    height: var(--circle-size);
+}
+
+.icon-pattern-circle .sacred-icon {
+    position: absolute;
+    --angle: calc(var(--index, 0) * (360deg / var(--total, 6)));
+    --radius: calc(var(--circle-size) / 3);
+    top: 50%;
+    left: 50%;
+    transform: 
+        rotate(var(--angle))
+        translateY(calc(var(--radius) * -1))
+        rotate(calc(var(--angle) * -1));
+}
+
+/* Tree of Life Pattern */
+.icon-pattern-tree {
+    --tree-size: calc(var(--icon-size-2xl) * var(--phi));
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: calc(var(--phi-space-4) * var(--phi));
+    width: var(--tree-size);
+    height: calc(var(--tree-size) * 1.5);
+}
+
+/* Sacred Mandala Pattern */
+.icon-pattern-mandala {
+    --mandala-size: calc(var(--icon-size-2xl) * var(--phi));
+    position: relative;
+    width: var(--mandala-size);
+    height: var(--mandala-size);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-pattern-mandala::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: repeating-radial-gradient(
+        circle at center,
+        transparent,
+        transparent calc(var(--mandala-size) * 0.1),
+        rgba(var(--color-ethereal-blue), 0.05) calc(var(--mandala-size) * 0.1),
+        rgba(var(--color-ethereal-blue), 0.05) calc(var(--mandala-size) * 0.2)
+    );
+}

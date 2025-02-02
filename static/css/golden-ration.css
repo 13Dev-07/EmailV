@@ -1,0 +1,674 @@
+/**
+ * golden-ratio.css
+ * Advanced layout system based on the Golden Ratio (φ) and sacred geometry
+ * Version: 1.0.0
+ * 
+ * This system implements divine proportions found in nature and sacred architecture,
+ * creating harmonious and aesthetically pleasing layouts that resonate with
+ * universal mathematical principles.
+ */
+
+/* ------------------------
+ * Core Mathematical Constants
+ * Based on universal proportions
+ * ------------------------ */
+ :root {
+    /* Golden Ratio (φ) and Related Constants */
+    --phi: 1.618033988749895;              /* Golden Ratio */
+    --phi-inverse: 0.618033988749895;      /* 1/φ */
+    --phi-squared: 2.618033988749895;      /* φ² */
+    --phi-cubed: 4.236067977499790;        /* φ³ */
+    --sqrt-phi: 1.272019649514069;         /* √φ */
+    --phi-reciprocal: 0.381966011250105;   /* φ-1 */
+    
+    /* Mathematical Constants */
+    --pi: 3.141592653589793;               /* π */
+    --sqrt2: 1.414213562373095;            /* √2 */
+    --sqrt3: 1.732050807568877;            /* √3 */
+    --sqrt5: 2.236067977499790;            /* √5 */
+    
+    /* Sacred Geometry Angles */
+    --angle-golden: 137.5077640500378deg;  /* Golden Angle (360° * φ⁻²) */
+    --angle-sacred: 108deg;                /* Sacred Angle (360° / φ²) */
+    --angle-divine: 72deg;                 /* Divine Angle (360° / 5) */
+    
+    /* Fibonacci Sequence (First 13 numbers) */
+    --fib-0: 0;
+    --fib-1: 1;
+    --fib-2: 1;
+    --fib-3: 2;
+    --fib-4: 3;
+    --fib-5: 5;
+    --fib-6: 8;
+    --fib-7: 13;
+    --fib-8: 21;
+    --fib-9: 34;
+    --fib-10: 55;
+    --fib-11: 89;
+    --fib-12: 144;
+
+    /* Golden Container Breakpoints */
+    --container-divine: 2584px;            /* Fibonacci 13 */
+    --container-phi-xxl: 1920px;
+    --container-phi-xl: calc(1920px / var(--phi));     /* 1186.62px */
+    --container-phi-lg: calc(1440px / var(--phi));     /* 889.96px */
+    --container-phi-md: calc(1024px / var(--phi));     /* 632.86px */
+    --container-phi-sm: calc(768px / var(--phi));      /* 474.64px */
+    --container-phi-xs: calc(480px / var(--phi));      /* 296.65px */
+    --container-phi-xxs: calc(320px / var(--phi));     /* 197.77px */
+
+    /* Golden Section Divisions */
+    --section-major: calc(100% * var(--phi-inverse));  /* 61.8% */
+    --section-minor: calc(100% - var(--section-major)); /* 38.2% */
+    --section-third: calc(100% / var(--phi-squared));  /* 38.2% */
+    --section-quarter: calc(100% / var(--phi-cubed));  /* 23.6% */
+    
+    /* Golden Ratio Spacing Scale */
+    --phi-space-000: 0.090rem;    /* φ⁻⁶ */
+    --phi-space-00: 0.146rem;     /* φ⁻⁵ */
+    --phi-space-0: 0.236rem;      /* φ⁻⁴ */
+    --phi-space-1: 0.382rem;      /* φ⁻³ */
+    --phi-space-2: 0.618rem;      /* φ⁻² */
+    --phi-space-3: 1.000rem;      /* Base */
+    --phi-space-4: 1.618rem;      /* φ¹ */
+    --phi-space-5: 2.618rem;      /* φ² */
+    --phi-space-6: 4.236rem;      /* φ³ */
+    --phi-space-7: 6.854rem;      /* φ⁴ */
+    --phi-space-8: 11.090rem;     /* φ⁵ */
+    --phi-space-9: 17.944rem;     /* φ⁶ */
+    
+    /* Dynamic Spacing (Responsive) */
+    --space-dynamic-xs: clamp(var(--phi-space-0), 1vw, var(--phi-space-1));
+    --space-dynamic-sm: clamp(var(--phi-space-1), 2vw, var(--phi-space-2));
+    --space-dynamic-md: clamp(var(--phi-space-2), 3vw, var(--phi-space-3));
+    --space-dynamic-lg: clamp(var(--phi-space-3), 4vw, var(--phi-space-4));
+    --space-dynamic-xl: clamp(var(--phi-space-4), 5vw, var(--phi-space-5));
+    
+    /* Golden Typography Scale */
+    --font-size-3xs: calc(var(--phi-space-3) / var(--phi-cubed));
+    --font-size-2xs: calc(var(--phi-space-3) / var(--phi-squared));
+    --font-size-xs: calc(var(--phi-space-3) / var(--phi));
+    --font-size-sm: calc(var(--phi-space-3) * var(--phi-inverse));
+    --font-size-base: var(--phi-space-3);
+    --font-size-lg: calc(var(--phi-space-3) * var(--phi));
+    --font-size-xl: calc(var(--phi-space-3) * var(--phi-squared));
+    --font-size-2xl: calc(var(--phi-space-3) * var(--phi-cubed));
+    --font-size-3xl: calc(var(--phi-space-3) * var(--phi-squared) * var(--phi));
+    
+    /* Line Heights Based on Golden Ratio */
+    --line-height-tight: var(--phi-inverse);       /* 0.618 */
+    --line-height-snug: calc(var(--phi-inverse) * var(--phi));  /* 1.000 */
+    --line-height-normal: var(--phi);              /* 1.618 */
+    --line-height-relaxed: var(--phi-squared);     /* 2.618 */
+    --line-height-loose: var(--phi-cubed);         /* 4.236 */
+}
+/* ------------------------
+ * Sacred Layout Systems
+ * Advanced geometric patterns and divine proportions
+ * ------------------------ */
+
+/* Golden Containers */
+.phi-container {
+    width: 100%;
+    max-width: var(--container-phi-xl);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--phi-space-4);
+    padding-right: var(--phi-space-4);
+    position: relative;
+}
+
+.phi-container-fluid {
+    width: calc(100% - (var(--phi-space-4) * 2));
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Divine Container Variants */
+.phi-container-divine {
+    max-width: var(--container-divine);
+}
+
+.phi-container-centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - var(--phi-space-7) * 2);
+}
+
+/* Golden Section Layouts */
+.phi-split {
+    display: grid;
+    grid-template-columns: var(--section-major) var(--section-minor);
+    gap: var(--phi-space-4);
+    align-items: start;
+}
+
+.phi-split-reverse {
+    grid-template-columns: var(--section-minor) var(--section-major);
+}
+
+.phi-split-vertical {
+    display: grid;
+    grid-template-rows: var(--section-major) var(--section-minor);
+    gap: var(--phi-space-4);
+}
+
+.phi-split-thirds {
+    display: grid;
+    grid-template-columns: var(--section-third) var(--section-third) var(--section-third);
+    gap: var(--phi-space-4);
+}
+
+.phi-split-quarters {
+    display: grid;
+    grid-template-columns: repeat(4, var(--section-quarter));
+    gap: var(--phi-space-4);
+}
+
+/* Sacred Grid Systems */
+.phi-grid {
+    display: grid;
+    gap: var(--phi-space-4);
+}
+
+.phi-grid-auto {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, calc(var(--container-phi-sm) / 2)), 1fr));
+}
+
+.phi-grid-1 { grid-template-columns: 1fr; }
+.phi-grid-2 { grid-template-columns: repeat(2, 1fr); }
+.phi-grid-3 { grid-template-columns: repeat(3, 1fr); }
+.phi-grid-4 { grid-template-columns: repeat(4, 1fr); }
+.phi-grid-5 { grid-template-columns: repeat(5, 1fr); }
+.phi-grid-6 { grid-template-columns: repeat(6, 1fr); }
+
+/* Golden Flex Layouts */
+.phi-flex {
+    display: flex;
+    gap: var(--phi-space-4);
+}
+
+.phi-flex-col {
+    flex-direction: column;
+}
+
+.phi-flex-wrap {
+    flex-wrap: wrap;
+}
+
+/* Flex Alignment Utilities */
+.phi-items-start { align-items: flex-start; }
+.phi-items-center { align-items: center; }
+.phi-items-end { align-items: flex-end; }
+.phi-items-stretch { align-items: stretch; }
+
+.phi-justify-start { justify-content: flex-start; }
+.phi-justify-center { justify-content: center; }
+.phi-justify-end { justify-content: flex-end; }
+.phi-justify-between { justify-content: space-between; }
+.phi-justify-around { justify-content: space-around; }
+.phi-justify-evenly { justify-content: space-evenly; }
+
+/* Sacred Spacing Utilities */
+.phi-gap-0 { gap: var(--phi-space-0); }
+.phi-gap-1 { gap: var(--phi-space-1); }
+.phi-gap-2 { gap: var(--phi-space-2); }
+.phi-gap-3 { gap: var(--phi-space-3); }
+.phi-gap-4 { gap: var(--phi-space-4); }
+.phi-gap-5 { gap: var(--phi-space-5); }
+.phi-gap-6 { gap: var(--phi-space-6); }
+
+/* Margin Utilities */
+.phi-m-auto { margin: auto; }
+.phi-mx-auto { margin-left: auto; margin-right: auto; }
+.phi-my-auto { margin-top: auto; margin-bottom: auto; }
+
+.phi-m-0 { margin: var(--phi-space-0); }
+.phi-m-1 { margin: var(--phi-space-1); }
+.phi-m-2 { margin: var(--phi-space-2); }
+.phi-m-3 { margin: var(--phi-space-3); }
+.phi-m-4 { margin: var(--phi-space-4); }
+.phi-m-5 { margin: var(--phi-space-5); }
+.phi-m-6 { margin: var(--phi-space-6); }
+
+/* Padding Utilities */
+.phi-p-0 { padding: var(--phi-space-0); }
+.phi-p-1 { padding: var(--phi-space-1); }
+.phi-p-2 { padding: var(--phi-space-2); }
+.phi-p-3 { padding: var(--phi-space-3); }
+.phi-p-4 { padding: var(--phi-space-4); }
+.phi-p-5 { padding: var(--phi-space-5); }
+.phi-p-6 { padding: var(--phi-space-6); }
+
+/* Sacred Geometry Shapes */
+.phi-circle {
+    aspect-ratio: 1;
+    border-radius: 50%;
+}
+
+.phi-square {
+    aspect-ratio: 1;
+}
+
+.phi-golden-rectangle {
+    aspect-ratio: var(--phi);
+}
+
+.phi-vesica-piscis {
+    aspect-ratio: var(--sqrt3);
+    clip-path: path('M50,0 A50,50 0 0,1 50,100 A50,50 0 0,1 50,0');
+}
+
+.phi-pentagon {
+    clip-path: polygon(50% 0%, 100% 38.2%, 82% 100%, 18% 100%, 0% 38.2%);
+}
+
+.phi-hexagon {
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+}
+
+.phi-octagon {
+    clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+}
+
+/* Sacred Typography Utilities */
+.phi-text-3xs { font-size: var(--font-size-3xs); }
+.phi-text-2xs { font-size: var(--font-size-2xs); }
+.phi-text-xs { font-size: var(--font-size-xs); }
+.phi-text-sm { font-size: var(--font-size-sm); }
+.phi-text-base { font-size: var(--font-size-base); }
+.phi-text-lg { font-size: var(--font-size-lg); }
+.phi-text-xl { font-size: var(--font-size-xl); }
+.phi-text-2xl { font-size: var(--font-size-2xl); }
+.phi-text-3xl { font-size: var(--font-size-3xl); }
+
+.phi-leading-tight { line-height: var(--line-height-tight); }
+.phi-leading-snug { line-height: var(--line-height-snug); }
+.phi-leading-normal { line-height: var(--line-height-normal); }
+.phi-leading-relaxed { line-height: var(--line-height-relaxed); }
+.phi-leading-loose { line-height: var(--line-height-loose); }
+
+/* Sacred Position Utilities */
+.phi-relative { position: relative; }
+.phi-absolute { position: absolute; }
+.phi-fixed { position: fixed; }
+.phi-sticky { position: sticky; }
+
+.phi-top-0 { top: 0; }
+.phi-right-0 { right: 0; }
+.phi-bottom-0 { bottom: 0; }
+.phi-left-0 { left: 0; }
+
+.phi-inset-0 {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+/* Z-index Scale Based on Fibonacci */
+.phi-z-0 { z-index: var(--fib-0); }
+.phi-z-1 { z-index: var(--fib-1); }
+.phi-z-2 { z-index: var(--fib-2); }
+.phi-z-3 { z-index: var(--fib-3); }
+.phi-z-5 { z-index: var(--fib-4); }
+.phi-z-8 { z-index: var(--fib-5); }
+.phi-z-13 { z-index: var(--fib-6); }
+.phi-z-21 { z-index: var(--fib-7); }
+
+/* Display Utilities */
+.phi-block { display: block; }
+.phi-inline-block { display: inline-block; }
+.phi-inline { display: inline; }
+.phi-hidden { display: none; }
+
+/* ------------------------
+ * Responsive Design System
+ * Adapts sacred proportions across viewports
+ * ------------------------ */
+
+/* Divine Breakpoint System */
+@media screen and (max-width: var(--container-divine)) {
+    .phi-container {
+        max-width: var(--container-phi-xxl);
+    }
+    
+    /* Adjust spacing for larger screens */
+    :root {
+        --phi-space-base: 1.1rem;
+    }
+}
+
+@media screen and (max-width: var(--container-phi-xxl)) {
+    .phi-container {
+        max-width: var(--container-phi-xl);
+    }
+    
+    /* Grid Adjustments */
+    .phi-grid-6 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .phi-grid-5 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: var(--container-phi-xl)) {
+    .phi-container {
+        max-width: var(--container-phi-lg);
+        padding-left: var(--phi-space-3);
+        padding-right: var(--phi-space-3);
+    }
+    
+    /* Typography Scale Adjustment */
+    :root {
+        --font-size-base: 0.95rem;
+    }
+    
+    /* Grid Adjustments */
+    .phi-grid-6, .phi-grid-5, .phi-grid-4 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .phi-split-quarters {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: var(--container-phi-lg)) {
+    .phi-container {
+        max-width: var(--container-phi-md);
+    }
+    
+    /* Base Adjustments */
+    :root {
+        --font-size-base: 0.9rem;
+    }
+    
+    /* Layout Adjustments */
+    .phi-split,
+    .phi-split-reverse {
+        grid-template-columns: 1fr;
+    }
+    
+    .phi-split-thirds {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Grid Adjustments */
+    .phi-grid-6, .phi-grid-5, .phi-grid-4, .phi-grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: var(--container-phi-md)) {
+    .phi-container {
+        max-width: var(--container-phi-sm);
+        padding-left: var(--phi-space-2);
+        padding-right: var(--phi-space-2);
+    }
+    
+    /* Typography Adjustments */
+    :root {
+        --font-size-base: 0.85rem;
+    }
+    
+    /* Layout Adjustments */
+    .phi-split-thirds,
+    .phi-split-quarters {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Grid Adjustments */
+    .phi-grid-6, .phi-grid-5, .phi-grid-4, .phi-grid-3, .phi-grid-2 {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Spacing Adjustments */
+    .phi-gap-4 {
+        gap: var(--phi-space-3);
+    }
+    
+    .phi-gap-5 {
+        gap: var(--phi-space-4);
+    }
+    
+    .phi-gap-6 {
+        gap: var(--phi-space-5);
+    }
+}
+
+@media screen and (max-width: var(--container-phi-sm)) {
+    .phi-container {
+        max-width: var(--container-phi-xs);
+    }
+    
+    /* Base Adjustments */
+    :root {
+        --font-size-base: 0.8rem;
+    }
+    
+    /* Flex Adjustments */
+    .phi-flex:not(.phi-flex-preserve) {
+        flex-direction: column;
+    }
+    
+    /* Spacing Adjustments */
+    .phi-p-6 { padding: var(--phi-space-5); }
+    .phi-m-6 { margin: var(--phi-space-5); }
+}
+
+@media screen and (max-width: var(--container-phi-xs)) {
+    .phi-container {
+        max-width: var(--container-phi-xxs);
+        padding-left: var(--phi-space-1);
+        padding-right: var(--phi-space-1);
+    }
+    
+    /* Typography Adjustments */
+    :root {
+        --font-size-base: 0.75rem;
+    }
+}
+
+/* ------------------------
+ * Sacred Animation System
+ * Based on golden ratio timing
+ * ------------------------ */
+
+/* Animation Timing Functions */
+.phi-transition-all {
+    transition-property: all;
+    transition-timing-function: cubic-bezier(var(--phi-inverse), 0, 0.2, 1);
+    transition-duration: calc(var(--phi-space-2) * 1s);
+}
+
+.phi-transition-transform {
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(var(--phi-inverse), 0, 0.2, 1);
+    transition-duration: calc(var(--phi-space-2) * 1s);
+}
+
+.phi-transition-opacity {
+    transition-property: opacity;
+    transition-timing-function: cubic-bezier(var(--phi-inverse), 0, 0.2, 1);
+    transition-duration: calc(var(--phi-space-2) * 1s);
+}
+
+/* Sacred Animation Keyframes */
+@keyframes phiRotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(var(--angle-golden));
+    }
+}
+
+@keyframes phiScale {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(var(--phi-inverse));
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes phiPulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: var(--phi-inverse);
+        transform: scale(var(--phi-inverse));
+    }
+}
+
+@keyframes phiSpin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(calc(360deg * var(--phi-inverse)));
+    }
+}
+
+/* Animation Classes */
+.phi-animate-rotate {
+    animation: phiRotate calc(var(--phi-space-6) * 1s) infinite linear;
+}
+
+.phi-animate-scale {
+    animation: phiScale calc(var(--phi-space-5) * 1s) infinite ease-in-out;
+}
+
+.phi-animate-pulse {
+    animation: phiPulse calc(var(--phi-space-4) * 1s) infinite ease-in-out;
+}
+
+.phi-animate-spin {
+    animation: phiSpin calc(var(--phi-space-5) * 1s) infinite linear;
+}
+
+/* ------------------------
+ * Print Styles
+ * Optimizes sacred geometry for print media
+ * ------------------------ */
+
+@media print {
+    /* Reset Background Colors */
+    * {
+        background: transparent !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+    
+    /* Container Adjustments */
+    .phi-container {
+        max-width: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    /* Grid Adjustments */
+    .phi-grid,
+    .phi-split,
+    .phi-split-reverse,
+    .phi-split-thirds,
+    .phi-split-quarters {
+        display: block;
+    }
+    
+    /* Typography Adjustments */
+    body {
+        font-size: 12pt;
+        line-height: 1.5;
+    }
+    
+    h1 { font-size: 24pt; }
+    h2 { font-size: 20pt; }
+    h3 { font-size: 16pt; }
+    h4 { font-size: 14pt; }
+    h5, h6 { font-size: 12pt; }
+    
+    /* Link Handling */
+    a[href]::after {
+        content: " (" attr(href) ")";
+        font-size: 90%;
+    }
+    
+    /* Hide Non-Essential Elements */
+    .phi-hidden-print {
+        display: none !important;
+    }
+    
+    /* Page Breaks */
+    h1, h2, h3 {
+        page-break-after: avoid;
+        page-break-inside: avoid;
+    }
+    
+    img {
+        page-break-inside: avoid;
+        max-width: 100% !important;
+    }
+    
+    table {
+        page-break-inside: avoid;
+    }
+    
+    /* Orphans and Widows */
+    p {
+        orphans: 3;
+        widows: 3;
+    }
+}
+
+/* ------------------------
+ * Accessibility Enhancements
+ * Ensures sacred geometry remains accessible
+ * ------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+.phi-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Focus Styles */
+.phi-focus-visible:focus-visible {
+    outline: 2px solid var(--color-ethereal-blue);
+    outline-offset: 2px;
+}
+
+/* High Contrast Mode */
+@media (forced-colors: active) {
+    .phi-border {
+        border: 1px solid CanvasText;
+    }
+}

@@ -1,0 +1,691 @@
+/**
+ * sacred-loaders.css
+ * Divine loading patterns based on sacred geometry principles
+ * Version: 1.0.0
+ * 
+ * This system implements:
+ * - Sacred geometry in loading animations
+ * - Golden ratio proportions
+ * - Divine energy flow patterns
+ * - Universal spinning motions
+ * - Sacred number sequences
+ */
+
+/* ------------------------
+ * Loader Variables
+ * Based on sacred proportions
+ * ------------------------ */
+ :root {
+    /* Loader Sizes */
+    --loader-size-xs: calc(var(--phi-space-4) * var(--phi));
+    --loader-size-sm: calc(var(--phi-space-5) * var(--phi));
+    --loader-size-md: calc(var(--phi-space-6) * var(--phi));
+    --loader-size-lg: calc(var(--phi-space-7) * var(--phi));
+    --loader-size-xl: calc(var(--phi-space-8) * var(--phi));
+    
+    /* Stroke Widths */
+    --loader-stroke-thin: 1px;
+    --loader-stroke-regular: 2px;
+    --loader-stroke-thick: 3px;
+    --loader-stroke-heavy: 4px;
+    
+    /* Animation Timings */
+    --loader-duration-fast: 0.8s;
+    --loader-duration-normal: 1.3s;
+    --loader-duration-slow: 2.1s;
+    
+    /* Sacred Angles */
+    --loader-angle-golden: 137.5deg;
+    --loader-angle-divine: 108deg;
+    --loader-angle-sacred: 72deg;
+    
+    /* Loader Colors */
+    --loader-color-primary: var(--color-ethereal-blue);
+    --loader-color-secondary: var(--color-mystic-purple);
+    --loader-color-accent: var(--color-sacred-gold);
+    
+    /* Z-index Layers */
+    --loader-z-index: 1000;
+    --loader-overlay-z-index: 999;
+}
+
+/* ------------------------
+ * Base Loader Styles
+ * Core sacred patterns
+ * ------------------------ */
+
+.sacred-loader {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--loader-size-md);
+    height: var(--loader-size-md);
+}
+
+/* Loader Container */
+.sacred-loader-container {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(var(--surface-primary), 0.9);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: var(--loader-z-index);
+}
+
+/* Loader Overlay */
+.sacred-loader-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(var(--color-cosmic-void), 0.8);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: var(--loader-overlay-z-index);
+}
+/* ------------------------
+ * Specific Loader Types
+ * Sacred loading manifestations
+ * ------------------------ */
+
+/* Merkaba Spinner */
+.sacred-loader-merkaba {
+    position: relative;
+    width: var(--loader-size-md);
+    height: var(--loader-size-md);
+}
+
+.sacred-loader-merkaba::before,
+.sacred-loader-merkaba::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: var(--loader-stroke-regular) solid transparent;
+    border-radius: 50%;
+}
+
+.sacred-loader-merkaba::before {
+    border-top-color: var(--loader-color-primary);
+    border-right-color: var(--loader-color-secondary);
+    animation: merkabaSpin var(--loader-duration-normal) linear infinite;
+}
+
+.sacred-loader-merkaba::after {
+    border-bottom-color: var(--loader-color-accent);
+    border-left-color: var(--loader-color-secondary);
+    animation: merkabaSpin var(--loader-duration-normal) linear infinite reverse;
+}
+
+@keyframes merkabaSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Flower of Life Pulse */
+.sacred-loader-flower {
+    position: relative;
+    width: var(--loader-size-md);
+    height: var(--loader-size-md);
+}
+
+.sacred-loader-flower-petal {
+    position: absolute;
+    width: 33.33%;
+    height: 33.33%;
+    background: var(--loader-color-primary);
+    border-radius: 50%;
+    animation: flowerPulse var(--loader-duration-normal) var(--ease-golden) infinite;
+}
+
+.sacred-loader-flower-petal:nth-child(1) { top: 0; left: 33.33%; }
+.sacred-loader-flower-petal:nth-child(2) { top: 33.33%; left: 66.66%; }
+.sacred-loader-flower-petal:nth-child(3) { top: 66.66%; left: 33.33%; }
+.sacred-loader-flower-petal:nth-child(4) { top: 33.33%; left: 0; }
+.sacred-loader-flower-petal:nth-child(5) { top: 33.33%; left: 33.33%; }
+.sacred-loader-flower-petal:nth-child(6) { animation-delay: calc(var(--loader-duration-normal) * 0.1); }
+
+@keyframes flowerPulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.2); opacity: 1; }
+}
+
+/* Sacred Wave */
+.sacred-loader-wave {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--phi-space-2) * var(--phi));
+}
+
+.sacred-loader-wave-dot {
+    width: calc(var(--loader-size-md) / 4);
+    height: calc(var(--loader-size-md) / 4);
+    background: var(--loader-color-primary);
+    border-radius: 50%;
+    animation: waveFlow var(--loader-duration-normal) var(--ease-golden) infinite;
+}
+
+.sacred-loader-wave-dot:nth-child(2) { animation-delay: calc(var(--loader-duration-normal) * 0.2); }
+.sacred-loader-wave-dot:nth-child(3) { animation-delay: calc(var(--loader-duration-normal) * 0.4); }
+.sacred-loader-wave-dot:nth-child(4) { animation-delay: calc(var(--loader-duration-normal) * 0.6); }
+
+@keyframes waveFlow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(calc(var(--loader-size-md) * -0.2)); }
+}
+
+/* Vesica Piscis */
+.sacred-loader-vesica {
+    position: relative;
+    width: var(--loader-size-md);
+    height: calc(var(--loader-size-md) * var(--sqrt3) * 0.5);
+    overflow: hidden;
+}
+
+.sacred-loader-vesica::before,
+.sacred-loader-vesica::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--loader-color-primary);
+    animation: vesicaPulse var(--loader-duration-normal) var(--ease-golden) infinite alternate;
+}
+
+.sacred-loader-vesica::before {
+    left: -25%;
+    animation-delay: calc(var(--loader-duration-normal) * -0.5);
+}
+
+.sacred-loader-vesica::after {
+    right: -25%;
+}
+
+@keyframes vesicaPulse {
+    from { opacity: 0.3; }
+    to { opacity: 0.7; }
+}
+
+/* Metatron's Cube */
+.sacred-loader-metatron {
+    position: relative;
+    width: var(--loader-size-lg);
+    height: var(--loader-size-lg);
+}
+
+.sacred-loader-metatron-circle {
+    position: absolute;
+    width: 20%;
+    height: 20%;
+    border: var(--loader-stroke-regular) solid var(--loader-color-primary);
+    border-radius: 50%;
+    animation: metatronSpin var(--loader-duration-slow) var(--ease-golden) infinite;
+}
+
+.sacred-loader-metatron-circle:nth-child(1) { top: 40%; left: 40%; }
+.sacred-loader-metatron-circle:nth-child(2) { top: 10%; left: 40%; }
+.sacred-loader-metatron-circle:nth-child(3) { top: 25%; left: 15%; }
+.sacred-loader-metatron-circle:nth-child(4) { top: 25%; left: 65%; }
+.sacred-loader-metatron-circle:nth-child(5) { top: 70%; left: 15%; }
+.sacred-loader-metatron-circle:nth-child(6) { top: 70%; left: 65%; }
+
+@keyframes metatronSpin {
+    0% { transform: rotate(0) scale(1); }
+    50% { transform: rotate(180deg) scale(1.2); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+/* Fibonacci Spiral */
+.sacred-loader-spiral {
+    position: relative;
+    width: var(--loader-size-lg);
+    height: var(--loader-size-lg);
+    transform-origin: center;
+    animation: spiralRotate var(--loader-duration-slow) linear infinite;
+}
+
+.sacred-loader-spiral-segment {
+    position: absolute;
+    border: var(--loader-stroke-regular) solid transparent;
+    border-radius: 0 100% 0 0;
+}
+
+.sacred-loader-spiral-segment:nth-child(1) {
+    width: 100%;
+    height: 100%;
+    border-top-color: var(--loader-color-primary);
+    border-right-color: var(--loader-color-secondary);
+}
+
+.sacred-loader-spiral-segment:nth-child(2) {
+    width: 61.8%;
+    height: 61.8%;
+    border-top-color: var(--loader-color-secondary);
+    border-right-color: var(--loader-color-accent);
+    top: 38.2%;
+    left: 0;
+}
+
+.sacred-loader-spiral-segment:nth-child(3) {
+    width: 38.2%;
+    height: 38.2%;
+    border-top-color: var(--loader-color-accent);
+    border-right-color: var(--loader-color-primary);
+    top: 0;
+    left: 61.8%;
+}
+
+@keyframes spiralRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(var(--angle-golden)); }
+}
+/* ------------------------
+ * Loading States and Transitions
+ * Sacred state manifestations
+ * ------------------------ */
+
+/* Loading State Container */
+.sacred-loading-state {
+    --loading-fade-duration: 0.3s;
+    --loading-scale-amount: 0.98;
+    --loading-blur-amount: 4px;
+    
+    position: relative;
+    transition: 
+        transform var(--loading-fade-duration) var(--ease-golden),
+        filter var(--loading-fade-duration) var(--ease-golden),
+        opacity var(--loading-fade-duration) var(--ease-golden);
+}
+
+/* Loading State Modifiers */
+.sacred-loading-state[data-loading="true"] {
+    transform: scale(var(--loading-scale-amount));
+    filter: blur(var(--loading-blur-amount));
+    pointer-events: none;
+}
+
+/* Content Fade */
+.sacred-loading-fade {
+    opacity: 1;
+    transition: opacity var(--loading-fade-duration) var(--ease-golden);
+}
+
+.sacred-loading-fade[data-loading="true"] {
+    opacity: 0.6;
+}
+
+/* Shimmer Effect */
+.sacred-loading-shimmer {
+    position: relative;
+    overflow: hidden;
+}
+
+.sacred-loading-shimmer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(var(--color-ethereal-blue), 0.1),
+        transparent
+    );
+    animation: shimmerFlow 2s var(--ease-golden) infinite;
+}
+
+@keyframes shimmerFlow {
+    100% { transform: translateX(100%); }
+}
+
+/* Skeleton Loading */
+.sacred-loading-skeleton {
+    --skeleton-color: rgba(var(--color-ethereal-blue), 0.1);
+    --skeleton-highlight: rgba(var(--color-ethereal-blue), 0.05);
+    
+    background: var(--skeleton-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.sacred-loading-skeleton::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        var(--skeleton-color),
+        var(--skeleton-highlight),
+        var(--skeleton-color)
+    );
+    transform: translateX(-100%);
+    animation: skeletonGlow 1.5s var(--ease-golden) infinite;
+}
+
+@keyframes skeletonGlow {
+    100% { transform: translateX(100%); }
+}
+
+/* Progressive Loading */
+.sacred-loading-progressive {
+    --progress-color: var(--color-ethereal-blue);
+    --progress-height: 2px;
+    
+    position: relative;
+}
+
+.sacred-loading-progressive::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--progress-height);
+    background: rgba(var(--progress-color), 0.1);
+}
+
+.sacred-loading-progressive::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: var(--progress-height);
+    background: rgba(var(--progress-color), 1);
+    animation: progressiveLoad 2s var(--ease-golden) infinite;
+}
+
+@keyframes progressiveLoad {
+    0% { width: 0; }
+    50% { width: 70%; }
+    100% { width: 100%; }
+}
+
+/* Pulse Loading */
+.sacred-loading-pulse {
+    animation: loadingPulse 1.5s var(--ease-golden) infinite;
+}
+
+@keyframes loadingPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Sacred Transition States */
+.sacred-loading-transition {
+    --transition-scale: 0.98;
+    --transition-blur: 5px;
+    --transition-duration: 0.5s;
+    
+    transition: 
+        transform var(--transition-duration) var(--ease-golden),
+        filter var(--transition-duration) var(--ease-golden),
+        opacity var(--transition-duration) var(--ease-golden);
+}
+
+.sacred-loading-transition[data-loading="true"] {
+    transform: scale(var(--transition-scale));
+    filter: blur(var(--transition-blur));
+    opacity: 0.8;
+}
+
+/* Loading Overlay Transitions */
+.sacred-loading-overlay {
+    --overlay-bg: rgba(var(--color-cosmic-void), 0.8);
+    --overlay-blur: 8px;
+    
+    position: absolute;
+    inset: 0;
+    background: var(--overlay-bg);
+    backdrop-filter: blur(var(--overlay-blur));
+    -webkit-backdrop-filter: blur(var(--overlay-blur));
+    opacity: 0;
+    visibility: hidden;
+    transition: 
+        opacity var(--loading-fade-duration) var(--ease-golden),
+        visibility var(--loading-fade-duration) var(--ease-golden);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: var(--loader-overlay-z-index);
+}
+
+.sacred-loading-overlay[data-active="true"] {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Loading Message Transitions */
+.sacred-loading-message {
+    --message-spacing: var(--phi-space-3);
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--message-spacing);
+    text-align: center;
+    color: var(--color-celestial-white);
+}
+
+.sacred-loading-message-text {
+    font-size: var(--font-size-sm);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: 
+        opacity var(--loading-fade-duration) var(--ease-golden),
+        transform var(--loading-fade-duration) var(--ease-golden);
+}
+
+.sacred-loading-overlay[data-active="true"] .sacred-loading-message-text {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Loading Progress States */
+.sacred-loading-progress {
+    --progress-width: 200px;
+    --progress-height: 4px;
+    --progress-radius: var(--border-radius-pill);
+    
+    width: var(--progress-width);
+    height: var(--progress-height);
+    background: rgba(var(--color-ethereal-blue), 0.2);
+    border-radius: var(--progress-radius);
+    overflow: hidden;
+}
+
+.sacred-loading-progress-bar {
+    height: 100%;
+    background: var(--color-ethereal-blue);
+    border-radius: var(--progress-radius);
+    transition: width 0.3s var(--ease-golden);
+}
+/* ------------------------
+ * Complex Sacred Geometry Loaders
+ * Advanced sacred manifestations
+ * ------------------------ */
+
+/* Sri Yantra Loader */
+.sacred-loader-sri-yantra {
+    --yantra-size: var(--loader-size-xl);
+    --yantra-color-1: var(--loader-color-primary);
+    --yantra-color-2: var(--loader-color-secondary);
+    --yantra-color-3: var(--loader-color-accent);
+    
+    position: relative;
+    width: var(--yantra-size);
+    height: calc(var(--yantra-size) * var(--sqrt3) * 0.5);
+}
+
+.sacred-loader-sri-yantra-triangle {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+    animation: yantraRotate var(--loader-duration-slow) var(--ease-golden) infinite;
+}
+
+.sacred-loader-sri-yantra-triangle:nth-child(1) {
+    background: rgba(var(--yantra-color-1), 0.2);
+    animation-delay: calc(var(--loader-duration-slow) * -0.25);
+}
+
+.sacred-loader-sri-yantra-triangle:nth-child(2) {
+    background: rgba(var(--yantra-color-2), 0.2);
+    transform: rotate(180deg);
+    animation-delay: calc(var(--loader-duration-slow) * -0.5);
+}
+
+.sacred-loader-sri-yantra-triangle:nth-child(3) {
+    background: rgba(var(--yantra-color-3), 0.2);
+    transform: scale(0.8);
+    animation-delay: calc(var(--loader-duration-slow) * -0.75);
+}
+
+@keyframes yantraRotate {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(0.8); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+/* Seed of Life Loader */
+.sacred-loader-seed-of-life {
+    --seed-size: var(--loader-size-lg);
+    --seed-color: var(--loader-color-primary);
+    
+    position: relative;
+    width: var(--seed-size);
+    height: var(--seed-size);
+}
+
+.sacred-loader-seed-circle {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    border: var(--loader-stroke-regular) solid rgba(var(--seed-color), 0.3);
+    border-radius: 50%;
+    animation: seedPulse var(--loader-duration-normal) var(--ease-golden) infinite;
+}
+
+.sacred-loader-seed-circle:nth-child(1) { top: 0; left: 25%; }
+.sacred-loader-seed-circle:nth-child(2) { top: 25%; left: 0; animation-delay: calc(var(--loader-duration-normal) * 0.166); }
+.sacred-loader-seed-circle:nth-child(3) { top: 25%; right: 0; animation-delay: calc(var(--loader-duration-normal) * 0.333); }
+.sacred-loader-seed-circle:nth-child(4) { bottom: 0; left: 25%; animation-delay: calc(var(--loader-duration-normal) * 0.5); }
+.sacred-loader-seed-circle:nth-child(5) { top: 25%; left: 25%; animation-delay: calc(var(--loader-duration-normal) * 0.666); }
+.sacred-loader-seed-circle:nth-child(6) { top: 25%; right: 25%; animation-delay: calc(var(--loader-duration-normal) * 0.833); }
+
+@keyframes seedPulse {
+    0%, 100% { transform: scale(1); opacity: 0.3; }
+    50% { transform: scale(1.2); opacity: 1; }
+}
+
+/* Platonic Solids Loader */
+.sacred-loader-platonic {
+    --platonic-size: var(--loader-size-xl);
+    --platonic-color: var(--loader-color-primary);
+    
+    position: relative;
+    width: var(--platonic-size);
+    height: var(--platonic-size);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    animation: platonicRotate var(--loader-duration-slow) linear infinite;
+}
+
+.sacred-loader-platonic-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: var(--loader-stroke-regular) solid rgba(var(--platonic-color), 0.3);
+    backface-visibility: visible;
+    transform-origin: center;
+}
+
+.sacred-loader-platonic-face:nth-child(1) { transform: rotateX(0deg) translateZ(50%); }
+.sacred-loader-platonic-face:nth-child(2) { transform: rotateX(72deg) translateZ(50%); }
+.sacred-loader-platonic-face:nth-child(3) { transform: rotateX(144deg) translateZ(50%); }
+.sacred-loader-platonic-face:nth-child(4) { transform: rotateX(216deg) translateZ(50%); }
+.sacred-loader-platonic-face:nth-child(5) { transform: rotateX(288deg) translateZ(50%); }
+
+@keyframes platonicRotate {
+    0% { transform: rotateX(0deg) rotateY(0deg); }
+    100% { transform: rotateX(360deg) rotateY(360deg); }
+}
+
+/* Torus Loader */
+.sacred-loader-torus {
+    --torus-size: var(--loader-size-lg);
+    --torus-color: var(--loader-color-primary);
+    --torus-ring-count: 12;
+    
+    position: relative;
+    width: var(--torus-size);
+    height: var(--torus-size);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.sacred-loader-torus-ring {
+    position: absolute;
+    inset: 0;
+    border: var(--loader-stroke-regular) solid rgba(var(--torus-color), 0.3);
+    border-radius: 50%;
+    animation: torusRotate var(--loader-duration-slow) linear infinite;
+}
+
+@for $i from 1 through 12 {
+    .sacred-loader-torus-ring:nth-child($i) {
+        transform: rotateY(calc(360deg / var(--torus-ring-count) * $i));
+        animation-delay: calc(var(--loader-duration-slow) / var(--torus-ring-count) * $i);
+    }
+}
+
+@keyframes torusRotate {
+    0% { transform: rotateX(0deg) rotateY(0deg); }
+    100% { transform: rotateX(360deg) rotateY(360deg); }
+}
+
+/* Merkaba Star Loader */
+.sacred-loader-merkaba-star {
+    --merkaba-size: var(--loader-size-xl);
+    --merkaba-color-1: var(--loader-color-primary);
+    --merkaba-color-2: var(--loader-color-secondary);
+    
+    position: relative;
+    width: var(--merkaba-size);
+    height: var(--merkaba-size);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.sacred-loader-merkaba-tetrahedron {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+}
+
+.sacred-loader-merkaba-tetrahedron:nth-child(1) {
+    background: rgba(var(--merkaba-color-1), 0.3);
+    animation: merkabaRotate var(--loader-duration-slow) linear infinite;
+}
+
+.sacred-loader-merkaba-tetrahedron:nth-child(2) {
+    background: rgba(var(--merkaba-color-2), 0.3);
+    transform: rotate(180deg);
+    animation: merkabaRotateReverse var(--loader-duration-slow) linear infinite;
+}
+
+@keyframes merkabaRotate {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.2); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes merkabaRotateReverse {
+    0% { transform: rotate(180deg) scale(1); }
+    50% { transform: rotate(0deg) scale(1.2); }
+    100% { transform: rotate(-180deg) scale(1); }
+}

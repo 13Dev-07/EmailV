@@ -1,0 +1,415 @@
+/**
+ * sacred-buttons.css
+ * Divine interaction system based on sacred geometry principles
+ * Version: 1.0.0
+ * 
+ * This system implements:
+ * - Golden ratio proportions
+ * - Sacred geometry patterns
+ * - Divine energy states
+ * - Harmonic interactions
+ * - Universal flow patterns
+ */
+
+/* ------------------------
+ * Button Variables
+ * Based on sacred proportions
+ * ------------------------ */
+ :root {
+    /* Button Sizing */
+    --btn-height-xs: calc(var(--phi-space-4) * 1.5);
+    --btn-height-sm: calc(var(--phi-space-5) * 1.5);
+    --btn-height-md: calc(var(--phi-space-6) * 1.5);
+    --btn-height-lg: calc(var(--phi-space-7) * 1.5);
+    --btn-height-xl: calc(var(--phi-space-8) * 1.5);
+    
+    /* Padding Ratios */
+    --btn-padding-x: var(--phi-space-4);
+    --btn-padding-y: var(--phi-space-2);
+    
+    /* Border Properties */
+    --btn-border-width: 1px;
+    --btn-border-radius-sm: var(--border-radius-sm);
+    --btn-border-radius-md: var(--border-radius-md);
+    --btn-border-radius-lg: var(--border-radius-lg);
+    --btn-border-radius-pill: 9999px;
+    
+    /* Animation Timings */
+    --btn-transition-duration: var(--transition-duration-normal);
+    --btn-transition-easing: var(--ease-golden);
+    
+    /* Elevation Levels */
+    --btn-elevation-1: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --btn-elevation-2: 0 4px 8px rgba(0, 0, 0, 0.12);
+    --btn-elevation-3: 0 8px 16px rgba(0, 0, 0, 0.14);
+    
+    /* Focus Ring */
+    --btn-focus-ring-width: 3px;
+    --btn-focus-ring-alpha: 0.2;
+    
+    /* Icon Properties */
+    --btn-icon-size-sm: var(--phi-space-4);
+    --btn-icon-size-md: var(--phi-space-5);
+    --btn-icon-size-lg: var(--phi-space-6);
+    --btn-icon-spacing: var(--phi-space-2);
+}
+
+/* ------------------------
+ * Base Button Styles
+ * Core sacred button patterns
+ * ------------------------ */
+
+.sacred-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--btn-padding-y) var(--btn-padding-x);
+    height: var(--btn-height-md);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    border: var(--btn-border-width) solid transparent;
+    border-radius: var(--btn-border-radius-md);
+    transition: all var(--btn-transition-duration) var(--btn-transition-easing);
+    
+    /* Prevent text selection */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    
+    /* Prevent tap highlight on mobile */
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Button Focus States */
+.sacred-btn:focus {
+    outline: none;
+}
+
+.sacred-btn:focus-visible {
+    box-shadow: 0 0 0 var(--btn-focus-ring-width) 
+                rgba(var(--color-ethereal-blue), var(--btn-focus-ring-alpha));
+}
+
+/* Button Active State */
+.sacred-btn:active {
+    transform: translateY(1px);
+}
+
+/* Button Disabled State */
+.sacred-btn:disabled,
+.sacred-btn.disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+/* ------------------------
+ * Button Variants
+ * Sacred energy patterns
+ * ------------------------ */
+
+/* Primary Button - Ethereal Energy */
+.sacred-btn-primary {
+    color: var(--color-celestial-white);
+    background: linear-gradient(
+        var(--angle-golden),
+        var(--color-ethereal-blue),
+        var(--color-mystic-purple)
+    );
+    border-color: transparent;
+}
+
+.sacred-btn-primary:hover {
+    background: linear-gradient(
+        calc(var(--angle-golden) * 2),
+        var(--color-mystic-purple),
+        var(--color-ethereal-blue)
+    );
+    transform: translateY(-2px);
+    box-shadow: var(--btn-elevation-2);
+}
+
+/* Secondary Button - Spiritual Balance */
+.sacred-btn-secondary {
+    color: var(--text-primary);
+    background: linear-gradient(
+        var(--angle-divine),
+        var(--surface-secondary),
+        var(--surface-tertiary)
+    );
+    border: var(--btn-border-width) solid var(--border-medium);
+}
+
+.sacred-btn-secondary:hover {
+    border-color: var(--border-heavy);
+    transform: translateY(-2px);
+    box-shadow: var(--btn-elevation-1);
+}
+
+/* Sacred Button - Divine Connection */
+.sacred-btn-sacred {
+    color: var(--color-cosmic-void);
+    background: linear-gradient(
+        var(--angle-sacred),
+        var(--color-sacred-gold),
+        var(--color-spiritual-green)
+    );
+    border-color: transparent;
+}
+
+.sacred-btn-sacred:hover {
+    background: linear-gradient(
+        calc(var(--angle-sacred) * 2),
+        var(--color-spiritual-green),
+        var(--color-sacred-gold)
+    );
+    transform: translateY(-2px);
+    box-shadow: var(--btn-elevation-2);
+}
+
+/* Ghost Button - Ethereal Presence */
+.sacred-btn-ghost {
+    color: var(--text-primary);
+    background: transparent;
+    border: var(--btn-border-width) solid var(--border-medium);
+}
+
+.sacred-btn-ghost:hover {
+    color: var(--color-ethereal-blue);
+    border-color: var(--color-ethereal-blue);
+    background: rgba(var(--color-ethereal-blue), 0.1);
+}
+
+/* Link Button - Subtle Connection */
+.sacred-btn-link {
+    padding: var(--btn-padding-y) calc(var(--btn-padding-x) * 0.5);
+    color: var(--color-ethereal-blue);
+    background: transparent;
+    border-color: transparent;
+    text-decoration: none;
+}
+
+.sacred-btn-link:hover {
+    color: var(--color-mystic-purple);
+    text-decoration: underline;
+}
+
+/* ------------------------
+ * Button Sizes
+ * Golden ratio proportions
+ * ------------------------ */
+
+/* Extra Small Button */
+.sacred-btn-xs {
+    height: var(--btn-height-xs);
+    padding: calc(var(--btn-padding-y) * var(--phi-inverse))
+             calc(var(--btn-padding-x) * var(--phi-inverse));
+    font-size: var(--font-size-xs);
+    border-radius: var(--btn-border-radius-sm);
+}
+
+/* Small Button */
+.sacred-btn-sm {
+    height: var(--btn-height-sm);
+    padding: calc(var(--btn-padding-y) * var(--phi-inverse))
+             var(--btn-padding-x);
+    font-size: var(--font-size-sm);
+    border-radius: var(--btn-border-radius-sm);
+}
+
+/* Large Button */
+.sacred-btn-lg {
+    height: var(--btn-height-lg);
+    padding: calc(var(--btn-padding-y) * var(--phi))
+             calc(var(--btn-padding-x) * var(--phi));
+    font-size: var(--font-size-lg);
+    border-radius: var(--btn-border-radius-lg);
+}
+
+/* Extra Large Button */
+.sacred-btn-xl {
+    height: var(--btn-height-xl);
+    padding: calc(var(--btn-padding-y) * var(--phi-squared))
+             calc(var(--btn-padding-x) * var(--phi));
+    font-size: var(--font-size-xl);
+    border-radius: var(--btn-border-radius-lg);
+}
+
+/* ------------------------
+ * Button Shapes
+ * Sacred geometric forms
+ * ------------------------ */
+
+/* Pill Button */
+.sacred-btn-pill {
+    border-radius: var(--btn-border-radius-pill);
+}
+
+/* Circle Button */
+.sacred-btn-circle {
+    padding: 0;
+    width: var(--btn-height-md);
+    border-radius: 50%;
+}
+
+.sacred-btn-circle.sacred-btn-sm {
+    width: var(--btn-height-sm);
+}
+
+.sacred-btn-circle.sacred-btn-lg {
+    width: var(--btn-height-lg);
+}
+
+/* ------------------------
+ * Button with Icons
+ * Sacred symbol integration
+ * ------------------------ */
+
+.sacred-btn-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--btn-icon-spacing);
+}
+
+.sacred-btn-icon-only {
+    padding: 0;
+    width: var(--btn-height-md);
+}
+
+.sacred-btn-icon svg,
+.sacred-btn-icon img {
+    width: var(--btn-icon-size-md);
+    height: var(--btn-icon-size-md);
+}
+
+.sacred-btn-sm .sacred-btn-icon svg,
+.sacred-btn-sm .sacred-btn-icon img {
+    width: var(--btn-icon-size-sm);
+    height: var(--btn-icon-size-sm);
+}
+
+.sacred-btn-lg .sacred-btn-icon svg,
+.sacred-btn-lg .sacred-btn-icon img {
+    width: var(--btn-icon-size-lg);
+    height: var(--btn-icon-size-lg);
+}
+
+/* ------------------------
+ * Button Groups
+ * Sacred geometric arrangements
+ * ------------------------ */
+
+.sacred-btn-group {
+    display: inline-flex;
+    position: relative;
+}
+
+.sacred-btn-group .sacred-btn {
+    position: relative;
+    flex: 1 1 auto;
+}
+
+.sacred-btn-group .sacred-btn:not(:first-child) {
+    margin-left: calc(var(--btn-border-width) * -1);
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.sacred-btn-group .sacred-btn:not(:last-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+/* Vertical Button Group */
+.sacred-btn-group-vertical {
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.sacred-btn-group-vertical .sacred-btn:not(:first-child) {
+    margin-top: calc(var(--btn-border-width) * -1);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.sacred-btn-group-vertical .sacred-btn:not(:last-child) {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+/* ------------------------
+ * Loading State
+ * Sacred energy flow
+ * ------------------------ */
+
+.sacred-btn-loading {
+    position: relative;
+    color: transparent !important;
+    pointer-events: none;
+}
+
+.sacred-btn-loading::after {
+    content: '';
+    position: absolute;
+    width: calc(var(--btn-icon-size-md) * 0.8);
+    height: calc(var(--btn-icon-size-md) * 0.8);
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    border-right-color: transparent;
+    animation: buttonLoader var(--time-harmonic) linear infinite;
+}
+
+@keyframes buttonLoader {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(calc(360deg * var(--phi)));
+    }
+}
+
+/* ------------------------
+ * Accessibility
+ * Universal access patterns
+ * ------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+    .sacred-btn {
+        transition: none;
+    }
+}
+
+/* High Contrast Mode Support */
+@media (forced-colors: active) {
+    .sacred-btn {
+        border: var(--btn-border-width) solid transparent;
+    }
+    
+    .sacred-btn:focus {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
+    }
+}
+
+/* ------------------------
+ * Print Styles
+ * Physical manifestation
+ * ------------------------ */
+
+@media print {
+    .sacred-btn {
+        border: var(--btn-border-width) solid currentColor !important;
+        background: none !important;
+        color: currentColor !important;
+        box-shadow: none !important;
+    }
+}

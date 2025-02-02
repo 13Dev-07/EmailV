@@ -1,0 +1,713 @@
+/**
+ * sacred-tooltips.css
+ * Divine information system based on sacred geometry principles
+ * Version: 1.0.0
+ * 
+ * This system implements:
+ * - Golden ratio proportions
+ * - Sacred geometry patterns
+ * - Divine information flow
+ * - Universal positioning
+ * - Sacred number sequences
+ */
+
+/* ------------------------
+ * Tooltip Variables
+ * Based on sacred proportions
+ * ------------------------ */
+ :root {
+    /* Tooltip Dimensions */
+    --tooltip-max-width: calc(200px * var(--phi));
+    --tooltip-min-width: calc(60px * var(--phi));
+    
+    /* Spacing */
+    --tooltip-padding-sm: var(--phi-space-2);
+    --tooltip-padding-md: var(--phi-space-3);
+    --tooltip-padding-lg: var(--phi-space-4);
+    
+    /* Arrow Size */
+    --tooltip-arrow-size: calc(var(--phi-space-2) * var(--phi-inverse));
+    --tooltip-arrow-offset: calc(var(--phi-space-2) * var(--phi));
+    
+    /* Animation Timings */
+    --tooltip-duration-in: 0.2s;
+    --tooltip-duration-out: 0.15s;
+    --tooltip-delay-show: 0.1s;
+    --tooltip-delay-hide: 0s;
+    
+    /* Colors */
+    --tooltip-bg: rgba(var(--color-cosmic-void), 0.95);
+    --tooltip-text: var(--color-celestial-white);
+    --tooltip-border: rgba(255, 255, 255, 0.1);
+    
+    /* Elevation */
+    --tooltip-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    
+    /* Border Radius */
+    --tooltip-radius: var(--border-radius-sm);
+    
+    /* Z-index */
+    --tooltip-z-index: 10000;
+}
+
+/* ------------------------
+ * Base Tooltip Styles
+ * Core sacred patterns
+ * ------------------------ */
+
+/* Tooltip Container */
+.sacred-tooltip-container {
+    position: fixed;
+    z-index: var(--tooltip-z-index);
+    pointer-events: none;
+    user-select: none;
+    max-width: var(--tooltip-max-width);
+    min-width: var(--tooltip-min-width);
+    padding: var(--tooltip-padding-md);
+    background: var(--tooltip-bg);
+    color: var(--tooltip-text);
+    border: 1px solid var(--tooltip-border);
+    border-radius: var(--tooltip-radius);
+    box-shadow: var(--tooltip-shadow);
+    
+    /* Glassmorphism Effect */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    
+    /* Base Animation Properties */
+    opacity: 0;
+    transform-origin: center;
+    transition:
+        opacity var(--tooltip-duration-in) var(--ease-golden),
+        transform var(--tooltip-duration-in) var(--ease-golden);
+}
+
+/* Tooltip Trigger */
+[data-tooltip] {
+    position: relative;
+    cursor: help;
+}
+
+/* Tooltip Content */
+.sacred-tooltip-content {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-snug);
+    text-align: center;
+}
+/* ------------------------
+ * Tooltip Positions
+ * Sacred directional manifestations
+ * ------------------------ */
+
+/* Position Modifiers */
+.sacred-tooltip-container[data-position] {
+    --tooltip-distance: calc(var(--phi-space-3) * var(--phi));
+    --tooltip-offset: 0px;
+}
+
+/* Top Positions */
+.sacred-tooltip-container[data-position="top"] {
+    transform-origin: bottom center;
+}
+
+.sacred-tooltip-container[data-position="top"]::before {
+    content: '';
+    position: absolute;
+    bottom: calc(var(--tooltip-arrow-size) * -1);
+    left: calc(50% - var(--tooltip-arrow-size));
+    border-width: var(--tooltip-arrow-size) var(--tooltip-arrow-size) 0;
+    border-style: solid;
+    border-color: var(--tooltip-bg) transparent transparent;
+    filter: drop-shadow(0 1px 0 var(--tooltip-border));
+}
+
+.sacred-tooltip-container[data-position="top-start"] {
+    transform-origin: bottom left;
+}
+
+.sacred-tooltip-container[data-position="top-start"]::before {
+    left: var(--tooltip-arrow-offset);
+}
+
+.sacred-tooltip-container[data-position="top-end"] {
+    transform-origin: bottom right;
+}
+
+.sacred-tooltip-container[data-position="top-end"]::before {
+    right: var(--tooltip-arrow-offset);
+    left: auto;
+}
+
+/* Bottom Positions */
+.sacred-tooltip-container[data-position="bottom"] {
+    transform-origin: top center;
+}
+
+.sacred-tooltip-container[data-position="bottom"]::before {
+    content: '';
+    position: absolute;
+    top: calc(var(--tooltip-arrow-size) * -1);
+    left: calc(50% - var(--tooltip-arrow-size));
+    border-width: 0 var(--tooltip-arrow-size) var(--tooltip-arrow-size);
+    border-style: solid;
+    border-color: transparent transparent var(--tooltip-bg);
+    filter: drop-shadow(0 -1px 0 var(--tooltip-border));
+}
+
+.sacred-tooltip-container[data-position="bottom-start"] {
+    transform-origin: top left;
+}
+
+.sacred-tooltip-container[data-position="bottom-start"]::before {
+    left: var(--tooltip-arrow-offset);
+}
+
+.sacred-tooltip-container[data-position="bottom-end"] {
+    transform-origin: top right;
+}
+
+.sacred-tooltip-container[data-position="bottom-end"]::before {
+    right: var(--tooltip-arrow-offset);
+    left: auto;
+}
+
+/* Left Positions */
+.sacred-tooltip-container[data-position="left"] {
+    transform-origin: right center;
+}
+
+.sacred-tooltip-container[data-position="left"]::before {
+    content: '';
+    position: absolute;
+    right: calc(var(--tooltip-arrow-size) * -1);
+    top: calc(50% - var(--tooltip-arrow-size));
+    border-width: var(--tooltip-arrow-size) 0 var(--tooltip-arrow-size) var(--tooltip-arrow-size);
+    border-style: solid;
+    border-color: transparent transparent transparent var(--tooltip-bg);
+    filter: drop-shadow(1px 0 0 var(--tooltip-border));
+}
+
+.sacred-tooltip-container[data-position="left-start"] {
+    transform-origin: right top;
+}
+
+.sacred-tooltip-container[data-position="left-start"]::before {
+    top: var(--tooltip-arrow-offset);
+}
+
+.sacred-tooltip-container[data-position="left-end"] {
+    transform-origin: right bottom;
+}
+
+.sacred-tooltip-container[data-position="left-end"]::before {
+    bottom: var(--tooltip-arrow-offset);
+    top: auto;
+}
+
+/* Right Positions */
+.sacred-tooltip-container[data-position="right"] {
+    transform-origin: left center;
+}
+
+.sacred-tooltip-container[data-position="right"]::before {
+    content: '';
+    position: absolute;
+    left: calc(var(--tooltip-arrow-size) * -1);
+    top: calc(50% - var(--tooltip-arrow-size));
+    border-width: var(--tooltip-arrow-size) var(--tooltip-arrow-size) var(--tooltip-arrow-size) 0;
+    border-style: solid;
+    border-color: transparent var(--tooltip-bg) transparent transparent;
+    filter: drop-shadow(-1px 0 0 var(--tooltip-border));
+}
+
+.sacred-tooltip-container[data-position="right-start"] {
+    transform-origin: left top;
+}
+
+.sacred-tooltip-container[data-position="right-start"]::before {
+    top: var(--tooltip-arrow-offset);
+}
+
+.sacred-tooltip-container[data-position="right-end"] {
+    transform-origin: left bottom;
+}
+
+.sacred-tooltip-container[data-position="right-end"]::before {
+    bottom: var(--tooltip-arrow-offset);
+    top: auto;
+}
+
+/* Center Positions */
+.sacred-tooltip-container[data-position="center"] {
+    transform-origin: center center;
+}
+
+/* Position Calculations */
+[data-tooltip] {
+    --tooltip-translate-x: 0;
+    --tooltip-translate-y: 0;
+}
+
+/* Position-specific Translations */
+[data-tooltip][data-position^="top"] {
+    --tooltip-translate-y: calc(var(--tooltip-distance) * -1);
+}
+
+[data-tooltip][data-position^="bottom"] {
+    --tooltip-translate-y: var(--tooltip-distance);
+}
+
+[data-tooltip][data-position^="left"] {
+    --tooltip-translate-x: calc(var(--tooltip-distance) * -1);
+}
+
+[data-tooltip][data-position^="right"] {
+    --tooltip-translate-x: var(--tooltip-distance);
+}
+
+/* Alignment Adjustments */
+[data-tooltip][data-position$="-start"] {
+    --tooltip-align-offset: calc(var(--tooltip-arrow-offset) * -1);
+}
+
+[data-tooltip][data-position$="-end"] {
+    --tooltip-align-offset: var(--tooltip-arrow-offset);
+}
+
+/* Position Tracking */
+.sacred-tooltip-container[data-tracking="true"] {
+    transition: none;
+    will-change: transform;
+}
+
+/* Collision Detection */
+.sacred-tooltip-container[data-collision-handling="true"] {
+    --collision-padding: var(--phi-space-3);
+    max-width: calc(100vw - (var(--collision-padding) * 2));
+    max-height: calc(100vh - (var(--collision-padding) * 2));
+}
+/* ------------------------
+ * Tooltip Animations
+ * Sacred motion patterns
+ * ------------------------ */
+
+/* Base Animation Properties */
+.sacred-tooltip-container {
+    --animation-scale: 0.95;
+    --animation-offset: 5px;
+    --animation-rotate: 2deg;
+    --animation-blur: 4px;
+    
+    will-change: transform, opacity;
+}
+
+/* Fade Animations */
+@keyframes tooltipFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(var(--animation-scale));
+        filter: blur(var(--animation-blur));
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
+}
+
+@keyframes tooltipFadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
+    to {
+        opacity: 0;
+        transform: scale(var(--animation-scale));
+        filter: blur(var(--animation-blur));
+    }
+}
+
+/* Slide Animations */
+@keyframes tooltipSlideInTop {
+    from {
+        opacity: 0;
+        transform: translateY(var(--animation-offset));
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes tooltipSlideInBottom {
+    from {
+        opacity: 0;
+        transform: translateY(calc(var(--animation-offset) * -1));
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes tooltipSlideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(var(--animation-offset));
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes tooltipSlideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(calc(var(--animation-offset) * -1));
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Sacred Geometry Animations */
+@keyframes tooltipSacredExpand {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+        clip-path: circle(0% at var(--sacred-origin-x, 50%) var(--sacred-origin-y, 50%));
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        clip-path: circle(150% at var(--sacred-origin-x, 50%) var(--sacred-origin-y, 50%));
+    }
+}
+
+@keyframes tooltipSacredRotate {
+    0% {
+        opacity: 0;
+        transform: rotate(calc(var(--animation-rotate) * -1)) scale(var(--animation-scale));
+    }
+    50% {
+        transform: rotate(var(--animation-rotate)) scale(1.02);
+    }
+    100% {
+        opacity: 1;
+        transform: rotate(0) scale(1);
+    }
+}
+
+@keyframes tooltipSacredPulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(var(--color-ethereal-blue), 0.4);
+    }
+    70% {
+        transform: scale(1.02);
+        box-shadow: 0 0 0 10px rgba(var(--color-ethereal-blue), 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(var(--color-ethereal-blue), 0);
+    }
+}
+
+/* Divine Flow Animations */
+@keyframes tooltipDivineFlow {
+    0% {
+        opacity: 0;
+        transform: translateY(calc(var(--animation-offset) * -1)) rotate(calc(var(--animation-rotate) * -1));
+    }
+    50% {
+        opacity: 0.5;
+        transform: translateY(calc(var(--animation-offset) * 0.5)) rotate(var(--animation-rotate));
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotate(0);
+    }
+}
+
+/* Animation States */
+.sacred-tooltip-container[data-state="entering"] {
+    animation: tooltipFadeIn var(--tooltip-duration-in) var(--ease-golden) forwards;
+}
+
+.sacred-tooltip-container[data-state="exiting"] {
+    animation: tooltipFadeOut var(--tooltip-duration-out) var(--ease-golden) forwards;
+}
+
+/* Position-based Animations */
+.sacred-tooltip-container[data-position="top"][data-state="entering"] {
+    animation: tooltipSlideInTop var(--tooltip-duration-in) var(--ease-golden) forwards;
+}
+
+.sacred-tooltip-container[data-position="bottom"][data-state="entering"] {
+    animation: tooltipSlideInBottom var(--tooltip-duration-in) var(--ease-golden) forwards;
+}
+
+.sacred-tooltip-container[data-position="left"][data-state="entering"] {
+    animation: tooltipSlideInLeft var(--tooltip-duration-in) var(--ease-golden) forwards;
+}
+
+.sacred-tooltip-container[data-position="right"][data-state="entering"] {
+    animation: tooltipSlideInRight var(--tooltip-duration-in) var(--ease-golden) forwards;
+}
+
+/* Sacred Animation Variants */
+.sacred-tooltip-container[data-animation="sacred-expand"] {
+    animation: tooltipSacredExpand var(--tooltip-duration-in) var(--ease-golden) forwards;
+}
+
+.sacred-tooltip-container[data-animation="sacred-rotate"] {
+    animation: tooltipSacredRotate var(--tooltip-duration-in) var(--ease-golden) forwards;
+}
+
+.sacred-tooltip-container[data-animation="divine-flow"] {
+    animation: tooltipDivineFlow var(--tooltip-duration-in) var(--ease-golden) forwards;
+}
+
+/* Hover Effects */
+.sacred-tooltip-container[data-interactive="true"]:hover {
+    animation: tooltipSacredPulse var(--tooltip-duration-in) var(--ease-golden) infinite;
+}
+
+/* Chain Animations */
+.sacred-tooltip-container[data-chain="true"] {
+    --chain-delay: 50ms;
+    
+    .sacred-tooltip-icon {
+        animation: tooltipFadeIn var(--tooltip-duration-in) var(--ease-golden) forwards;
+        animation-delay: var(--chain-delay);
+    }
+    
+    .sacred-tooltip-content {
+        animation: tooltipSlideInRight var(--tooltip-duration-in) var(--ease-golden) forwards;
+        animation-delay: calc(var(--chain-delay) * 2);
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .sacred-tooltip-container {
+        animation: none !important;
+        transition: opacity var(--tooltip-duration-in) ease-in-out !important;
+    }
+}
+/* ------------------------
+ * Tooltip Variants
+ * Sacred information manifestations
+ * ------------------------ */
+
+/* Glass Tooltip */
+.sacred-tooltip-glass {
+    --glass-opacity: 0.8;
+    --glass-blur: 12px;
+    --glass-saturation: 1.2;
+    --glass-border: rgba(255, 255, 255, 0.1);
+    
+    background: rgba(var(--color-cosmic-void), var(--glass-opacity));
+    backdrop-filter: 
+        blur(var(--glass-blur))
+        saturate(var(--glass-saturation));
+    -webkit-backdrop-filter: 
+        blur(var(--glass-blur))
+        saturate(var(--glass-saturation));
+    border: 1px solid var(--glass-border);
+    box-shadow: 
+        0 4px 24px rgba(0, 0, 0, 0.1),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.sacred-tooltip-glass::before {
+    border-color: rgba(var(--color-cosmic-void), var(--glass-opacity)) transparent transparent transparent;
+}
+
+/* Ethereal Tooltip */
+.sacred-tooltip-ethereal {
+    --ethereal-gradient: linear-gradient(
+        135deg,
+        rgba(var(--color-ethereal-blue), 0.1),
+        rgba(var(--color-mystic-purple), 0.1)
+    );
+    --ethereal-border: linear-gradient(
+        var(--angle-golden),
+        var(--color-ethereal-blue),
+        var(--color-mystic-purple)
+    );
+    
+    background: var(--ethereal-gradient);
+    border: 2px solid transparent;
+    border-image: var(--ethereal-border) 1;
+    box-shadow: 
+        0 0 20px rgba(var(--color-ethereal-blue), 0.2),
+        inset 0 0 10px rgba(var(--color-mystic-purple), 0.1);
+}
+
+.sacred-tooltip-ethereal::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: var(--ethereal-gradient);
+    z-index: -1;
+    filter: blur(10px);
+    opacity: 0.5;
+}
+
+/* Sacred Tooltip */
+.sacred-tooltip-sacred {
+    --sacred-gradient: linear-gradient(
+        var(--angle-sacred),
+        rgba(var(--color-sacred-gold), 0.1),
+        rgba(var(--color-spiritual-green), 0.1)
+    );
+    
+    background: var(--sacred-gradient);
+    border: 1px solid rgba(var(--color-sacred-gold), 0.2);
+    overflow: hidden;
+}
+
+.sacred-tooltip-sacred::before {
+    content: '';
+    position: absolute;
+    inset: -50%;
+    background: conic-gradient(
+        from var(--angle-golden),
+        transparent,
+        rgba(var(--color-sacred-gold), 0.1),
+        transparent
+    );
+    animation: sacredSpin 12s linear infinite;
+}
+
+/* Divine Tooltip */
+.sacred-tooltip-divine {
+    --divine-gradient: linear-gradient(
+        to right,
+        rgba(var(--color-divine-red), 0.1),
+        rgba(var(--color-sacred-gold), 0.1)
+    );
+    
+    background: var(--divine-gradient);
+    border: none;
+    box-shadow: 
+        0 4px 20px rgba(var(--color-divine-red), 0.2),
+        inset 0 0 0 1px rgba(var(--color-sacred-gold), 0.1);
+}
+
+.sacred-tooltip-divine::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(var(--color-sacred-gold), 0.2),
+        transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.3s var(--ease-golden);
+}
+
+.sacred-tooltip-divine:hover::after {
+    opacity: 1;
+}
+
+/* Minimal Tooltip */
+.sacred-tooltip-minimal {
+    background: var(--surface-primary);
+    border: none;
+    box-shadow: var(--elevation-3);
+}
+
+.sacred-tooltip-minimal::before {
+    display: none;
+}
+
+/* Rich Tooltip */
+.sacred-tooltip-rich {
+    --rich-padding: var(--phi-space-4);
+    
+    padding: 0;
+    max-width: calc(var(--tooltip-max-width) * var(--phi));
+}
+
+.sacred-tooltip-rich-header {
+    padding: var(--rich-padding);
+    border-bottom: 1px solid var(--border-light);
+    background: rgba(var(--surface-secondary), 0.5);
+}
+
+.sacred-tooltip-rich-title {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.sacred-tooltip-rich-content {
+    padding: var(--rich-padding);
+}
+
+.sacred-tooltip-rich-footer {
+    padding: var(--rich-padding);
+    border-top: 1px solid var(--border-light);
+    background: rgba(var(--surface-secondary), 0.5);
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+}
+
+/* Interactive Tooltip */
+.sacred-tooltip-interactive {
+    pointer-events: auto;
+    cursor: pointer;
+    transition: all 0.3s var(--ease-golden);
+}
+
+.sacred-tooltip-interactive:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--elevation-3);
+}
+
+/* Size Variants */
+.sacred-tooltip-sm {
+    --tooltip-padding-current: var(--tooltip-padding-sm);
+    font-size: var(--font-size-xs);
+}
+
+.sacred-tooltip-lg {
+    --tooltip-padding-current: var(--tooltip-padding-lg);
+    font-size: var(--font-size-base);
+}
+
+/* Status Variants */
+.sacred-tooltip-success {
+    background: rgba(var(--color-spiritual-green), 0.1);
+    border-color: rgba(var(--color-spiritual-green), 0.2);
+    color: var(--color-spiritual-green);
+}
+
+.sacred-tooltip-error {
+    background: rgba(var(--color-divine-red), 0.1);
+    border-color: rgba(var(--color-divine-red), 0.2);
+    color: var(--color-divine-red);
+}
+
+.sacred-tooltip-warning {
+    background: rgba(var(--color-sacred-gold), 0.1);
+    border-color: rgba(var(--color-sacred-gold), 0.2);
+    color: var(--color-sacred-gold);
+}
+
+.sacred-tooltip-info {
+    background: rgba(var(--color-ethereal-blue), 0.1);
+    border-color: rgba(var(--color-ethereal-blue), 0.2);
+    color: var(--color-ethereal-blue);
+}

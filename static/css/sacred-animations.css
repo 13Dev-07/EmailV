@@ -1,0 +1,385 @@
+/**
+ * sacred-animations.css
+ * Advanced animation system based on sacred geometry principles
+ * Version: 1.0.0
+ * 
+ * This system implements animations that follow natural patterns found in:
+ * - Golden Spiral movements
+ * - Fibonacci time sequences
+ * - Sacred geometry transitions
+ * - Divine proportion animations
+ * - Natural flow states
+ */
+
+/* ------------------------
+ * Core Animation Variables
+ * Based on sacred mathematical principles
+ * ------------------------ */
+ :root {
+    /* Timing Constants (Based on Fibonacci) */
+    --time-instant: 0.1s;          /* 1 */
+    --time-quick: 0.2s;           /* 2 */
+    --time-swift: 0.3s;           /* 3 */
+    --time-natural: 0.5s;         /* 5 */
+    --time-balanced: 0.8s;        /* 8 */
+    --time-harmonic: 1.3s;        /* 13 */
+    --time-flowing: 2.1s;         /* 21 */
+    --time-complete: 3.4s;        /* 34 */
+    
+    /* Sacred Easing Functions */
+    --ease-golden: cubic-bezier(0.618, 0, 0.382, 1);  /* Based on φ */
+    --ease-natural: cubic-bezier(0.236, 0, 0.764, 1); /* √φ */
+    --ease-divine: cubic-bezier(0.382, 0, 0.618, 1);  /* φ⁻¹ */
+    --ease-spiral: cubic-bezier(0.618, -0.236, 0.382, 1.236);
+    
+    /* Animation Delay Sequences (Fibonacci) */
+    --delay-1: 0.1s;
+    --delay-2: 0.2s;
+    --delay-3: 0.3s;
+    --delay-5: 0.5s;
+    --delay-8: 0.8s;
+    --delay-13: 1.3s;
+    
+    /* Sacred Rotation Angles */
+    --rotate-phi: 137.5deg;       /* Golden Angle */
+    --rotate-divine: 108deg;      /* Sacred Pentagon */
+    --rotate-sacred: 72deg;       /* Pentagon Point */
+    --rotate-natural: 60deg;      /* Hexagon */
+    --rotate-balanced: 45deg;     /* Octagon */
+    
+    /* Transform Origins */
+    --origin-center: center;
+    --origin-phi: 61.8% 61.8%;    /* Golden Ratio Point */
+    --origin-divine: 38.2% 38.2%; /* Divine Proportion */
+    
+    /* Scale Factors */
+    --scale-phi: 1.618;           /* φ */
+    --scale-phi-inverse: 0.618;   /* φ⁻¹ */
+    --scale-phi-squared: 2.618;   /* φ² */
+    --scale-root-phi: 1.272;      /* √φ */
+}
+
+/* ------------------------
+ * Base Transitions
+ * Core transition patterns
+ * ------------------------ */
+
+.sacred-transition {
+    transition-property: all;
+    transition-timing-function: var(--ease-golden);
+    transition-duration: var(--time-natural);
+}
+
+.sacred-transition-transform {
+    transition-property: transform;
+    transition-timing-function: var(--ease-golden);
+    transition-duration: var(--time-natural);
+}
+
+.sacred-transition-opacity {
+    transition-property: opacity;
+    transition-timing-function: var(--ease-natural);
+    transition-duration: var(--time-quick);
+}
+
+.sacred-transition-colors {
+    transition-property: color, background-color, border-color, outline-color, fill, stroke;
+    transition-timing-function: var(--ease-divine);
+    transition-duration: var(--time-swift);
+}
+/* ------------------------
+ * Sacred Animation Keyframes
+ * Based on natural and divine patterns
+ * ------------------------ */
+
+/* Golden Spiral Animation */
+@keyframes sacredSpiral {
+    0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: scale(var(--scale-phi)) rotate(var(--rotate-phi));
+        opacity: 1;
+    }
+}
+
+/* Flower of Life Expansion */
+@keyframes flowerOfLife {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    20% {
+        transform: scale(0.2);
+        opacity: 0.2;
+    }
+    40% {
+        transform: scale(0.382); /* φ⁻¹ */
+        opacity: 0.4;
+    }
+    60% {
+        transform: scale(0.618); /* φ⁻¹ */
+        opacity: 0.6;
+    }
+    80% {
+        transform: scale(0.854); /* √φ⁻¹ */
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Metatron's Cube Rotation */
+@keyframes metatronRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    33.3% {
+        transform: rotate(var(--rotate-sacred));
+    }
+    66.6% {
+        transform: rotate(calc(var(--rotate-sacred) * 2));
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Vesica Piscis Formation */
+@keyframes vesicaPiscis {
+    0% {
+        clip-path: circle(0% at center);
+    }
+    50% {
+        clip-path: circle(50% at center);
+    }
+    100% {
+        clip-path: circle(100% at center);
+    }
+}
+
+/* Sacred Geometry Pulse */
+@keyframes sacredPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(var(--scale-phi-inverse));
+        opacity: 0.618;
+    }
+}
+
+/* Divine Proportion Wave */
+@keyframes divineWave {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    25% {
+        transform: translateY(calc(var(--scale-phi-inverse) * -1rem));
+    }
+    75% {
+        transform: translateY(calc(var(--scale-phi-inverse) * 1rem));
+    }
+}
+
+/* Sacred Fade Transitions */
+@keyframes sacredFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(var(--scale-phi-inverse)) translateY(1rem);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes sacredFadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: scale(var(--scale-phi-inverse)) translateY(-1rem);
+    }
+}
+
+/* Platonic Solid Rotations */
+@keyframes tetrahedronSpin {
+    0% {
+        transform: rotateX(0) rotateY(0) rotateZ(0);
+    }
+    100% {
+        transform: rotateX(360deg) rotateY(calc(360deg * var(--scale-phi-inverse))) rotateZ(var(--rotate-phi));
+    }
+}
+
+/* ------------------------
+ * Animation Classes
+ * Ready-to-use animation combinations
+ * ------------------------ */
+
+/* Spiral Animations */
+.animate-spiral {
+    animation: sacredSpiral var(--time-flowing) var(--ease-spiral) forwards;
+    transform-origin: var(--origin-phi);
+}
+
+.animate-spiral-infinite {
+    animation: sacredSpiral var(--time-flowing) var(--ease-spiral) infinite;
+    transform-origin: var(--origin-phi);
+}
+
+/* Flower of Life Animations */
+.animate-flower {
+    animation: flowerOfLife var(--time-harmonic) var(--ease-golden) forwards;
+}
+
+.animate-flower-pulse {
+    animation: flowerOfLife var(--time-harmonic) var(--ease-golden) forwards,
+               sacredPulse var(--time-flowing) var(--ease-divine) infinite;
+}
+
+/* Metatron's Cube Animations */
+.animate-metatron {
+    animation: metatronRotate var(--time-complete) var(--ease-divine) infinite;
+}
+
+.animate-metatron-reverse {
+    animation: metatronRotate var(--time-complete) var(--ease-divine) infinite reverse;
+}
+
+/* Vesica Piscis Animations */
+.animate-vesica {
+    animation: vesicaPiscis var(--time-balanced) var(--ease-natural) forwards;
+}
+
+.animate-vesica-pulse {
+    animation: vesicaPiscis var(--time-balanced) var(--ease-natural) forwards,
+               sacredPulse var(--time-flowing) var(--ease-divine) infinite;
+}
+
+/* Sacred Pulse Animations */
+.animate-pulse {
+    animation: sacredPulse var(--time-harmonic) var(--ease-golden) infinite;
+}
+
+.animate-pulse-slow {
+    animation: sacredPulse calc(var(--time-harmonic) * var(--scale-phi)) var(--ease-golden) infinite;
+}
+
+/* Divine Wave Animations */
+.animate-wave {
+    animation: divineWave var(--time-flowing) var(--ease-divine) infinite;
+}
+
+.animate-wave-slow {
+    animation: divineWave calc(var(--time-flowing) * var(--scale-phi)) var(--ease-divine) infinite;
+}
+
+/* Fade Animations */
+.animate-fade-in {
+    animation: sacredFadeIn var(--time-natural) var(--ease-golden) forwards;
+}
+
+.animate-fade-out {
+    animation: sacredFadeOut var(--time-natural) var(--ease-golden) forwards;
+}
+
+/* Platonic Solid Animations */
+.animate-tetrahedron {
+    animation: tetrahedronSpin var(--time-complete) var(--ease-spiral) infinite;
+    transform-style: preserve-3d;
+}
+
+/* ------------------------
+ * Animation Modifiers
+ * Control animation behaviors
+ * ------------------------ */
+
+/* Delay Classes */
+.delay-1 { animation-delay: var(--delay-1); }
+.delay-2 { animation-delay: var(--delay-2); }
+.delay-3 { animation-delay: var(--delay-3); }
+.delay-5 { animation-delay: var(--delay-5); }
+.delay-8 { animation-delay: var(--delay-8); }
+.delay-13 { animation-delay: var(--delay-13); }
+
+/* Duration Modifiers */
+.duration-quick { animation-duration: var(--time-quick) !important; }
+.duration-swift { animation-duration: var(--time-swift) !important; }
+.duration-natural { animation-duration: var(--time-natural) !important; }
+.duration-balanced { animation-duration: var(--time-balanced) !important; }
+.duration-harmonic { animation-duration: var(--time-harmonic) !important; }
+.duration-flowing { animation-duration: var(--time-flowing) !important; }
+.duration-complete { animation-duration: var(--time-complete) !important; }
+
+/* Timing Function Modifiers */
+.ease-golden { animation-timing-function: var(--ease-golden) !important; }
+.ease-natural { animation-timing-function: var(--ease-natural) !important; }
+.ease-divine { animation-timing-function: var(--ease-divine) !important; }
+.ease-spiral { animation-timing-function: var(--ease-spiral) !important; }
+
+/* Fill Mode Modifiers */
+.fill-forwards { animation-fill-mode: forwards !important; }
+.fill-backwards { animation-fill-mode: backwards !important; }
+.fill-both { animation-fill-mode: both !important; }
+
+/* Direction Modifiers */
+.direction-reverse { animation-direction: reverse !important; }
+.direction-alternate { animation-direction: alternate !important; }
+
+/* ------------------------
+ * Accessibility & Performance
+ * Respects user preferences
+ * ------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+.animation-pause {
+    animation-play-state: paused !important;
+}
+
+.animation-play {
+    animation-play-state: running !important;
+}
+
+/* ------------------------
+ * Animation Combinations
+ * Complex animation patterns
+ * ------------------------ */
+
+.animate-sacred-entrance {
+    animation: 
+        sacredFadeIn var(--time-natural) var(--ease-golden),
+        sacredSpiral var(--time-flowing) var(--ease-spiral);
+}
+
+.animate-divine-pulse {
+    animation:
+        sacredPulse var(--time-harmonic) var(--ease-golden) infinite,
+        divineWave var(--time-flowing) var(--ease-divine) infinite;
+}
+
+.animate-geometric-transform {
+    animation:
+        metatronRotate var(--time-complete) var(--ease-divine) infinite,
+        sacredPulse var(--time-harmonic) var(--ease-golden) infinite;
+}

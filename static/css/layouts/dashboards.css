@@ -1,0 +1,679 @@
+/**
+ * dashboard.css
+ * Divine dashboard system based on sacred geometry principles
+ * Version: 1.0.0
+ * 
+ * This system implements:
+ * - Golden ratio proportions
+ * - Sacred geometry patterns
+ * - Divine dashboard layouts
+ * - Universal component organization
+ * - Sacred number sequences
+ */
+
+/* ------------------------
+ * Dashboard Variables
+ * Based on sacred proportions
+ * ------------------------ */
+ :root {
+    /* Layout Dimensions */
+    --dashboard-sidebar-width: calc(280px * var(--phi));
+    --dashboard-header-height: calc(var(--phi-space-8) * var(--phi));
+    --dashboard-footer-height: calc(var(--phi-space-7) * var(--phi));
+    
+    /* Content Spacing */
+    --dashboard-spacing-sm: calc(var(--phi-space-3) * var(--phi));
+    --dashboard-spacing-md: calc(var(--phi-space-4) * var(--phi));
+    --dashboard-spacing-lg: calc(var(--phi-space-5) * var(--phi));
+    
+    /* Panel Dimensions */
+    --dashboard-panel-min-width: calc(300px * var(--phi));
+    --dashboard-panel-max-width: calc(400px * var(--phi));
+    
+    /* Animation Timings */
+    --dashboard-transition-duration: 0.3s;
+    --dashboard-animation-duration: 0.8s;
+    
+    /* Z-index Layers */
+    --dashboard-sidebar-z-index: 100;
+    --dashboard-header-z-index: 90;
+    --dashboard-overlay-z-index: 80;
+}
+
+/* ------------------------
+ * Dashboard Container
+ * Sacred vessel for content
+ * ------------------------ */
+
+.sacred-dashboard {
+    display: grid;
+    grid-template-areas:
+        "sidebar header"
+        "sidebar main"
+        "sidebar footer";
+    grid-template-columns: var(--dashboard-sidebar-width) 1fr;
+    grid-template-rows: var(--dashboard-header-height) 1fr var(--dashboard-footer-height);
+    min-height: 100vh;
+    background: var(--surface-primary);
+}
+
+/* Dashboard States */
+.sacred-dashboard[data-collapsed="true"] {
+    --dashboard-sidebar-width: calc(var(--phi-space-8) * var(--phi));
+}
+
+.sacred-dashboard[data-overlay="true"] {
+    --dashboard-sidebar-width: 0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .sacred-dashboard {
+        --dashboard-sidebar-width: 0;
+    }
+    
+    .sacred-dashboard[data-mobile-open="true"] {
+        --dashboard-sidebar-width: calc(280px * var(--phi));
+    }
+}
+/* ------------------------
+ * Dashboard Header Component
+ * Sacred navigation vessel
+ * ------------------------ */
+
+/* Header Container */
+.sacred-dashboard-header {
+    grid-area: header;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 calc(var(--dashboard-spacing-md) * var(--phi));
+    background: var(--surface-primary);
+    border-bottom: 1px solid var(--border-light);
+    z-index: var(--dashboard-header-z-index);
+}
+
+/* Header Left Section */
+.sacred-header-left {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--dashboard-spacing-md) * var(--phi));
+}
+
+/* Mobile Toggle */
+.sacred-header-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: calc(var(--phi-space-5) * var(--phi));
+    height: calc(var(--phi-space-5) * var(--phi));
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--dashboard-transition-duration) var(--ease-golden);
+}
+
+@media (max-width: 1024px) {
+    .sacred-header-toggle {
+        display: flex;
+    }
+}
+
+.sacred-header-toggle:hover {
+    color: var(--color-ethereal-blue);
+    transform: scale(1.1);
+}
+
+/* Header Search */
+.sacred-header-search {
+    position: relative;
+    width: calc(var(--dashboard-panel-min-width) * var(--phi-inverse));
+}
+
+.sacred-header-search-input {
+    width: 100%;
+    height: calc(var(--phi-space-5) * var(--phi));
+    padding: 0 calc(var(--phi-space-6) * var(--phi)) 0 calc(var(--phi-space-4) * var(--phi));
+    border: 1px solid var(--border-light);
+    border-radius: var(--border-radius-pill);
+    background: var(--surface-secondary);
+    color: var(--text-primary);
+    transition: all var(--dashboard-transition-duration) var(--ease-golden);
+}
+
+.sacred-header-search-input:focus {
+    border-color: var(--color-ethereal-blue);
+    box-shadow: 0 0 0 2px rgba(var(--color-ethereal-blue), 0.2);
+}
+
+.sacred-header-search-icon {
+    position: absolute;
+    right: calc(var(--phi-space-3) * var(--phi));
+    top: 50%;
+    transform: translateY(-50%);
+    width: calc(var(--phi-space-4) * var(--phi));
+    height: calc(var(--phi-space-4) * var(--phi));
+    color: var(--text-secondary);
+    pointer-events: none;
+    transition: color var(--dashboard-transition-duration) var(--ease-golden);
+}
+
+.sacred-header-search-input:focus + .sacred-header-search-icon {
+    color: var(--color-ethereal-blue);
+}
+
+/* Header Right Section */
+.sacred-header-right {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--dashboard-spacing-md) * var(--phi));
+}
+
+/* Header Actions */
+.sacred-header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--dashboard-spacing-sm);
+}
+
+.sacred-header-action {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(var(--phi-space-5) * var(--phi));
+    height: calc(var(--phi-space-5) * var(--phi));
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--dashboard-transition-duration) var(--ease-golden);
+}
+
+.sacred-header-action:hover {
+    color: var(--color-ethereal-blue);
+    transform: scale(1.1);
+}
+
+/* Action Badge */
+.sacred-header-action-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: calc(var(--phi-space-3) * var(--phi));
+    height: calc(var(--phi-space-3) * var(--phi));
+    padding: 0 var(--phi-space-1);
+    background: var(--color-divine-red);
+    color: white;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    border-radius: var(--border-radius-pill);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translate(25%, -25%);
+}
+
+/* User Profile */
+.sacred-header-profile {
+    display: flex;
+    align-items: center;
+    gap: var(--dashboard-spacing-sm);
+    padding: var(--phi-space-2) var(--phi-space-3);
+    border: 1px solid var(--border-light);
+    border-radius: var(--border-radius-pill);
+    cursor: pointer;
+    transition: all var(--dashboard-transition-duration) var(--ease-golden);
+}
+
+.sacred-header-profile:hover {
+    border-color: var(--color-ethereal-blue);
+    background: rgba(var(--color-ethereal-blue), 0.05);
+}
+
+.sacred-header-avatar {
+    width: calc(var(--phi-space-5) * var(--phi));
+    height: calc(var(--phi-space-5) * var(--phi));
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.sacred-header-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sacred-header-user {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .sacred-header-user {
+        display: flex;
+        flex-direction: column;
+        gap: calc(var(--phi-space-1) * var(--phi));
+    }
+}
+
+.sacred-header-name {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary);
+}
+
+.sacred-header-role {
+    font-size: var(--font-size-xs);
+    color: var(--text-secondary);
+}
+
+/* Header Breadcrumbs */
+.sacred-header-breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: var(--phi-space-2);
+    font-size: var(--font-size-sm);
+}
+
+.sacred-breadcrumb-item {
+    color: var(--text-secondary);
+    transition: color var(--dashboard-transition-duration) var(--ease-golden);
+}
+
+.sacred-breadcrumb-item:hover {
+    color: var(--color-ethereal-blue);
+}
+
+.sacred-breadcrumb-separator {
+    color: var(--text-secondary);
+    opacity: 0.5;
+}
+
+.sacred-breadcrumb-item[aria-current="page"] {
+    color: var(--text-primary);
+    font-weight: var(--font-weight-medium);
+}
+/* ------------------------
+ * Dashboard Sidebar Component
+ * Sacred navigation vessel
+ * ------------------------ */
+
+/* Sidebar Container */
+.sacred-dashboard-sidebar {
+    grid-area: sidebar;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: var(--dashboard-sidebar-width);
+    background: var(--surface-primary);
+    border-right: 1px solid var(--border-light);
+    z-index: var(--dashboard-sidebar-z-index);
+    transition: all var(--dashboard-transition-duration) var(--ease-golden);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Sidebar Header */
+.sacred-sidebar-header {
+    display: flex;
+    align-items: center;
+    height: var(--dashboard-header-height);
+    padding: 0 calc(var(--dashboard-spacing-md) * var(--phi));
+    border-bottom: 1px solid var(--border-light);
+}
+
+/* Logo Container */
+.sacred-sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--dashboard-spacing-sm) * var(--phi));
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.sacred-logo-icon {
+    width: calc(var(--phi-space-5) * var(--phi));
+    height: calc(var(--phi-space-5) * var(--phi));
+    flex-shrink: 0;
+}
+
+.sacred-logo-text {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    transition: opacity var(--dashboard-transition-duration) var(--ease-golden);
+}
+
+/* Sidebar Navigation */
+.sacred-sidebar-nav {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--dashboard-spacing-sm);
+    padding: calc(var(--dashboard-spacing-md) * var(--phi));
+    overflow-y: auto;
+}
+
+/* Navigation Section */
+.sacred-nav-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--phi-space-2);
+}
+
+.sacred-nav-section:not(:last-child) {
+    padding-bottom: calc(var(--dashboard-spacing-md) * var(--phi));
+    border-bottom: 1px solid var(--border-light);
+}
+
+/* Section Title */
+.sacred-nav-title {
+    padding: var(--phi-space-2) calc(var(--phi-space-4) * var(--phi));
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Navigation Item */
+.sacred-nav-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: calc(var(--dashboard-spacing-sm) * var(--phi));
+    padding: var(--phi-space-2) calc(var(--phi-space-4) * var(--phi));
+    color: var(--text-secondary);
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    transition: all var(--dashboard-transition-duration) var(--ease-golden);
+}
+
+.sacred-nav-item:hover {
+    color: var(--color-ethereal-blue);
+    background: rgba(var(--color-ethereal-blue), 0.05);
+}
+
+.sacred-nav-item[aria-current="page"] {
+    color: var(--color-ethereal-blue);
+    background: rgba(var(--color-ethereal-blue), 0.1);
+    font-weight: var(--font-weight-medium);
+}
+
+/* Navigation Icon */
+.sacred-nav-icon {
+    width: calc(var(--phi-space-4) * var(--phi));
+    height: calc(var(--phi-space-4) * var(--phi));
+    flex-shrink: 0;
+}
+
+/* Navigation Text */
+.sacred-nav-text {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: opacity var(--dashboard-transition-duration) var(--ease-golden);
+}
+
+/* Navigation Badge */
+.sacred-nav-badge {
+    padding: calc(var(--phi-space-1) * var(--phi-inverse)) var(--phi-space-2);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-ethereal-blue);
+    background: rgba(var(--color-ethereal-blue), 0.1);
+    border-radius: var(--border-radius-pill);
+    transition: opacity var(--dashboard-transition-duration) var(--ease-golden);
+}
+
+/* Sidebar Footer */
+.sacred-sidebar-footer {
+    padding: calc(var(--dashboard-spacing-md) * var(--phi));
+    border-top: 1px solid var(--border-light);
+}
+
+/* Collapsed State */
+.sacred-dashboard[data-collapsed="true"] {
+    .sacred-logo-text,
+    .sacred-nav-text,
+    .sacred-nav-badge,
+    .sacred-nav-title {
+        opacity: 0;
+        pointer-events: none;
+    }
+    
+    .sacred-nav-item {
+        justify-content: center;
+        padding: var(--phi-space-2);
+    }
+    
+    .sacred-sidebar-footer {
+        display: none;
+    }
+}
+
+/* Mobile Overlay */
+@media (max-width: 1024px) {
+    .sacred-dashboard-sidebar {
+        transform: translateX(-100%);
+    }
+    
+    .sacred-dashboard[data-mobile-open="true"] .sacred-dashboard-sidebar {
+        transform: translateX(0);
+    }
+    
+    .sacred-dashboard-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: calc(var(--dashboard-sidebar-z-index) - 1);
+        opacity: 0;
+        visibility: hidden;
+        transition: all var(--dashboard-transition-duration) var(--ease-golden);
+    }
+    
+    .sacred-dashboard[data-mobile-open="true"] .sacred-dashboard-overlay {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+/* ------------------------
+ * Dashboard Main Content Layout
+ * Sacred content vessel
+ * ------------------------ */
+
+/* Main Container */
+.sacred-dashboard-main {
+    grid-area: main;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    background: var(--surface-secondary);
+    transition: all var(--dashboard-transition-duration) var(--ease-golden);
+}
+
+/* Content Wrapper */
+.sacred-content-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: calc(var(--dashboard-spacing-md) * var(--phi));
+    gap: calc(var(--dashboard-spacing-md) * var(--phi));
+    overflow-y: auto;
+}
+
+/* Page Header */
+.sacred-page-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--dashboard-spacing-sm);
+    margin-bottom: calc(var(--dashboard-spacing-md) * var(--phi));
+}
+
+.sacred-page-title {
+    font-size: var(--scale-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-primary);
+    line-height: var(--line-height-tight);
+}
+
+.sacred-page-description {
+    font-size: var(--font-size-base);
+    color: var(--text-secondary);
+    max-width: calc(var(--dashboard-panel-max-width) * var(--phi));
+}
+
+/* Content Grid */
+.sacred-content-grid {
+    display: grid;
+    gap: var(--dashboard-spacing-md);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--dashboard-panel-min-width)), 1fr));
+}
+
+/* Content Sections */
+.sacred-content-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--dashboard-spacing-md);
+}
+
+.sacred-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--dashboard-spacing-md);
+}
+
+.sacred-section-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary);
+}
+
+/* Content Panel */
+.sacred-content-panel {
+    background: var(--surface-primary);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-light);
+    overflow: hidden;
+}
+
+.sacred-panel-header {
+    padding: calc(var(--dashboard-spacing-md) * var(--phi));
+    border-bottom: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sacred-panel-content {
+    padding: calc(var(--dashboard-spacing-md) * var(--phi));
+}
+
+.sacred-panel-footer {
+    padding: calc(var(--dashboard-spacing-md) * var(--phi));
+    border-top: 1px solid var(--border-light);
+    background: var(--surface-secondary);
+}
+
+/* Content Actions */
+.sacred-content-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--dashboard-spacing-sm);
+}
+
+.sacred-content-action {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--phi-space-2);
+    padding: var(--phi-space-2) var(--phi-space-4);
+    border: 1px solid var(--border-light);
+    border-radius: var(--border-radius-md);
+    background: var(--surface-primary);
+    color: var(--text-primary);
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+    transition: all var(--dashboard-transition-duration) var(--ease-golden);
+}
+
+.sacred-content-action:hover {
+    border-color: var(--color-ethereal-blue);
+    color: var(--color-ethereal-blue);
+}
+
+/* Content Filters */
+.sacred-content-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--dashboard-spacing-sm);
+    padding: calc(var(--dashboard-spacing-md) * var(--phi));
+    background: var(--surface-primary);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-light);
+    margin-bottom: var(--dashboard-spacing-md);
+}
+
+/* Loading States */
+.sacred-content-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(var(--phi-space-8) * var(--phi));
+    color: var(--text-secondary);
+}
+
+/* Empty States */
+.sacred-content-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: calc(var(--dashboard-spacing-lg) * var(--phi));
+    gap: var(--dashboard-spacing-md);
+    color: var(--text-secondary);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .sacred-content-wrapper {
+        padding: var(--dashboard-spacing-md);
+    }
+    
+    .sacred-page-header {
+        margin-bottom: var(--dashboard-spacing-md);
+    }
+    
+    .sacred-content-filters {
+        padding: var(--dashboard-spacing-md);
+    }
+    
+    .sacred-panel-header,
+    .sacred-panel-content,
+    .sacred-panel-footer {
+        padding: var(--dashboard-spacing-md);
+    }
+}
+
+/* Scroll Behavior */
+.sacred-content-wrapper {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-ethereal-blue) transparent;
+    
+    &::-webkit-scrollbar {
+        width: calc(var(--phi-space-2) * var(--phi));
+    }
+    
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background: var(--color-ethereal-blue);
+        border-radius: var(--border-radius-pill);
+        border: 3px solid var(--surface-secondary);
+    }
+}
