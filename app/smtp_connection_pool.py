@@ -225,7 +225,7 @@ class SMTPConnectionPool:
                 connection.failed_attempts += 1
                 if connection.failed_attempts >= self._max_retries:
                     self._remove_connection(connection)
-                SMTPMetrics.record_connection_error(server, type(e).__name__)
+                    SMTPMetrics.record_connection_error(server, type(e).__name__)
             raise
         finally:
             if connection and connection.failed_attempts < self._max_retries:
