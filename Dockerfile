@@ -1,48 +1,31 @@
-FROM python:3.9-slim as build
+FROM python:3.9-slim
 
 # Set working directory
 WORKDIR /app
 
 # Install system dependencies
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-    build-essential \
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Python dependencies
+# Copy requirements first for better caching
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Final stage
-FROM python:3.9-slim
-
-WORKDIR /app
-
-# Copy only necessary files from build stage
-COPY --from=build /usr/local/lib/python3.9/site-packages /usr/local/lib/python3.9/site-packages
+# Copy application code
 COPY . .
 
-# Create non-root user
-RUN useradd -m appuser && \
-    chown -R appuser:appuser /app && \
-    mkdir -p /app/logs && \
-    chown -R appuser:appuser /app/logs
-
-USER appuser
-
 # Set environment variables
-ENV PYTHONPATH=/app
-ENV LOG_LEVEL=INFO
-ENV MAX_CONNECTIONS=50
-ENV REDIS_URL=redis://redis:6379
-ENV METRICS_PORT=9090
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PORT=8000
 
-# Expose ports
-EXPOSE 8000 9090
+# Expose port
+EXPOSE 8000
 
 # Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
     CMD curl -f http://localhost:8000/health || exit 1
 
-# Run the application
-CMD ["python", "main.py"]
+# Run app with gunicorn
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "4", "--threads", "2", "--timeout", "120", "main:app"]

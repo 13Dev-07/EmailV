@@ -1,102 +1,109 @@
+# Email Validator Service
 
-## `README.md`
-
-```markdown
-# Ultimate Email Validation System
-
-## Overview
-
-The **Ultimate Email Validation System** is a comprehensive, robust, and scalable solution designed to deliver unmatched email validation accuracy with enterprise-grade reliability. Leveraging cutting-edge technologies and innovative approaches, this system ensures maximum performance, infinite scalability, and complete security.
+A high-performance, enterprise-grade email validation service with comprehensive validation features including RFC 5322 compliance, DNS verification, and SMTP validation.
 
 ## Features
 
-- **Syntax Validation:** Ensures email addresses conform to RFC standards.
-- **DNS and MX Record Verification:** Validates domain existence and mail server availability.
-- **SMTP Verification:** Confirms mailbox existence without sending actual emails.
-- **Disposable Email Detection:** Identifies and blocks temporary or disposable email addresses.
-- **Role Account Detection:** Detects role-based email addresses susceptible to abuse.
-- **Typo Detection:** Suggests corrections for common typographical errors in email domains.
-- **Domain Reputation Assessment:** Evaluates the reputation of email domains to prevent fraudulent activities.
-- **Rate Limiting:** Protects the API from abuse by limiting the number of requests per user/IP.
-- **Robust Logging:** Comprehensive logging for monitoring and debugging purposes.
+- RFC 5322 compliant email validation
+- DNS verification with MX record lookup
+- SMTP verification with connection pooling
+- Disposable email detection
+- Internationalized email support (IDNA 2008)
+- High performance with caching and connection pooling
+- Comprehensive monitoring with Prometheus/Grafana
+- Kubernetes-ready deployment
+- Extensive test coverage
 
 ## Getting Started
 
 ### Prerequisites
 
-- **Python 3.7 or higher**
-- **Redis Server:** For caching mechanisms.
-- **DNS Server Access:** To perform DNS and MX record lookups.
-- **SMTP Server Access:** To perform SMTP verifications.
+- Docker and Docker Compose
+- Python 3.11+
+- Kubernetes cluster (for production deployment)
+- AWS account (for production deployment)
 
-### Installation
+### Local Development
 
-1. **Clone the Repository:**
+1. Clone the repository:
+```bash
+git clone https://github.com/your-org/email-validator.git
+cd email-validator
+```
 
-    ```bash
-    git clone https://github.com/your-repo/ultimate-email-validation-system.git
-    cd ultimate-email-validation-system
-    ```
+2. Create and activate virtual environment:
+```bash
+python -m venv venv
+source venv/bin/activate  # Linux/Mac
+# or
+.\venv\Scripts\activate  # Windows
+```
 
-2. **Install Dependencies:**
+3. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
 
-    ```bash
-    pip install -r requirements.txt
-    ```
+4. Copy environment template and configure:
+```bash
+cp .env.template .env
+# Edit .env with your configuration
+```
 
-3. **Configure Environment Variables:**
+5. Run with Docker Compose:
+```bash
+docker-compose up -d
+```
 
-    Ensure that the `config/system.json` file is properly configured with necessary settings like API URLs, rate limits, etc.
-
-### Running the Application
-
-1. **Start Redis Server:**
-
-    Ensure that Redis is running on `localhost:6379`. If it's running elsewhere, update the `CacheManager` configuration accordingly.
-
-2. **Run the Application:**
-
-    ```bash
-    python app/core_application.py
-    ```
-
-    The API service will start on `http://0.0.0.0:5000`.
-
-### API Usage
-
-- **Validate Email:**
-
-    **Endpoint:** `POST /validate`
-
-    **Payload:**
-
-    ```json
-    {
-        "email": "user@example.com"
-    }
-    ```
-
-    **Response:**
-
-    ```json
-    {
-        "email": "user@example.com",
-        "syntax_valid": true,
-        "domain_exists": true,
-        "mx_records_valid": true,
-        "smtp_verified": true,
-        "disposable": false,
-        "role_account": false,
-        "typo_detected": false,
-        "typo_suggestion": null,
-        "domain_reputation": 80,
-        "risk_score": 10,
-        "status": "Valid"
-    }
-    ```
-
-## Testing
-
-Run the test suites to ensure all components are functioning as expected.
+### Running Tests
 
 ```bash
+# Run unit tests
+pytest tests/unit
+
+# Run integration tests
+pytest tests/integration
+
+# Run with coverage
+pytest tests/ --cov=app --cov-report=html
+```
+
+## Deployment
+
+### Staging Deployment
+
+```bash
+./scripts/deploy.sh staging
+```
+
+### Production Deployment
+
+1. Configure AWS credentials
+2. Update Kubernetes configurations
+3. Deploy:
+```bash
+./scripts/deploy.sh production
+```
+
+## Monitoring
+
+Service metrics are available at `/metrics` endpoint and can be collected by Prometheus.
+
+### Setting up monitoring:
+
+```bash
+./scripts/initialize_monitoring.sh
+```
+
+Access Grafana dashboard at: http://localhost:3000
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch
+3. Run tests and linting
+4. Submit pull request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.

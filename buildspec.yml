@@ -1,0 +1,71 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.11
+      docker: 20
+    commands:
+      - pip install --upgrade pip
+      - pip install pytest pytest-cov black isort safety
+      - pip install -r requirements.txt
+      - aws --version
+      - docker --version
+      
+  pre_build:
+    commands:
+      - echo "Running code quality checks and tests..."
+      - black --check .
+      - isort --check-only --diff .
+      - safety check
+      - pytest tests/ --cov=app --cov-report=xml
+      - echo "Logging in to Amazon ECR..."
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+      - echo "Running code quality checks and tests"
+      - black --check .
+      - isort --check .
+      - flake8 .
+      - mypy .
+      - pytest --cov=app tests/ --cov-report=xml
+      - echo "Pre-build phase completed"
+
+  build:
+    commands:
+      - echo "Building Docker image..."
+      - docker build -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG .
+      - docker tag $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:latest
+      - echo "Installing application"
+      - pip install -e .
+      
+  post_build:
+    commands:
+      - echo "Pushing Docker image to ECR..."
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:latest
+      - echo "Updating ECS service..."
+      - aws ecs update-service --cluster $ECS_CLUSTER --service $ECS_SERVICE --force-new-deployment
+      - echo "Writing image definitions file..."
+      - printf '{"ImageURI":"%s"}' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG > imageDefinitions.json
+      - echo "Build completed on `date`"
+      - echo "Preparing artifacts"
+
+artifacts:
+  files:
+    - app/**/*
+    - tests/**/*
+    - requirements.txt
+    - README.MD
+    - docker-compose.yml
+    - Dockerfile
+  discard-paths: no
+
+cache:
+  paths:
+    - '/root/.cache/pip'
+    - '/root/.local/lib/python3.11/site-packages'
+
+reports:
+  coverage:
+    files:
+      - coverage.xml
+    file-format: COBERTA

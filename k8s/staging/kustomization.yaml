@@ -1,0 +1,23 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: staging
+namePrefix: staging-
+
+resources:
+- ../base
+
+replicas:
+- name: email-validator
+  count: 2
+
+images:
+- name: ghcr.io/org/email-validator
+  newTag: latest
+
+configMapGenerator:
+- name: email-validator-config
+  behavior: merge
+  literals:
+  - LOG_LEVEL=DEBUG
+  - ENVIRONMENT=staging

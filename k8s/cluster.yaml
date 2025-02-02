@@ -1,0 +1,41 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: email-validator-cluster
+  region: us-west-2
+
+nodeGroups:
+  - name: ng-1
+    instanceType: t3.medium
+    desiredCapacity: 3
+    minSize: 2
+    maxSize: 5
+    iam:
+      withAddonPolicies:
+        autoScaler: true
+        albIngress: true
+        cloudWatch: true
+    kubeletExtraConfig:
+      kubeReserved:
+        cpu: "100m"
+        memory: "100Mi"
+        ephemeral-storage: "1Gi"
+      systemReserved:
+        cpu: "100m"
+        memory: "100Mi"
+        ephemeral-storage: "1Gi"
+
+iam:
+  withOIDC: true
+  serviceAccounts:
+  - metadata:
+      name: email-validator-sa
+      namespace: default
+    attachPolicyARNs:
+    - "arn:aws:iam::aws:policy/AWSXRayDaemonWriteAccess"
+    - "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
+
+cloudWatch:
+  clusterLogging:
+    enableTypes: ["api", "audit", "authenticator", "controllerManager", "scheduler"]
